@@ -1,0 +1,1299 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Atlas de l'investissement – Sénégal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..100,500..800&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: application plein écran — barre d'en-tête, colonne Couches | carte | colonne Fiche ; empilé sur téléphone */
+:root{
+  --bg:#F2F3EF; --panel:#FFFFFF; --panel-2:#F5F6F2; --line:#DEE1D9; --fg:#13221B; --muted:#56635C;
+  --accent:#0B6B3A; --accent-soft:#E3EFE7; --accent-fg:#FFFFFF;
+  --plat:#2453A6; --proj:#B4690E; --infra:#7A4A12;
+  --auto:#C2410C; --road:#8C7F6A; --road2:#BDB3A0; --rail:#3B3F3D; --energy:#7B4FA0;
+  --sea:#CADBE2; --land:#EDEBE2; --land-line:#A7A493; --gambia:#DAD6C8; --head:#0E2A1E; --head-fg:#FFFFFF; --head-muted:#B7CDBF;
+  --warn-bg:#FFF4D6; --warn-fg:#6B4B00;
+  --f-display:'Archivo','Arial Narrow',system-ui,sans-serif;
+  --f-body:'Public Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --f-mono:'IBM Plex Mono',ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0E1512; --panel:#151F1A; --panel-2:#1B2721; --line:#2A3832; --fg:#E5ECE8; --muted:#9DADA5;
+  --accent:#3FB57A; --accent-soft:#1D3328; --accent-fg:#06140D;
+  --plat:#7EA6F0; --proj:#E7A04A; --infra:#D9A36A;
+  --auto:#F08A5D; --road:#A39883; --road2:#5C574D; --rail:#C9D1CD; --energy:#B793D6;
+  --sea:#0F2129; --land:#232D28; --land-line:#4D5A53; --gambia:#2C3631; --head:#0A1712; --head-fg:#EAF2ED; --head-muted:#8FAA9C;
+  --warn-bg:#3A2F12; --warn-fg:#F2D78C; color-scheme:dark }}
+:root[data-theme="dark"]{
+  --bg:#0E1512; --panel:#151F1A; --panel-2:#1B2721; --line:#2A3832; --fg:#E5ECE8; --muted:#9DADA5;
+  --accent:#3FB57A; --accent-soft:#1D3328; --accent-fg:#06140D;
+  --plat:#7EA6F0; --proj:#E7A04A; --infra:#D9A36A;
+  --auto:#F08A5D; --road:#A39883; --road2:#5C574D; --rail:#C9D1CD; --energy:#B793D6;
+  --sea:#0F2129; --land:#232D28; --land-line:#4D5A53; --gambia:#2C3631; --head:#0A1712; --head-fg:#EAF2ED; --head-muted:#8FAA9C;
+  --warn-bg:#3A2F12; --warn-fg:#F2D78C; color-scheme:dark }
+
+html,body{height:100%}
+body{background:var(--bg);color:var(--fg);font:14px/1.45 var(--f-body);margin:0}
+*{box-sizing:border-box}
+button,input,select{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+a{color:var(--accent)}
+
+.app{height:100%;display:flex;flex-direction:column;min-height:0}
+header.top{background:var(--head);color:var(--head-fg);display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px;padding:12px 16px}
+.brand{display:flex;align-items:center;gap:12px;min-width:0}
+.brand-mark{width:38px;height:38px;border-radius:9px;background:var(--accent);display:grid;place-items:center;flex:none}
+.brand-mark svg{stroke:var(--accent-fg)}
+.brand h1{font:700 19px/1.1 var(--f-display);font-stretch:85%;letter-spacing:.2px;margin:0}
+.brand small{display:block;color:var(--head-muted);font-size:12.5px;margin-top:2px}
+.counts{display:flex;flex-wrap:wrap;gap:6px;margin-left:auto}
+.count{font:500 12.5px var(--f-mono);padding:6px 10px;border-radius:999px;background:rgba(255,255,255,.08);color:var(--head-fg);white-space:nowrap}
+.lang{display:flex;border:1px solid rgba(255,255,255,.28);border-radius:8px;overflow:hidden}
+.lang button{border:0;background:transparent;color:var(--head-fg);padding:0 12px;min-height:36px;font-weight:600;font-size:13px;cursor:pointer}
+.lang button[aria-pressed="true"]{background:var(--head-fg);color:var(--head)}
+.notice{background:var(--warn-bg);color:var(--warn-fg);font-size:12.5px;padding:7px 16px;display:flex;gap:8px;align-items:center}
+
+.main{flex:1;display:grid;grid-template-columns:300px minmax(0,1fr) 370px;min-height:0}
+.side{background:var(--panel);overflow:auto;min-width:0;padding:18px 16px;display:flex;flex-direction:column;gap:20px}
+.side.left{border-right:1px solid var(--line)}
+.side.right{border-left:1px solid var(--line);padding:0;gap:0}
+.label{font:700 11.5px var(--f-body);letter-spacing:.9px;text-transform:uppercase;color:var(--muted);margin:0 0 8px}
+
+.search{position:relative}
+.search-box{display:flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--panel-2);border-radius:9px;padding:0 10px;min-height:42px}
+.search-box input{flex:1;border:0;background:transparent;outline:none;min-width:0}
+.results{position:absolute;left:0;right:0;top:calc(100% + 4px);background:var(--panel);border:1px solid var(--line);border-radius:9px;box-shadow:0 8px 24px rgba(0,0,0,.14);z-index:1200;max-height:280px;overflow:auto;padding:4px}
+.results button{display:flex;width:100%;text-align:left;gap:10px;align-items:center;border:0;background:transparent;padding:9px 10px;border-radius:6px;cursor:pointer}
+.results button:hover,.results button:focus-visible{background:var(--accent-soft)}
+.results small{color:var(--muted);margin-left:auto;font-size:12px}
+
+.layers{display:flex;flex-direction:column;gap:2px;border:0;margin:0;padding:0}
+.layer{display:flex;align-items:center;gap:10px;min-height:38px;cursor:pointer;border-radius:7px;padding:0 6px}
+.layer:hover{background:var(--panel-2)}
+.layer input{width:17px;height:17px;accent-color:var(--accent);margin:0}
+.layer .n{margin-left:auto;font:500 12px var(--f-mono);color:var(--muted)}
+.layer .soon{margin-left:auto;font-size:11px;padding:2px 6px;border-radius:4px;background:var(--panel-2);color:var(--muted)}
+.sw{width:14px;height:14px;flex:none;border-radius:3px}
+.sw.zone{background:color-mix(in srgb,var(--accent) 30%,transparent);border:2px solid var(--accent)}
+.sw.plat{border-radius:50%;background:var(--plat);border:2px solid var(--panel)}
+.sw.proj{border-radius:50%;background:var(--proj)}
+.sw.infra{height:4px;background:var(--infra);border-radius:2px}
+.sw.cover{background:linear-gradient(90deg,#9cc3a8 0 33%,#a9b9de 33% 66%,#e4c69c 66%)}
+
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{border:1px solid var(--line);background:var(--panel);border-radius:999px;padding:0 12px;min-height:34px;cursor:pointer;font-size:13px;font-weight:500}
+.chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-fg)}
+.chip.withic{display:inline-flex;align-items:center;gap:6px;padding-left:9px}
+.chip.withic .ico{color:var(--proj)}
+.sectors{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}
+.sec{display:grid;grid-template-columns:34px minmax(0,1fr);grid-template-rows:auto auto;align-items:center;column-gap:8px;text-align:left;border:1px solid var(--line);background:var(--panel);border-radius:10px;padding:8px;min-height:52px;cursor:pointer}
+.sec:hover{border-color:color-mix(in srgb,var(--proj) 60%,var(--line))}
+.sec-ic{grid-row:1 / 3;width:34px;height:34px;border-radius:8px;display:grid;place-items:center;background:color-mix(in srgb,var(--proj) 14%,transparent);color:var(--proj)}
+.sec-nm{font-size:12.5px;font-weight:600;line-height:1.2;min-width:0;overflow-wrap:anywhere}
+.sec-n{font:500 11.5px var(--f-mono);color:var(--muted)}
+.sec-all{grid-column:1 / -1;grid-template-columns:34px minmax(0,1fr) auto;grid-template-rows:auto;min-height:46px}
+.sec-all .sec-ic{grid-row:auto;background:var(--accent-soft);color:var(--accent)}
+.sec-all .sec-n{justify-self:end}
+.sec[aria-pressed="true"]{border-color:var(--proj);background:color-mix(in srgb,var(--proj) 10%,var(--panel));box-shadow:inset 0 0 0 1px var(--proj)}
+.sec[aria-pressed="true"] .sec-ic{background:var(--proj);color:var(--panel)}
+.sec-all[aria-pressed="true"]{border-color:var(--accent);background:var(--accent-soft);box-shadow:inset 0 0 0 1px var(--accent)}
+.sec-all[aria-pressed="true"] .sec-ic{background:var(--accent);color:var(--accent-fg)}
+.kind.proj{display:inline-flex;align-items:center;gap:6px}
+
+.cta{margin-top:auto;background:var(--accent-soft);border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:8px}
+.cta strong{font:700 15px var(--f-display);font-stretch:90%}
+.cta p{margin:0;font-size:13px;color:var(--muted)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:42px;padding:0 16px;border-radius:9px;border:1px solid transparent;font-weight:600;font-size:14px;cursor:pointer;text-decoration:none}
+.btn.primary{background:var(--accent);color:var(--accent-fg)}
+.btn.ghost{background:transparent;border-color:var(--line);color:var(--fg)}
+.btn.small{min-height:34px;padding:0 12px;font-size:13px}
+
+.mapwrap{position:relative;min-width:0;min-height:0;background:var(--sea)}
+#map{position:absolute;inset:0;background:var(--sea)}
+.map-tools{position:absolute;right:12px;top:12px;z-index:1000;display:flex;flex-direction:column;gap:6px}
+.map-tools button{width:40px;height:40px;border-radius:9px;border:1px solid var(--line);background:var(--panel);cursor:pointer;display:grid;place-items:center;font-size:18px;box-shadow:0 1px 3px rgba(0,0,0,.12)}
+.legend{position:absolute;left:12px;bottom:12px;z-index:1000;background:var(--panel);border:1px solid var(--line);border-radius:10px;font-size:12.5px;width:280px;max-width:calc(100% - 24px);box-shadow:0 1px 4px rgba(0,0,0,.14)}
+.legend summary{cursor:pointer;padding:9px 12px;font-weight:700;font-size:12px;letter-spacing:.8px;text-transform:uppercase;color:var(--muted);list-style:none;display:flex;align-items:center;justify-content:space-between}
+.legend summary::-webkit-details-marker{display:none}
+.legend summary::after{content:'';width:8px;height:8px;border-right:2px solid var(--muted);border-bottom:2px solid var(--muted);transform:rotate(-135deg);margin-top:4px}
+.legend:not([open]) summary::after{transform:rotate(45deg);margin-top:-4px}
+.legend-body{max-height:min(46vh,420px);overflow:auto;padding:0 12px 10px;display:flex;flex-direction:column;gap:10px}
+.lg-sec{display:flex;flex-direction:column;gap:5px}
+.lg-sec h3{margin:0;font:600 11.5px var(--f-body);color:var(--muted)}
+.lg-row{display:flex;align-items:center;gap:8px;min-height:20px}
+.lg-row .sym{width:24px;display:inline-grid;place-items:center}
+.lg-row small{color:var(--muted);font-size:11.5px;margin-left:auto;text-align:right}
+.sym{width:24px;height:14px;flex:none;display:inline-grid;place-items:center}
+.sym-pin{width:16px;height:16px;border-radius:50%;background:var(--panel);border:1.6px solid var(--infra);display:grid;place-items:center}
+.sym-pin svg{stroke:var(--infra)}
+.sym-pin.energy{border-color:var(--energy)}.sym-pin.energy svg{stroke:var(--energy)}
+.sym-pin.apix{border-color:var(--accent)}.sym-pin.apix svg{stroke:var(--accent)}
+.sym-pin.build{border-style:dashed}
+.sublayers{display:flex;flex-direction:column;margin:-2px 0 6px 18px;padding-left:10px;border-left:1px solid var(--line)}
+.layer.sub{min-height:32px;font-size:13.5px}
+.layer.sub input{width:15px;height:15px}
+.cover-legend{display:flex;flex-direction:column;margin:-2px 0 6px 18px;padding-left:10px;border-left:1px solid var(--line)}
+.cover-legend[hidden]{display:none}
+.cover-legend button{display:grid;grid-template-columns:14px minmax(0,1fr);column-gap:10px;align-items:start;text-align:left;border:0;background:transparent;padding:6px;border-radius:6px;cursor:pointer;font-size:13px}
+.cover-legend button:hover{background:var(--panel-2)}
+.cover-legend .cs{width:14px;height:14px;border-radius:3px;margin-top:2px;border:1px solid var(--land-line)}
+.cover-legend b{font-weight:600}
+.cover-legend span span{display:block;color:var(--muted);font-size:12px}
+.scale-note{position:absolute;right:12px;bottom:12px;z-index:1000;font-size:11px;color:var(--muted);background:var(--panel);padding:3px 8px;border-radius:6px;border:1px solid var(--line)}
+
+.tabs{display:flex;border-bottom:1px solid var(--line);position:sticky;top:0;background:var(--panel);z-index:2}
+.tabs button{flex:1;border:0;background:transparent;min-height:48px;font-weight:600;font-size:14px;cursor:pointer;color:var(--muted);border-bottom:2px solid transparent}
+.tabs button[aria-selected="true"]{color:var(--fg);border-bottom-color:var(--accent)}
+.pane{padding:18px 16px;display:flex;flex-direction:column;gap:18px}
+.kind{align-self:flex-start;font-size:12px;font-weight:600;padding:3px 8px;border-radius:5px;background:var(--accent-soft);color:var(--accent)}
+.kind.plat{background:color-mix(in srgb,var(--plat) 16%,transparent);color:var(--plat)}
+.kind.proj{background:color-mix(in srgb,var(--proj) 16%,transparent);color:var(--proj)}
+.kind.infra{background:color-mix(in srgb,var(--infra) 16%,transparent);color:var(--infra)}
+.fiche h2{font:750 24px/1.15 var(--f-display);font-stretch:88%;margin:6px 0 4px;text-wrap:balance}
+.sub{color:var(--muted);font-size:13.5px;margin:0}
+.desc{margin:0;font-size:14px;max-width:62ch}
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.stat{background:var(--panel-2);border-radius:9px;padding:10px 12px;display:flex;flex-direction:column;gap:2px;min-width:0}
+.stat span{font-size:12px;color:var(--muted)}
+.stat b{font:500 15px var(--f-mono);font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+.stat b.todo{color:var(--muted);font-family:var(--f-body);font-size:13px;font-weight:500}
+.rows{display:flex;flex-direction:column}
+.row{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px solid var(--line);font-size:14px}
+.row:last-child{border-bottom:0}
+.row .v{font-family:var(--f-mono);font-variant-numeric:tabular-nums;color:var(--muted);text-align:right}
+.links{display:flex;flex-direction:column;gap:6px}
+.linklist{display:flex;flex-direction:column;gap:2px}
+.linklist button{display:flex;align-items:center;gap:10px;border:0;background:transparent;text-align:left;padding:8px;border-radius:7px;cursor:pointer;font-size:14px}
+.linklist button:hover{background:var(--panel-2)}
+.contact{display:flex;align-items:center;gap:8px;font-family:var(--f-mono);font-size:13px;user-select:all}
+.copy{border:1px solid var(--line);background:var(--panel);border-radius:6px;font:600 11.5px var(--f-body);padding:4px 8px;cursor:pointer;user-select:none}
+.empty{color:var(--muted);font-size:14px}
+.empty h2{font:750 22px var(--f-display);font-stretch:88%;color:var(--fg);margin:0 0 6px}
+.how{display:flex;flex-direction:column;gap:10px;margin:0;padding:0;list-style:none}
+.how li{display:flex;gap:10px;align-items:flex-start}
+.how li i{font-style:normal;flex:none;width:24px;height:24px;border-radius:50%;background:var(--accent-soft);color:var(--accent);display:grid;place-items:center;font:600 12px var(--f-mono)}
+
+.form{display:flex;flex-direction:column;gap:14px}
+.field{display:flex;flex-direction:column;gap:6px}
+.field label,.field legend{font-weight:600;font-size:13px}
+select{min-height:42px;border:1px solid var(--line);border-radius:9px;background:var(--panel-2);padding:0 10px}
+.checks{display:flex;flex-direction:column;gap:2px;border:0;padding:0;margin:0}
+.checks label{display:flex;gap:10px;align-items:center;min-height:34px;font-weight:400;font-size:14px;cursor:pointer}
+.checks input{width:17px;height:17px;accent-color:var(--accent);margin:0}
+.rank{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.rank li button{width:100%;display:grid;grid-template-columns:28px minmax(0,1fr) auto;gap:4px 10px;align-items:center;text-align:left;border:1px solid var(--line);background:var(--panel);border-radius:10px;padding:10px 12px;cursor:pointer}
+.rank li button:hover{border-color:var(--accent)}
+.rank .pos{font:600 14px var(--f-mono);color:var(--muted)}
+.rank .nm{font-weight:600;min-width:0}
+.rank .sc{font:600 15px var(--f-mono);color:var(--accent)}
+.rank .why{grid-column:2 / 4;font-size:12.5px;color:var(--muted)}
+.bar{grid-column:2 / 4;height:5px;border-radius:3px;background:var(--panel-2);overflow:hidden}
+.bar i{display:block;height:100%;background:var(--accent);border-radius:3px}
+.fine{font-size:12px;color:var(--muted);margin:0}
+.field .label{margin:0}
+.stat small.vs{display:block;font:400 11.5px var(--f-body);color:var(--muted);margin-top:1px}
+.socio{display:flex;flex-direction:column;gap:12px;padding:14px;border-radius:12px;border:1px solid var(--line);background:var(--panel)}
+.socio .label{margin:0}
+.mini{margin:0 0 6px;font-size:12.5px;color:var(--muted)}
+.mini b{color:var(--fg);font-family:var(--f-mono);font-weight:500}
+.agebar{display:flex;height:12px;border-radius:6px;overflow:hidden;background:var(--panel-2)}
+.agebar i{display:block;height:100%}
+.a1{background:#86B8BC}.a2{background:#24697E}.a3{background:#C7B98F}
+.agelg{display:flex;flex-wrap:wrap;gap:4px 12px;font-size:12px;color:var(--muted);margin:6px 0 8px}
+.agelg span{display:inline-flex;align-items:center;gap:5px}
+.agelg i{width:9px;height:9px;border-radius:2px;display:inline-block}
+.povbar{position:relative;height:10px;border-radius:5px;background:var(--panel-2)}
+.povbar i{display:block;height:100%;border-radius:5px;background:#CC6D2C}
+.povbar b{position:absolute;top:-4px;bottom:-4px;width:2px;background:var(--fg);transform:translateX(-1px)}
+.sources{border-top:1px solid var(--line);padding-top:12px;display:flex;flex-direction:column;gap:4px;font-size:12px;color:var(--muted)}
+.sources a{overflow-wrap:anywhere}
+
+/* Vues et portail des plateformes */
+.views{display:flex;gap:4px;background:rgba(255,255,255,.08);border-radius:10px;padding:3px}
+.views button{display:inline-flex;align-items:center;gap:7px;border:0;background:transparent;color:var(--head-muted);font-weight:600;font-size:13.5px;padding:0 12px;min-height:36px;border-radius:8px;cursor:pointer}
+.views button[aria-pressed="true"]{background:var(--head-fg);color:var(--head)}
+.portal{flex:1;overflow:auto;background:var(--bg);min-height:0}
+.pin-wrap{max-width:1200px;margin:0 auto;padding:28px 20px 56px;display:flex;flex-direction:column;gap:26px}
+.p-intro h2{font:800 34px/1.05 var(--f-display);font-stretch:80%;margin:0 0 8px;text-wrap:balance;letter-spacing:-.2px}
+.p-intro p{margin:0;color:var(--muted);max-width:68ch;font-size:15px}
+.p-overview{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);gap:24px;align-items:start}
+.p-overview .ov-map{background:var(--sea);border-radius:14px;border:1px solid var(--line);padding:10px}
+.ov-map svg{display:block;width:100%;height:auto}
+.ov-map path{cursor:pointer;transition:opacity .15s}
+.ov-map path:hover{opacity:.75}
+.pcards{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px}
+.pcard{display:flex;flex-direction:column;text-align:left;border:1px solid var(--line);background:var(--panel);border-radius:14px;padding:0;cursor:pointer;overflow:hidden;transition:transform .15s,box-shadow .15s,border-color .15s}
+.pcard:hover,.pcard:focus-visible{transform:translateY(-2px);box-shadow:0 8px 22px rgba(0,0,0,.1);border-color:var(--pc)}
+.pcard .pc-map{background:var(--sea);height:120px;display:grid;place-items:center;border-bottom:4px solid var(--pc)}
+.pcard .pc-map svg{height:110px;width:auto}
+.pc-body{padding:12px 14px 14px;display:flex;flex-direction:column;gap:4px}
+.pc-body b{font:750 18px var(--f-display);font-stretch:85%}
+.pc-body .rg{font-size:12.5px;color:var(--muted)}
+.pc-figs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;margin-top:8px}
+.pc-figs span{display:flex;flex-direction:column;font-size:11px;color:var(--muted);line-height:1.25}
+.pc-figs span b{font:500 14px var(--f-mono);color:var(--fg);font-stretch:100%}
+.crumbs{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px}
+.crumbs nav{display:flex;align-items:center;gap:8px;font-size:13.5px;color:var(--muted)}
+.crumbs nav button{border:0;background:transparent;color:var(--accent);font-weight:600;cursor:pointer;padding:6px 0;font-size:13.5px}
+.pn{display:flex;gap:6px}
+.p-hero{position:relative;border-radius:16px;overflow:hidden;background:var(--panel);border:1px solid var(--line);display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr)}
+.p-hero .ph-txt{padding:26px 26px 24px;display:flex;flex-direction:column;gap:12px;border-left:8px solid var(--pc)}
+.p-hero .eyebrow{font:700 12px var(--f-body);letter-spacing:1px;text-transform:uppercase;color:var(--muted)}
+.p-hero h2{font:800 40px/1 var(--f-display);font-stretch:78%;margin:0;letter-spacing:-.3px;text-wrap:balance}
+.p-hero p{margin:0;max-width:60ch;color:var(--fg)}
+.p-hero .chips{margin-top:2px}
+.p-hero .ph-map{background:var(--sea);min-height:240px;display:grid;place-items:center;padding:12px}
+.p-hero .ph-map svg{width:100%;height:auto;max-height:340px}
+.ph-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px}
+.kpi{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:4px;min-width:0}
+.kpi span{font-size:12.5px;color:var(--muted)}
+.kpi b{font:600 22px var(--f-mono);font-variant-numeric:tabular-nums;letter-spacing:-.5px}
+.kpi small{font-size:11.5px;color:var(--muted)}
+.subnav{position:sticky;top:0;z-index:5;background:var(--bg);display:flex;gap:6px;overflow-x:auto;padding:8px 0;border-bottom:1px solid var(--line)}
+.subnav button{flex:none;border:1px solid var(--line);background:var(--panel);border-radius:999px;padding:0 14px;min-height:36px;font-weight:600;font-size:13px;cursor:pointer}
+.subnav button:hover{border-color:var(--accent)}
+.psec{display:flex;flex-direction:column;gap:14px;scroll-margin-top:64px}
+.psec>h3{font:750 22px var(--f-display);font-stretch:85%;margin:0;display:flex;align-items:center;gap:10px}
+.psec>h3 i{width:30px;height:30px;border-radius:8px;background:var(--accent-soft);color:var(--accent);display:grid;place-items:center;font-style:normal}
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.card h4{margin:0;font:700 14px var(--f-body)}
+.tbl-wrap{overflow-x:auto;background:var(--panel);border:1px solid var(--line);border-radius:12px}
+table.ptbl{width:100%;border-collapse:collapse;font-size:13.5px;min-width:620px}
+.ptbl th,.ptbl td{padding:10px 12px;text-align:right;border-bottom:1px solid var(--line);font-variant-numeric:tabular-nums}
+.ptbl th:first-child,.ptbl td:first-child{text-align:left}
+.ptbl th{font-size:12px;color:var(--muted);font-weight:600}
+.ptbl tr:last-child td{border-bottom:0;font-weight:700}
+.ptbl td button{border:0;background:transparent;color:var(--accent);font-weight:600;cursor:pointer;padding:0;font-size:13.5px}
+.hbars{display:flex;flex-direction:column;gap:8px}
+.hbar{display:grid;grid-template-columns:96px minmax(0,1fr) 84px;gap:10px;align-items:center;font-size:13px}
+.hbar .tr{height:12px;border-radius:6px;background:var(--panel-2);overflow:hidden}
+.hbar .tr i{display:block;height:100%;border-radius:6px;background:var(--pc,var(--accent))}
+.hbar .v{text-align:right;font-family:var(--f-mono);font-size:12.5px;color:var(--muted)}
+.hbar.pov .tr i{background:#CC6D2C}
+.olist{display:flex;flex-direction:column;gap:2px}
+.olist button{display:flex;align-items:center;gap:10px;border:0;background:transparent;text-align:left;padding:8px;border-radius:8px;cursor:pointer;font-size:14px}
+.olist button:hover{background:var(--panel-2)}
+.olist small{margin-left:auto;color:var(--muted);font-size:12px;text-align:right}
+.olist .ic{flex:none;display:grid;place-items:center;width:28px;height:28px;border-radius:7px;background:color-mix(in srgb,var(--proj) 14%,transparent);color:var(--proj)}
+.olist .ic.z{background:var(--accent-soft);color:var(--accent);font:700 9px var(--f-mono)}
+.olist .ic.inf{background:var(--panel-2)}
+.olist .ic.inf svg{stroke:var(--infra)}.olist .ic.inf.energy svg{stroke:var(--energy)}
+.secs{display:flex;flex-wrap:wrap;gap:6px}
+.secs span{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);border-radius:999px;padding:5px 11px 5px 8px;font-size:13px}
+.secs span svg{color:var(--proj)}
+.contact-card{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.contact-card .ci{display:flex;flex-direction:column;gap:4px}
+.contact-card .ci span{font-size:12px;color:var(--muted)}
+.contact-card .ci div{display:flex;align-items:center;gap:8px;font-family:var(--f-mono);font-size:13.5px;user-select:all;overflow-wrap:anywhere}
+.p-foot{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:18px}
+.mapcard{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(220px,1fr);gap:16px;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px}
+.mc-map{background:var(--sea);border-radius:10px;overflow:hidden;border:1px solid var(--line)}
+.mc-map svg{display:block;width:100%;height:auto;max-height:520px}
+.mc-leg{display:flex;flex-direction:column;gap:7px;font-size:13px;min-width:0}
+.mc-leg h4{margin:0 0 4px;font:700 15px var(--f-body)}
+.mc-leg .lg-row{min-height:22px}
+.mc-leg .secs span{font-size:12px;padding:3px 9px 3px 6px}
+.num{flex:none;min-width:20px;height:20px;padding:0 5px;border-radius:10px;background:var(--fg);color:var(--panel);font:700 11px var(--f-body);display:grid;place-items:center}
+@media (max-width:900px){.mapcard{grid-template-columns:1fr}}
+.btn.dl-btn{display:none}
+.can-dl .btn.dl-btn{display:inline-flex}
+.btn[disabled]{opacity:.6;cursor:progress}
+.pdf-msg{margin:0;font-size:12.5px;color:var(--muted);min-height:1em}
+@media (max-width:900px){.p-overview,.p-hero{grid-template-columns:1fr}.p-hero h2{font-size:32px}.views button span{display:none}}
+
+/* Leaflet – règles essentielles (feuille de style inlinée) */
+.leaflet-pane,.leaflet-marker-icon,.leaflet-marker-shadow,.leaflet-tile,.leaflet-tile-container,.leaflet-pane>svg,.leaflet-pane>canvas,.leaflet-zoom-box,.leaflet-image-layer,.leaflet-layer{position:absolute;left:0;top:0}
+.leaflet-container{overflow:hidden;-webkit-tap-highlight-color:transparent;font:inherit}
+.leaflet-container svg,.leaflet-container img{max-width:none!important;max-height:none!important}
+.leaflet-container.leaflet-touch-zoom{touch-action:pan-x pan-y}
+.leaflet-container.leaflet-touch-drag{touch-action:none}
+.leaflet-pane{z-index:400}.leaflet-overlay-pane{z-index:400}.leaflet-shadow-pane{z-index:500}.leaflet-marker-pane{z-index:600}.leaflet-tooltip-pane{z-index:650}.leaflet-popup-pane{z-index:700}
+.leaflet-map-pane canvas{z-index:100}.leaflet-map-pane svg{z-index:200}
+.leaflet-zoom-animated{transform-origin:0 0}
+.leaflet-zoom-anim .leaflet-zoom-animated{transition:transform .25s cubic-bezier(0,0,.25,1)}
+.leaflet-zoom-anim .leaflet-zoom-hide{visibility:hidden}
+.leaflet-interactive{cursor:pointer}
+.leaflet-grab{cursor:grab}.leaflet-dragging .leaflet-grab,.leaflet-dragging .leaflet-interactive{cursor:grabbing}
+.leaflet-marker-icon,.leaflet-image-layer,.leaflet-pane>svg path{pointer-events:none}
+.leaflet-marker-icon.leaflet-interactive,.leaflet-pane>svg path.leaflet-interactive{pointer-events:auto}
+.leaflet-control-container .leaflet-top,.leaflet-control-container .leaflet-bottom{position:absolute;z-index:1000;pointer-events:none}
+.leaflet-tooltip{position:absolute;padding:3px 7px;background:var(--panel);color:var(--fg);border:1px solid var(--line);border-radius:5px;white-space:nowrap;pointer-events:none;font-size:12px;box-shadow:0 1px 3px rgba(0,0,0,.15)}
+.leaflet-tooltip.city{background:transparent;border:0;box-shadow:none;padding:0 4px;font-weight:600;font-size:11.5px;text-shadow:0 0 3px var(--land),0 0 3px var(--land),0 0 3px var(--land)}
+.leaflet-tooltip.region{background:transparent;border:0;box-shadow:none;color:var(--muted);font:600 10.5px var(--f-body);letter-spacing:1.2px;text-transform:uppercase;text-shadow:0 0 3px var(--land),0 0 3px var(--land)}
+
+.pin{display:block}
+.pin-infra{margin:-10px 0 0 -10px}
+.pin-zone{margin:-11px 0 0 -11px;width:22px;height:22px;border-radius:6px;background:color-mix(in srgb,var(--accent) 28%,var(--panel));border:2px solid var(--accent);display:grid;place-items:center;font:700 9px var(--f-mono);color:var(--accent)}
+.pin-proj{width:26px;height:26px;margin:-13px 0 0 -13px;border-radius:50%;background:var(--proj);color:#FFFFFF;border:2px solid var(--panel);box-shadow:0 1px 3px rgba(0,0,0,.35);display:grid;place-items:center}
+.pin-proj .ico{display:block}
+.pin-infra{width:20px;height:20px;border-radius:50%;background:var(--panel);border:2px solid var(--infra);display:grid;place-items:center}
+.pin-infra svg{stroke:var(--infra)}
+.pin-infra.pin-energy{border-color:var(--energy)}.pin-infra.pin-energy svg{stroke:var(--energy)}
+.pin-infra.pin-apix{border-color:var(--accent)}.pin-infra.pin-apix svg{stroke:var(--accent)}
+.pin-infra.build{border-style:dashed}
+.status{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600}
+.status i{width:8px;height:8px;border-radius:50%;background:var(--accent)}
+.status.build i{background:var(--proj)}.status.check i{background:var(--muted)}
+.is-sel .pin-zone,.is-sel .pin-infra{box-shadow:0 0 0 4px color-mix(in srgb,var(--accent) 35%,transparent)}
+.is-sel .pin-proj{box-shadow:0 0 0 4px color-mix(in srgb,var(--proj) 40%,transparent)}
+.is-dim{opacity:.25}
+
+@media (max-width:1080px){
+  .main{grid-template-columns:minmax(0,1fr) 340px;grid-template-rows:auto}
+  .side.left{grid-column:1 / -1;order:3;border-right:0;border-top:1px solid var(--line)}
+  .mapwrap{min-height:60vh}
+}
+@media (max-width:720px){
+  html,body{height:auto}
+  .app{height:auto}
+  .main{display:flex;flex-direction:column}
+  .mapwrap{height:62vh;min-height:360px}
+  .side.right{border-left:0;border-top:1px solid var(--line)}
+  .counts{margin-left:0}
+  .scale-note{display:none}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+<div class="app">
+  <header class="top">
+    <div class="brand">
+      <div class="brand-mark" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2-6-2z"/><path d="M9 4v14"/><path d="M15 6v14"/></svg></div>
+      <div><h1 data-i="title">Atlas de l'investissement</h1><small data-i="subtitle">Sénégal · prototype pour investinsenegal.sn</small></div>
+    </div>
+    <nav class="views" aria-label="Vues">
+      <button type="button" id="v-map" aria-pressed="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2-6-2z"/><path d="M9 4v14M15 6v14"/></svg><span data-i="v_map">Carte interactive</span></button>
+      <button type="button" id="v-portal" aria-pressed="false"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="10" r="3"/><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/></svg><span data-i="v_portal">Découvrir les plateformes</span></button>
+    </nav>
+    <div class="counts" id="counts"></div>
+    <div class="lang" role="group" aria-label="Langue / Language">
+      <button type="button" id="lang-fr" aria-pressed="true">FR</button>
+      <button type="button" id="lang-en" aria-pressed="false">EN</button>
+    </div>
+  </header>
+  <div class="notice" role="note"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg><span data-i="notice">Prototype de démonstration proposé par CEGIT. Positions et contenus indicatifs, à valider avec l'APIX et ses partenaires.</span></div>
+
+  <div class="main">
+    <aside class="side left" aria-label="Couches et filtres">
+      <div class="search">
+        <p class="label" id="search-label" data-i="search">Rechercher</p>
+        <div class="search-box">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
+          <input id="q" type="search" autocomplete="off" aria-labelledby="search-label" placeholder="Diamniadio, Kédougou, oignon…">
+        </div>
+        <div class="results" id="results" hidden></div>
+      </div>
+
+      <fieldset class="layers">
+        <legend class="label" data-i="layers">Couches</legend>
+        <label class="layer"><input type="checkbox" id="l-zones" checked><span class="sw zone"></span><span data-i="l_zones">Zones économiques</span><span class="n" id="n-zones"></span></label>
+        <label class="layer"><input type="checkbox" id="l-plats" checked><span class="sw plat"></span><span data-i="l_plats">Plateformes APIX</span><span class="n" id="n-plats"></span></label>
+        <label class="layer"><input type="checkbox" id="l-projs" checked><span class="sw proj"></span><span data-i="l_projs">Projets prioritaires</span><span class="n" id="n-projs"></span></label>
+        <label class="layer"><input type="checkbox" id="l-cover" checked><span class="sw cover"></span><span data-i="l_cover">Couverture des plateformes</span></label>
+        <div class="cover-legend" id="cover-legend"></div>
+        <label class="layer"><input type="checkbox" id="l-infra" checked><span class="sw infra"></span><span data-i="l_infra">Infrastructures</span><span class="n" id="n-infra"></span></label>
+        <div class="sublayers" id="sublayers">
+          <label class="layer sub"><input type="checkbox" id="s-auto" checked><span class="sym" data-sym="auto"></span><span data-i="s_auto">Autoroutes à péage</span><span class="n" id="n-auto"></span></label>
+          <label class="layer sub"><input type="checkbox" id="s-main" checked><span class="sym" data-sym="main"></span><span data-i="s_main">Routes principales</span><span class="n" id="n-main"></span></label>
+          <label class="layer sub"><input type="checkbox" id="s-sec"><span class="sym" data-sym="sec"></span><span data-i="s_sec">Routes secondaires</span><span class="n" id="n-sec"></span></label>
+          <label class="layer sub"><input type="checkbox" id="s-rail" checked><span class="sym" data-sym="rail"></span><span data-i="s_rail">Voies ferrées et TER</span><span class="n" id="n-rail"></span></label>
+          <label class="layer sub"><input type="checkbox" id="s-air" checked><span class="sym" data-sym="air"></span><span data-i="s_air">Aéroports</span><span class="n" id="n-air"></span></label>
+          <label class="layer sub"><input type="checkbox" id="s-port" checked><span class="sym" data-sym="port"></span><span data-i="s_port">Ports</span><span class="n" id="n-port"></span></label>
+          <label class="layer sub"><input type="checkbox" id="s-energy" checked><span class="sym" data-sym="energy"></span><span data-i="s_energy">Énergie et hydrocarbures</span><span class="n" id="n-energy"></span></label>
+          <label class="layer sub"><input type="checkbox" id="s-apix" checked><span class="sym" data-sym="apix"></span><span data-i="s_apix">Grands projets APIX</span><span class="n" id="n-apix"></span></label>
+        </div>
+        <label class="layer" style="cursor:default"><input type="checkbox" id="l-lots" disabled><span class="sw" style="background:#E9C46A"></span><span data-i="l_lots">Lots disponibles</span><span class="soon" data-i="phase2">phase 2</span></label>
+      </fieldset>
+
+      <div class="field">
+        <label class="label" for="theme" data-i="socio_l">Données socio-démographiques (ANSD)</label>
+        <select id="theme"></select>
+        <p class="fine" id="theme-src"></p>
+      </div>
+
+      <div>
+        <p class="label" data-i="sector">Secteur</p>
+        <div class="sectors" id="chips" role="group"></div>
+      </div>
+
+      <div class="cta">
+        <strong data-i="cta_t">Où m'implanter ?</strong>
+        <p data-i="cta_p">Indiquez votre secteur et vos besoins : l'Atlas classe les sites les plus adaptés.</p>
+        <button type="button" class="btn primary" id="open-assist" data-i="cta_b">Lancer l'assistant</button>
+      </div>
+    </aside>
+
+    <section class="mapwrap" aria-label="Carte">
+      <div id="map" role="application" aria-label="Carte interactive du Sénégal"></div>
+      <div class="map-tools">
+        <button type="button" id="zin" aria-label="Zoomer">+</button>
+        <button type="button" id="zout" aria-label="Dézoomer">−</button>
+        <button type="button" id="zreset" aria-label="Vue d'ensemble"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button>
+      </div>
+      <details class="legend" id="legend">
+        <summary><span data-i="lg_title">Légende</span></summary>
+        <div class="legend-body" id="legend-body"></div>
+      </details>
+      <div class="scale-note" data-i="bounds">Limites, routes et voies ferrées : Natural Earth</div>
+    </section>
+
+    <aside class="side right" aria-label="Fiche et assistant">
+      <div class="tabs" role="tablist">
+        <button type="button" role="tab" id="t-fiche" aria-selected="true" aria-controls="p-fiche" data-i="tab_fiche">Fiche</button>
+        <button type="button" role="tab" id="t-assist" aria-selected="false" aria-controls="p-assist" data-i="tab_assist">Où m'implanter ?</button>
+      </div>
+      <div class="pane fiche" id="p-fiche" role="tabpanel" aria-labelledby="t-fiche"></div>
+      <div class="pane" id="p-assist" role="tabpanel" aria-labelledby="t-assist" hidden>
+        <form class="form" id="assist" novalidate>
+          <div class="field">
+            <label for="a-sector" data-i="a_sector">Votre secteur</label>
+            <select id="a-sector"></select>
+          </div>
+          <fieldset class="checks">
+            <legend data-i="a_needs">Vos besoins</legend>
+            <label><input type="checkbox" id="a-port" checked><span data-i="a_port">Proche d'un port (export, import d'intrants)</span></label>
+            <label><input type="checkbox" id="a-air"><span data-i="a_air">Proche de l'aéroport AIBD</span></label>
+            <label><input type="checkbox" id="a-road" checked><span data-i="a_road">Desservi par l'autoroute ou le TER</span></label>
+            <label><input type="checkbox" id="a-zes" checked><span data-i="a_zes">Régime fiscal de zone économique</span></label>
+            <label><input type="checkbox" id="a-res"><span data-i="a_res">Proche des bassins de production ou des ressources</span></label>
+            <label><input type="checkbox" id="a-work" checked><span data-i="a_work">Bassin de main-d'œuvre important (15-59 ans, ANSD)</span></label>
+          </fieldset>
+          <button type="submit" class="btn primary" data-i="a_go">Classer les sites</button>
+        </form>
+        <div id="ranking"></div>
+        <p class="fine" data-i="a_fine">Distances calculées à vol d'oiseau depuis les coordonnées indicatives. En production, le classement utilisera les temps de trajet réels et les données foncières.</p>
+      </div>
+    </aside>
+  </div>
+  <section class="portal" id="portal" aria-label="Portail des plateformes" hidden></section>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+const REGIONS = {"type":"FeatureCollection","features":[{"type":"Feature","properties":{"c":"SEN","n":"Kédougou"},"geometry":{"type":"MultiPolygon","coordinates":[[[[-11.9,13.382],[-11.898,13.371],[-11.855,13.351],[-11.84,13.317],[-11.823,13.307],[-11.775,13.343],[-11.767,13.383],[-11.741,13.408],[-11.727,13.406],[-11.704,13.38],[-11.65,13.384],[-11.644,13.356],[-11.613,13.361],[-11.606,13.32],[-11.554,13.257],[-11.572,13.217],[-11.569,13.199],[-11.539,13.163],[-11.533,13.112],[-11.45,13.075],[-11.459,13.055],[-11.423,13.009],[-11.433,12.997],[-11.439,12.959],[-11.412,12.961],[-11.402,12.989],[-11.393,12.981],[-11.384,12.933],[-11.403,12.916],[-11.427,12.919],[-11.415,12.897],[-11.433,12.836],[-11.408,12.804],[-11.405,12.782],[-11.415,12.76],[-11.402,12.732],[-11.41,12.719],[-11.437,12.712],[-11.462,12.673],[-11.461,12.658],[-11.437,12.637],[-11.437,12.571],[-11.44,12.559],[-11.468,12.544],[-11.449,12.535],[-11.43,12.508],[-11.417,12.529],[-11.401,12.48],[-11.39,12.498],[-11.378,12.48],[-11.388,12.404],[-11.515,12.432],[-11.643,12.418],[-11.758,12.383],[-11.84,12.387],[-11.924,12.419],[-11.998,12.386],[-12.104,12.407],[-12.192,12.349],[-12.361,12.306],[-12.377,12.314],[-12.406,12.356],[-12.467,12.384],[-12.505,12.39],[-12.594,12.362],[-12.648,12.426],[-12.688,12.436],[-12.773,12.435],[-12.783,12.453],[-12.839,12.466],[-12.849,12.476],[-12.849,12.495],[-12.913,12.536],[-12.949,12.536],[-12.97,12.477],[-12.981,12.467],[-13.052,12.472],[-13.078,12.496],[-13.083,12.516],[-13.059,12.603],[-13.076,12.636],[-13.127,12.635],[-13.145,12.644],[-13.155,12.633],[-13.202,12.633],[-13.222,12.648],[-13.255,12.642],[-13.284,12.653],[-13.339,12.639],[-13.36,12.65],[-13.365,12.685],[-13.378,12.691],[-13.43,12.682],[-13.466,12.695],[-13.483,12.715],[-13.473,12.771],[-13.489,12.812],[-13.477,12.835],[-13.485,12.852],[-13.465,12.861],[-13.473,12.892],[-13.504,12.923],[-13.514,12.951],[-13.512,12.996],[-13.533,13.01],[-13.529,13.029],[-13.57,13.066],[-13.572,13.09],[-13.607,13.13],[-13.613,13.226],[-13.623,13.24],[-13.623,13.249],[-13.6,13.26],[-13.599,13.313],[-13.582,13.325],[-13.586,13.308],[-13.568,13.298],[-13.547,13.317],[-13.513,13.33],[-13.5,13.326],[-13.507,13.304],[-13.494,13.309],[-13.476,13.338],[-13.397,13.331],[-13.365,13.341],[-13.356,13.325],[-13.378,13.292],[-13.377,13.276],[-13.366,13.249],[-13.353,13.249],[-13.328,13.229],[-13.321,13.191],[-13.328,13.164],[-13.315,13.154],[-13.356,13.133],[-13.335,13.124],[-13.328,13.044],[-13.309,13.022],[-13.29,13.017],[-13.203,13.04],[-13.112,13.014],[-13.094,13.037],[-13.073,13.037],[-13.032,13.058],[-12.977,13.058],[-12.853,12.984],[-12.845,13.011],[-12.803,13.025],[-12.792,13.052],[-12.742,13.046],[-12.733,13.081],[-12.695,13.113],[-12.701,13.16],[-12.686,13.172],[-12.645,13.175],[-12.616,13.193],[-12.586,13.175],[-12.531,13.181],[-12.513,13.193],[-12.487,13.248],[-12.466,13.251],[-12.445,13.278],[-12.396,13.278],[-12.369,13.251],[-12.357,13.254],[-12.337,13.307],[-12.266,13.307],[-12.252,13.325],[-12.258,13.348],[-12.293,13.401],[-12.278,13.416],[-12.278,13.439],[-12.255,13.448],[-12.14,13.378],[-12.079,13.36],[-12.067,13.316],[-12.046,13.316],[-11.993,13.363],[-11.9,13.382]]]]}},{"type":"Feature","properties":{"c":"SEN","n":"Tambacounda"},"geometry":{"type":"MultiPolygon","coordinates":[[[[-12.264,14.775],[-12.257,14.746],[-12.223,14.703],[-12.18,14.693],[-12.19,14.656],[-12.165,14.642],[-12.166,14.625],[-12.198,14.588],[-12.204,14.554],[-12.23,14.537],[-12.236,14.519],[-12.22,14.435],[-12.222,14.391],[-12.116,14.355],[-12.113,14.33],[-12.128,14.324],[-12.12,14.311],[-12.098,14.288],[-12.044,14.265],[-11.998,14.166],[-12.003,14.103],[-12.025,14.027],[-12.025,13.985],[-12.015,13.959],[-11.963,13.909],[-11.957,13.89],[-11.963,13.829],[-11.979,13.785],[-12.012,13.751],[-12.098,13.704],[-12.07,13.673],[-12.015,13.564],[-11.939,13.503],[-11.918,13.475],[-11.89,13.465],[-11.883,13.454],[-11.9,13.382],[-11.993,13.363],[-12.046,13.316],[-12.067,13.316],[-12.079,13.36],[-12.14,13.378],[-12.255,13.448],[-12.278,13.439],[-12.278,13.416],[-12.293,13.401],[-12.258,13.348],[-12.252,13.325],[-12.266,13.307],[-12.337,13.307],[-12.357,13.254],[-12.369,13.251],[-12.396,13.278],[-12.445,13.278],[-12.466,13.251],[-12.487,13.248],[-12.513,13.193],[-12.531,13.181],[-12.586,13.175],[-12.616,13.193],[-12.645,13.175],[-12.686,13.172],[-12.701,13.16],[-12.695,13.113],[-12.733,13.081],[-12.742,13.046],[-12.792,13.052],[-12.803,13.025],[-12.845,13.011],[-12.853,12.984],[-12.977,13.058],[-13.032,13.058],[-13.073,13.037],[-13.094,13.037],[-13.112,13.014],[-13.203,13.04],[-13.29,13.017],[-13.309,13.022],[-13.328,13.044],[-13.335,13.124],[-13.356,13.133],[-13.315,13.154],[-13.328,13.164],[-13.321,13.191],[-13.328,13.229],[-13.353,13.249],[-13.366,13.249],[-13.377,13.276],[-13.378,13.292],[-13.356,13.325],[-13.365,13.341],[-13.397,13.331],[-13.476,13.338],[-13.494,13.309],[-13.507,13.304],[-13.5,13.326],[-13.513,13.33],[-13.547,13.317],[-13.568,13.298],[-13.586,13.308],[-13.582,13.325],[-13.599,13.313],[-13.6,13.26],[-13.623,13.249],[-13.623,13.24],[-13.641,13.241],[-13.658,13.274],[-13.69,13.294],[-13.688,13.325],[-13.705,13.341],[-13.695,13.372],[-13.77,13.375],[-13.757,13.428],[-13.729,13.464],[-13.764,13.478],[-13.795,13.468],[-13.808,13.474],[-13.798,13.534],[-13.83,13.536],[-13.844,13.515],[-13.883,13.504],[-13.901,13.542],[-13.918,13.555],[-13.988,13.579],[-14.197,13.519],[-14.271,13.477],[-14.33,13.456],[-14.366,13.455],[-14.47,13.522],[-14.523,13.626],[-14.586,13.66],[-14.627,13.664],[-14.667,13.653],[-14.741,13.615],[-14.796,13.645],[-14.831,13.736],[-14.86,13.766],[-14.813,13.84],[-14.716,13.863],[-14.629,13.939],[-14.619,13.999],[-14.586,14.024],[-14.577,14.082],[-14.593,14.222],[-14.634,14.323],[-14.633,14.511],[-14.509,14.54],[-14.398,14.631],[-14.357,14.644],[-14.304,14.585],[-14.269,14.563],[-13.834,14.402],[-13.785,14.394],[-13.511,14.399],[-13.219,14.595],[-12.949,14.546],[-12.755,14.566],[-12.731,14.585],[-12.649,14.706],[-12.573,14.894],[-12.582,14.949],[-12.69,15.092],[-12.632,15.105],[-12.53,15.034],[-12.485,15.017],[-12.472,14.998],[-12.448,14.907],[-12.382,14.846],[-12.32,14.817],[-12.264,14.775]]]]}},{"type":"Feature","properties":{"c":"SEN","n":"Kolda"},"geometry":{"type":"MultiPolygon","coordinates":[[[[-13.36,12.65],[-13.405,12.662],[-13.728,12.673],[-15.146,12.679],[-15.154,12.741],[-15.131,12.802],[-15.131,12.884],[-15.169,12.937],[-15.169,12.999],[-15.236,13.043],[-15.242,13.099],[-15.278,13.175],[-15.325,13.184],[-15.36,13.207],[-15.366,13.243],[-15.342,13.363],[-15.277,13.38],[-15.248,13.399],[-15.228,13.425],[-15.218,13.515],[-15.16,13.581],[-15.138,13.59],[-15.015,13.496],[-14.95,13.463],[-14.863,13.447],[-14.79,13.417],[-14.732,13.359],[-14.698,13.345],[-14.662,13.341],[-14.592,13.353],[-14.53,13.307],[-14.47,13.298],[-14.431,13.261],[-14.369,13.236],[-14.202,13.23],[-14.117,13.282],[-13.901,13.315],[-13.851,13.336],[-13.823,13.378],[-13.819,13.429],[-13.843,13.477],[-13.883,13.504],[-13.844,13.515],[-13.83,13.536],[-13.803,13.536],[-13.796,13.53],[-13.808,13.474],[-13.795,13.468],[-13.764,13.478],[-13.729,13.464],[-13.757,13.428],[-13.77,13.375],[-13.692,13.369],[-13.705,13.341],[-13.688,13.325],[-13.69,13.294],[-13.658,13.274],[-13.648,13.246],[-13.615,13.233],[-13.607,13.13],[-13.572,13.09],[-13.57,13.066],[-13.529,13.029],[-13.531,13.006],[-13.512,12.996],[-13.512,12.946],[-13.5,12.915],[-13.473,12.892],[-13.465,12.861],[-13.485,12.852],[-13.477,12.841],[-13.488,12.806],[-13.473,12.771],[-13.481,12.709],[-13.443,12.684],[-13.365,12.685],[-13.36,12.65]]]]}},{"type":"Feature","properties":{"c":"SEN","n":"Sédhiou"},"geometry":{"type":"MultiPolygon","coordinates":[[[[-15.146,12.679],[-15.224,12.675],[-15.25,12.664],[-15.425,12.555],[-15.677,12.439],[-15.712,12.432],[-15.884,12.442],[-15.947,12.54],[-15.962,12.57],[-15.964,12.602],[-15.94,12.581],[-15.864,12.578],[-15.84,12.557],[-15.806,12.565],[-15.769,12.593],[-15.748,12.584],[-15.73,12.591],[-15.716,12.582],[-15.699,12.584],[-15.68,12.55],[-15.657,12.538],[-15.588,12.558],[-15.51,12.636],[-15.507,12.65],[-15.53,12.666],[-15.521,12.674],[-15.543,12.758],[-15.535,12.783],[-15.466,12.796],[-15.446,12.825],[-15.407,12.8],[-15.394,12.81],[-15.392,12.838],[-15.407,12.822],[-15.453,12.831],[-15.493,12.807],[-15.549,12.794],[-15.555,12.722],[-15.542,12.649],[-15.641,12.559],[-15.672,12.571],[-15.666,12.601],[-15.697,12.614],[-15.768,12.625],[-15.833,12.591],[-15.86,12.612],[-15.902,12.598],[-15.953,12.625],[-15.956,12.646],[-15.981,12.653],[-16.013,12.696],[-16.024,12.738],[-16.009,12.822],[-15.986,12.857],[-15.987,12.927],[-15.902,13.079],[-15.907,13.094],[-15.928,13.103],[-15.924,13.123],[-15.897,13.157],[-15.827,13.162],[-15.819,13.334],[-15.693,13.36],[-15.596,13.356],[-15.52,13.387],[-15.342,13.363],[-15.366,13.243],[-15.36,13.207],[-15.325,13.184],[-15.278,13.175],[-15.242,13.099],[-15.236,13.043],[-15.169,12.999],[-15.169,12.937],[-15.131,12.884],[-15.131,12.802],[-15.154,12.741],[-15.146,12.679]]]]}},{"type":"Feature","properties":{"c":"SEN","n":"Ziguinchor"},"geometry":{"type":"MultiPolygon","coordinates":[[[[-15.973,12.437],[-16.091,12.464],[-16.182,12.443],[-16.222,12.455],[-16.412,12.362],[-16.533,12.348],[-16.669,12.357],[-16.728,12.333],[-16.744,12.379],[-16.799,12.431],[-16.803,12.485],[-16.781,12.523],[-16.732,12.552],[-16.679,12.55],[-16.58,12.633],[-16.547,12.574],[-16.533,12.565],[-16.522,12.593],[-16.505,12.598],[-16.371,12.55],[-16.31,12.598],[-16.247,12.588],[-16.212,12.606],[-16.193,12.578],[-16.115,12.606],[-16.058,12.616],[-16.03,12.633],[-16.008,12.632],[-15.964,12.602],[-15.962,12.57],[-15.947,12.54],[-15.884,12.442],[-15.973,12.437]]],[[[-16.674,13.164],[-15.897,13.157],[-15.929,13.111],[-15.902,13.079],[-15.987,12.927],[-15.986,12.857],[-16.009,12.822],[-16.022,12.729],[-16.045,12.69],[-16.049,12.656],[-16.155,12.612],[-16.228,12.619],[-16.269,12.605],[-16.324,12.61],[-16.347,12.598],[-16.371,12.565],[-16.445,12.596],[-16.467,12.622],[-16.49,12.632],[-16.493,12.649],[-16.467,12.674],[-16.492,12.682],[-16.501,12.708],[-16.508,12.625],[-16.566,12.674],[-16.57,12.694],[-16.599,12.664],[-16.615,12.66],[-16.635,12.669],[-16.638,12.694],[-16.591,12.762],[-16.597,12.797],[-16.604,12.763],[-16.651,12.705],[-16.647,12.632],[-16.721,12.584],[-16.755,12.572],[-16.773,12.583],[-16.783,12.643],[-16.761,12.713],[-16.735,12.733],[-16.701,12.722],[-16.699,12.736],[-16.734,12.751],[-16.752,12.745],[-16.784,12.713],[-16.796,12.715],[-16.788,12.732],[-16.796,12.749],[-16.77,12.793],[-16.775,12.811],[-16.794,12.795],[-16.803,12.814],[-16.755,12.903],[-16.762,12.951],[-16.75,13.014],[-16.749,13.099],[-16.708,13.157],[-16.674,13.164]]]]}},{"type":"Feature","properties":{"c":"SEN","n":"Saint-Louis"},"geometry":{"type":"MultiPolygon","coordinates":[[[[-14.949,16.671],[-14.931,16.643],[-14.912,16.641],[-14.882,16.648],[-14.711,16.636],[-14.656,16.646],[-14.608,16.629],[-14.555,16.641],[-14.493,16.632],[-14.407,16.661],[-14.343,16.637],[-14.331,16.624],[-14.335,16.586],[-14.278,16.581],[-14.268,16.548],[-14.214,16.535],[-14.073,16.401],[-13.978,16.338],[-13.971,16.324],[-13.979,16.3],[-13.963,16.272],[-13.964,16.23],[-13.884,16.194],[-13.845,16.126],[-13.811,16.122],[-13.779,16.143],[-13.747,16.182],[-13.711,16.189],[-13.72,16.136],[-13.761,16.051],[-13.863,16.012],[-13.877,15.975],[-13.99,15.877],[-14.298,15.638],[-14.338,15.667],[-14.498,15.747],[-14.592,15.877],[-14.705,15.954],[-14.757,15.95],[-14.854,15.997],[-15.427,15.999],[-15.434,15.932],[-15.591,15.921],[-15.841,16.182],[-15.891,16.147],[-15.922,16.103],[-16.116,15.997],[-16.151,15.969],[-16.168,15.938],[-16.226,15.905],[-16.257,15.845],[-16.304,15.839],[-16.378,15.809],[-16.541,15.806],[-16.52,15.846],[-16.508,16.01],[-16.47,16.106],[-16.459,16.194],[-16.407,16.215],[-16.385,16.235],[-16.335,16.456],[-16.314,16.493],[-16.274,16.523],[-16.195,16.523],[-16.132,16.555],[-16.11,16.547],[-16.074,16.505],[-16.054,16.495],[-16.007,16.496],[-15.986,16.506],[-15.958,16.498],[-15.897,16.518],[-15.862,16.51],[-15.813,16.514],[-15.672,16.481],[-15.61,16.521],[-15.551,16.515],[-15.525,16.522],[-15.491,16.565],[-15.464,16.581],[-15.449,16.58],[-15.415,16.548],[-15.328,16.572],[-15.232,16.566],[-15.125,16.583],[-15.093,16.6],[-15.118,16.643],[-15.108,16.665],[-15.079,16.665],[-15.044,16.632],[-15.024,16.64],[-14.997,16.682],[-14.974,16.691],[-14.949,16.671]]]]}},{"type":"Feature","properties":{"c":"SEN","n":"Matam"},"geometry":{"type":"MultiPolygon","coordinates":[[[[-13.72,16.136],[-13.669,16.106],[-13.635,16.122],[-13.485,16.155],[-13.502,16.095],[-13.492,16.088],[-13.44,16.102],[-13.389,16.052],[-13.37,15.985],[-13.316,15.93],[-13.316,15.882],[-13.28,15.823],[-13.286,15.77],[-13.251,15.743],[-13.228,15.711],[-13.249,15.657],[-13.238,15.623],[-13.178,15.628],[-13.11,15.596],[-13.092,15.575],[-13.095,15.515],[-13.084,15.493],[-13.039,15.487],[-12.996,15.514],[-12.964,15.509],[-12.933,15.438],[-12.919,15.365],[-12.847,15.313],[-12.828,15.284],[-12.833,15.27],[-12.884,15.271],[-12.894,15.263],[-12.888,15.251],[-12.857,15.222],[-12.806,15.223],[-12.787,15.214],[-12.779,15.2],[-12.78,15.146],[-12.755,15.139],[-12.717,15.103],[-12.69,15.092],[-12.582,14.949],[-12.573,14.894],[-12.649,14.706],[-12.731,14.585],[-12.755,14.566],[-12.949,14.546],[-13.219,14.595],[-13.511,14.399],[-13.785,14.394],[-13.834,14.402],[-14.269,14.563],[-14.304,14.585],[-14.357,14.644],[-14.413,14.623],[-14.461,14.573],[-14.509,14.54],[-14.633,14.511],[-14.639,14.557],[-14.844,14.622],[-14.863,14.638],[-14.824,14.665],[-14.81,14.745],[-14.766,14.774],[-14.73,14.847],[-14.774,14.941],[-14.803,15.039],[-14.734,15.065],[-14.621,15.079],[-14.542,15.102],[-14.585,15.123],[-14.534,15.369],[-14.618,15.358],[-14.785,15.442],[-14.748,15.496],[-14.741,15.678],[-14.661,15.707],[-14.541,15.805],[-14.498,15.747],[-14.338,15.667],[-14.298,15.638],[-13.99,15.877],[-13.877,15.975],[-13.863,16.012],[-13.761,16.051],[-13.72,16.136]]]]}},{"type":"Feature","properties":{"c":"GMB","n":"Central River"},"geometry":{"type":"MultiPolygon","coordinates":[[[[-15.098,13.82],[-15.017,13.797],[-14.916,13.792],[-14.879,13.781],[-14.831,13.736],[-14.803,13.652],[-14.741,13.615],[-14.627,13.664],[-14.586,13.66],[-14.543,13.641],[-14.51,13.609],[-14.48,13.533],[-14.462,13.517],[-14.519,13.453],[-14.489,13.399],[-14.526,13.384],[-14.552,13.323],[-14.592,13.353],[-14.662,13.341],[-14.698,13.345],[-14.732,13.359],[-14.79,13.417],[-14.863,13.447],[-14.95,13.463],[-15.015,13.496],[-15.138,13.59],[-15.302,13.496],[-15.361,13.538],[-15.373,13.566],[-15.368,13.626],[-15.498,13.642],[-15.479,13.691],[-15.436,13.741],[-15.394,13.772],[-15.348,13.789],[-15.304,13.782],[-15.267,13.742],[-15.171,13.794],[-15.098,13.82]]]]}},{"type":"Feature","properties":{"c":"SEN","n":"Kaffrine"},"geometry":{"type":"MultiPolygon","coordinates":[[[[-14.86,13.766],[-14.916,13.792],[-15.017,13.797],[-15.098,13.82],[-15.171,13.794],[-15.267,13.742],[-15.304,13.782],[-15.348,13.789],[-15.394,13.772],[-15.445,13.795],[-15.514,13.798],[-15.583,13.827],[-15.623,13.766],[-15.641,13.758],[-15.666,13.769],[-15.71,13.827],[-15.699,13.878],[-15.702,13.904],[-15.746,13.929],[-15.782,13.965],[-15.811,14.031],[-15.855,14.038],[-15.855,14.154],[-15.8,14.288],[-15.799,14.385],[-15.71,14.477],[-15.661,14.491],[-15.594,14.544],[-15.431,14.574],[-15.401,14.607],[-15.38,14.698],[-15.3,14.651],[-15.249,14.633],[-15.063,14.6],[-15.02,14.613],[-14.898,14.677],[-14.844,14.622],[-14.639,14.557],[-14.631,14.538],[-14.634,14.323],[-14.593,14.222],[-14.577,14.082],[-14.586,14.024],[-14.619,13.999],[-14.629,13.939],[-14.716,13.863],[-14.813,13.84],[-14.86,13.766]]]]}},{"type":"Feature","properties":{"c":"GMB","n":"North Bank"},"geometry":{"type":"MultiPolygon","coordinates":[[[[-15.518,13.583],[-15.502,13.588],[-15.498,13.642],[-15.368,13.626],[-15.373,13.566],[-15.361,13.538],[-15.302,13.496],[-15.311,13.468],[-15.333,13.455],[-15.416,13.473],[-15.465,13.51],[-15.491,13.503],[-15.556,13.528],[-15.576,13.523],[-15.611,13.489],[-15.672,13.503],[-15.77,13.465],[-16.09,13.44],[-16.142,13.455],[-16.16,13.451],[-16.273,13.363],[-16.289,13.366],[-16.289,13.407],[-16.306,13.392],[-16.302,13.372],[-16.316,13.366],[-16.302,13.353],[-16.322,13.343],[-16.391,13.337],[-16.522,13.359],[-16.504,13.393],[-16.504,13.417],[-16.52,13.451],[-16.557,13.486],[-16.548,13.548],[-16.561,13.587],[-15.518,13.583]]]]}},{"type":"Feature","properties":{"c":"SEN","n":"Kaolack"},"geometry":{"type":"MultiPolygon","coordinates":[[[[-15.498,13.642],[-15.502,13.588],[-15.518,13.583],[-16.085,13.585],[-16.094,13.612],[-16.154,13.678],[-16.166,13.738],[-16.241,13.805],[-16.238,13.842],[-16.206,13.875],[-16.197,13.898],[-16.209,13.974],[-16.248,14.021],[-16.232,14.059],[-16.235,14.104],[-16.302,14.16],[-16.38,14.168],[-16.306,14.294],[-16.257,14.34],[-16.113,14.36],[-16.099,14.349],[-16.014,14.335],[-15.954,14.37],[-15.831,14.365],[-15.799,14.385],[-15.8,14.288],[-15.855,14.154],[-15.855,14.038],[-15.811,14.031],[-15.782,13.965],[-15.746,13.929],[-15.702,13.904],[-15.699,13.878],[-15.71,13.827],[-15.666,13.769],[-15.641,13.758],[-15.623,13.766],[-15.583,13.827],[-15.514,13.798],[-15.445,13.795],[-15.394,13.772],[-15.468,13.708],[-15.498,13.642]]]]}},{"type":"Feature","properties":{"c":"GMB","n":"Upper River"},"geometry":{"type":"MultiPolygon","coordinates":[[[[-14.462,13.517],[-14.39,13.466],[-14.347,13.452],[-14.093,13.555],[-14.034,13.56],[-14.002,13.577],[-13.967,13.576],[-13.918,13.555],[-13.901,13.542],[-13.885,13.506],[-13.843,13.477],[-13.819,13.429],[-13.823,13.378],[-13.851,13.336],[-13.901,13.315],[-14.117,13.282],[-14.202,13.23],[-14.369,13.236],[-14.431,13.261],[-14.47,13.298],[-14.53,13.307],[-14.552,13.323],[-14.526,13.384],[-14.489,13.399],[-14.519,13.453],[-14.462,13.517]]]]}},{"type":"Feature","properties":{"c":"GMB","n":"Lower River"},"geometry":{"type":"MultiPolygon","coordinates":[[[[-15.181,13.56],[-15.218,13.515],[-15.228,13.425],[-15.277,13.38],[-15.342,13.363],[-15.379,13.363],[-15.52,13.387],[-15.596,13.356],[-15.693,13.36],[-15.807,13.34],[-15.823,13.319],[-15.824,13.249],[-15.979,13.28],[-16.041,13.268],[-16.063,13.273],[-16.09,13.253],[-16.108,13.266],[-16.118,13.289],[-16.137,13.291],[-16.199,13.259],[-16.211,13.313],[-16.227,13.334],[-16.216,13.373],[-16.161,13.429],[-15.995,13.413],[-15.891,13.427],[-15.871,13.441],[-15.764,13.437],[-15.669,13.476],[-15.645,13.458],[-15.621,13.455],[-15.59,13.468],[-15.555,13.509],[-15.5,13.488],[-15.47,13.496],[-15.451,13.491],[-15.419,13.455],[-15.341,13.441],[-15.305,13.455],[-15.298,13.505],[-15.197,13.561],[-15.181,13.56]]]]}},{"type":"Feature","properties":{"c":"SEN","n":"Fatick"},"geometry":{"type":"MultiPolygon","coordinates":[[[[-16.085,13.585],[-16.561,13.587],[-16.576,13.612],[-16.576,13.64],[-16.508,13.688],[-16.529,13.701],[-16.507,13.728],[-16.509,13.74],[-16.529,13.743],[-16.531,13.707],[-16.542,13.694],[-16.557,13.695],[-16.564,13.674],[-16.599,13.654],[-16.636,13.678],[-16.63,13.76],[-16.576,13.839],[-16.549,13.825],[-16.557,13.846],[-16.522,13.852],[-16.513,13.813],[-16.502,13.802],[-16.487,13.805],[-16.501,13.873],[-16.516,13.88],[-16.487,14.003],[-16.518,13.952],[-16.526,13.91],[-16.549,13.869],[-16.57,13.873],[-16.58,13.86],[-16.638,13.846],[-16.7,13.769],[-16.71,13.774],[-16.715,13.806],[-16.737,13.82],[-16.742,13.839],[-16.734,13.873],[-16.744,13.902],[-16.743,13.961],[-16.703,13.99],[-16.646,13.983],[-16.638,13.962],[-16.599,13.997],[-16.576,13.989],[-16.577,14.011],[-16.542,14.037],[-16.568,14.03],[-16.591,14.044],[-16.546,14.071],[-16.489,14.128],[-16.457,14.137],[-16.441,14.157],[-16.429,14.161],[-16.405,14.145],[-16.372,14.163],[-16.297,14.157],[-16.235,14.104],[-16.232,14.059],[-16.248,14.021],[-16.209,13.974],[-16.197,13.906],[-16.201,13.883],[-16.238,13.842],[-16.241,13.805],[-16.166,13.738],[-16.154,13.678],[-16.094,13.612],[-16.085,13.585]]],[[[-16.38,14.168],[-16.455,14.18],[-16.453,14.202],[-16.469,14.194],[-16.472,14.164],[-16.46,14.154],[-16.473,14.147],[-16.513,14.151],[-16.557,14.072],[-16.6,14.054],[-16.632,14.01],[-16.654,14.003],[-16.721,14.016],[-16.697,14.065],[-16.68,14.069],[-16.652,14.1],[-16.666,14.096],[-16.679,14.076],[-16.728,14.065],[-16.717,14.042],[-16.769,13.962],[-16.769,13.839],[-16.775,13.839],[-16.781,14.031],[-16.811,14.125],[-16.77,14.147],[-16.778,14.174],[-16.746,14.208],[-16.759,14.228],[-16.695,14.427],[-16.648,14.433],[-16.594,14.471],[-16.546,14.53],[-16.519,14.599],[-16.462,14.607],[-16.377,14.603],[-16.333,14.581],[-16.264,14.592],[-16.197,14.578],[-16.14,14.545],[-16.031,14.526],[-15.933,14.535],[-15.874,14.555],[-15.816,14.61],[-15.803,14.715],[-15.773,14.742],[-15.724,14.707],[-15.656,14.716],[-15.633,14.693],[-15.468,14.628],[-15.445,14.609],[-15.431,14.574],[-15.594,14.544],[-15.661,14.491],[-15.71,14.477],[-15.773,14.405],[-15.831,14.365],[-15.954,14.37],[-16.014,14.335],[-16.099,14.349],[-16.113,14.36],[-16.257,14.34],[-16.306,14.294],[-16.38,14.168]]]]}},{"type":"Feature","properties":{"c":"GMB","n":"West Coast"},"geometry":{"type":"MultiPolygon","coordinates":[[[[-15.824,13.249],[-15.827,13.162],[-15.833,13.157],[-16.674,13.164],[-16.708,13.157],[-16.749,13.099],[-16.754,13.065],[-16.787,13.09],[-16.776,13.113],[-16.797,13.177],[-16.795,13.236],[-16.82,13.281],[-16.817,13.311],[-16.83,13.339],[-16.81,13.38],[-16.763,13.405],[-16.704,13.338],[-16.663,13.335],[-16.596,13.385],[-16.591,13.339],[-16.554,13.296],[-16.495,13.288],[-16.429,13.262],[-16.414,13.24],[-16.419,13.208],[-16.4,13.224],[-16.378,13.215],[-16.415,13.267],[-16.44,13.27],[-16.44,13.276],[-16.385,13.284],[-16.375,13.264],[-16.258,13.325],[-16.23,13.316],[-16.228,13.256],[-16.21,13.251],[-16.137,13.291],[-16.118,13.289],[-16.108,13.266],[-16.09,13.253],[-16.063,13.273],[-16.041,13.268],[-15.979,13.28],[-15.824,13.249]]]]}},{"type":"Feature","properties":{"c":"SEN","n":"Louga"},"geometry":{"type":"MultiPolygon","coordinates":[[[[-16.735,15.477],[-16.67,15.562],[-16.539,15.774],[-16.541,15.806],[-16.378,15.809],[-16.304,15.839],[-16.257,15.845],[-16.226,15.905],[-16.168,15.938],[-16.151,15.969],[-16.116,15.997],[-15.922,16.103],[-15.891,16.147],[-15.841,16.182],[-15.591,15.921],[-15.434,15.932],[-15.427,15.999],[-14.854,15.997],[-14.757,15.95],[-14.705,15.954],[-14.592,15.877],[-14.541,15.805],[-14.661,15.707],[-14.741,15.678],[-14.748,15.496],[-14.785,15.442],[-14.618,15.358],[-14.534,15.369],[-14.585,15.123],[-14.542,15.102],[-14.621,15.079],[-14.734,15.065],[-14.803,15.039],[-14.774,14.941],[-14.73,14.847],[-14.766,14.774],[-14.81,14.745],[-14.824,14.665],[-14.863,14.638],[-14.898,14.677],[-14.915,14.673],[-15.02,14.613],[-15.063,14.6],[-15.097,14.603],[-15.249,14.633],[-15.3,14.651],[-15.416,14.72],[-15.442,14.747],[-15.459,14.838],[-15.547,14.835],[-15.621,14.857],[-15.7,14.848],[-15.718,14.862],[-15.73,14.902],[-15.776,14.927],[-15.792,14.953],[-15.81,14.963],[-15.817,15.001],[-16.077,15.002],[-16.1,14.996],[-16.132,14.969],[-16.182,14.991],[-16.199,15.01],[-16.212,15.053],[-16.252,15.104],[-16.264,15.139],[-16.268,15.209],[-16.286,15.242],[-16.318,15.236],[-16.332,15.307],[-16.344,15.318],[-16.451,15.321],[-16.51,15.247],[-16.528,15.203],[-16.591,15.134],[-16.609,15.128],[-16.623,15.145],[-16.621,15.191],[-16.662,15.219],[-16.691,15.26],[-16.723,15.282],[-16.72,15.343],[-16.69,15.427],[-16.7,15.451],[-16.735,15.477]]]]}},{"type":"Feature","properties":{"c":"SEN","n":"Thiès"},"geometry":{"type":"MultiPolygon","coordinates":[[[[-17.182,14.897],[-17.139,14.928],[-16.878,15.233],[-16.735,15.477],[-16.7,15.451],[-16.69,15.427],[-16.72,15.343],[-16.723,15.282],[-16.691,15.26],[-16.662,15.219],[-16.621,15.191],[-16.623,15.145],[-16.614,15.131],[-16.595,15.131],[-16.528,15.203],[-16.51,15.247],[-16.451,15.321],[-16.344,15.318],[-16.332,15.307],[-16.318,15.236],[-16.286,15.242],[-16.268,15.209],[-16.262,15.129],[-16.212,15.053],[-16.199,15.01],[-16.182,14.991],[-16.132,14.969],[-16.136,14.956],[-16.193,14.926],[-16.226,14.924],[-16.242,14.931],[-16.254,14.961],[-16.315,15.0],[-16.363,14.994],[-16.399,15.012],[-16.659,14.935],[-16.678,14.878],[-16.645,14.856],[-16.643,14.786],[-16.613,14.76],[-16.618,14.724],[-16.592,14.702],[-16.587,14.686],[-16.621,14.636],[-16.62,14.624],[-16.603,14.609],[-16.531,14.581],[-16.546,14.53],[-16.594,14.471],[-16.648,14.433],[-16.695,14.427],[-16.759,14.228],[-16.746,14.208],[-16.778,14.174],[-16.77,14.147],[-16.811,14.125],[-16.83,14.154],[-16.879,14.175],[-16.899,14.26],[-16.945,14.301],[-16.94,14.356],[-16.957,14.39],[-16.988,14.421],[-17.059,14.454],[-17.111,14.53],[-17.148,14.613],[-17.131,14.76],[-17.182,14.897]]]]}},{"type":"Feature","properties":{"c":"SEN","n":"Dakar"},"geometry":{"type":"MultiPolygon","coordinates":[[[[-17.148,14.613],[-17.207,14.679],[-17.331,14.736],[-17.417,14.738],[-17.44,14.722],[-17.419,14.709],[-17.44,14.688],[-17.427,14.675],[-17.44,14.654],[-17.536,14.757],[-17.371,14.8],[-17.322,14.839],[-17.182,14.897],[-17.129,14.75],[-17.148,14.613]]]]}},{"type":"Feature","properties":{"c":"GMB","n":"Banjul"},"geometry":{"type":"MultiPolygon","coordinates":[[[[-16.763,13.405],[-16.679,13.496],[-16.671,13.479],[-16.652,13.468],[-16.635,13.477],[-16.601,13.472],[-16.585,13.443],[-16.613,13.439],[-16.624,13.427],[-16.596,13.385],[-16.663,13.335],[-16.704,13.338],[-16.763,13.405]]]]}},{"type":"Feature","properties":{"c":"SEN","n":"Diourbel"},"geometry":{"type":"MultiPolygon","coordinates":[[[[-15.621,14.857],[-15.547,14.835],[-15.481,14.841],[-15.456,14.834],[-15.442,14.747],[-15.38,14.698],[-15.401,14.607],[-15.431,14.574],[-15.445,14.609],[-15.468,14.628],[-15.633,14.693],[-15.656,14.716],[-15.724,14.707],[-15.773,14.742],[-15.803,14.715],[-15.813,14.614],[-15.87,14.557],[-15.933,14.535],[-16.031,14.526],[-16.154,14.549],[-16.231,14.588],[-16.274,14.591],[-16.333,14.581],[-16.367,14.601],[-16.462,14.607],[-16.519,14.599],[-16.531,14.581],[-16.603,14.609],[-16.618,14.62],[-16.621,14.636],[-16.595,14.667],[-16.588,14.692],[-16.617,14.719],[-16.616,14.764],[-16.643,14.786],[-16.645,14.856],[-16.679,14.882],[-16.669,14.92],[-16.64,14.944],[-16.399,15.012],[-16.363,14.994],[-16.315,15.0],[-16.254,14.961],[-16.242,14.931],[-16.218,14.922],[-16.145,14.951],[-16.1,14.996],[-16.077,15.002],[-15.832,15.003],[-15.817,15.001],[-15.813,14.967],[-15.792,14.953],[-15.78,14.93],[-15.73,14.902],[-15.718,14.862],[-15.7,14.848],[-15.621,14.857]]]]}}]};
+const PDF = 'https://investinsenegal.sn/wp-content/uploads/2023/08/Projets-Dagregation_APIX_SN_FR_';
+
+const SECTORS = [
+  {id:'all', fr:'Tous les secteurs', en:'All sectors', ic:'<rect x="3.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.5"/>'},
+  {id:'agro', fr:'Agro-industrie', en:'Agribusiness', ic:'<path d="M12 21V9"/><path d="M12 9c0-3.3 2.2-5.5 5.5-5.5 0 3.3-2.2 5.5-5.5 5.5z"/><path d="M12 14c0-3.3-2.2-5.5-5.5-5.5 0 3.3 2.2 5.5 5.5 5.5z"/><path d="M7 21h10"/>'},
+  {id:'mines', fr:'Mines', en:'Mining', ic:'<path d="M2.5 20.5 9 9.5l4 6.5 3-4.5 5.5 9z"/><path d="M14.5 3.5l3.5 3.5M18 3.5l-3.5 3.5"/>'},
+  {id:'industrie', fr:'Industrie', en:'Manufacturing', ic:'<path d="M3 21V10.5l5.5 3.5v-3.5l5.5 3.5V6.5h7V21z"/><path d="M7 17.5h2M12 17.5h2M17 17.5h1.5"/><path d="M17 6.5V3"/>'},
+  {id:'pharma', fr:'Pharmacie', en:'Pharma', ic:'<path d="M10.2 4.3a4.3 4.3 0 0 1 6.1 0l3.4 3.4a4.3 4.3 0 0 1 0 6.1l-5.9 5.9a4.3 4.3 0 0 1-6.1 0l-3.4-3.4a4.3 4.3 0 0 1 0-6.1z"/><path d="M7.2 7.2l9.6 9.6"/>'},
+  {id:'tourisme', fr:'Tourisme', en:'Tourism', ic:'<circle cx="12" cy="9" r="3.5"/><path d="M12 2.5v1M5.5 9h-1M19.5 9h-1M7.4 4.4l.7.7M16.6 4.4l-.7.7"/><path d="M3 16.5c1.8-1.2 3.7-1.2 5.5 0s3.7 1.2 5.5 0 3.7-1.2 5.5 0"/><path d="M3 20.5c1.8-1.2 3.7-1.2 5.5 0s3.7 1.2 5.5 0 3.7-1.2 5.5 0"/>'},
+  {id:'logistique', fr:'Logistique et transport', en:'Logistics & transport', ic:'<path d="M2.5 6.5h11v9.5h-11z"/><path d="M13.5 10h4l3.5 3.5V16h-7.5"/><circle cx="7" cy="18" r="2"/><circle cx="17" cy="18" r="2"/>'},
+  {id:'eau', fr:'Eau et énergie', en:'Water & energy', ic:'<path d="M12 3s6 6.4 6 10.8a6 6 0 0 1-12 0C6 9.4 12 3 12 3z"/><path d="M12.7 9.5l-2.2 4h3l-2.2 4"/>'},
+  {id:'services', fr:'Services et santé', en:'Services & health', ic:'<path d="M4 21V5.5L12 3v18"/><path d="M12 9h8v12"/><path d="M16 12.5v5M13.5 15h5"/><path d="M7 8h2M7 12h2M7 16h2"/><path d="M2.5 21h19"/>'}
+];
+const ico=(id,size=18)=>{const s=SECTORS.find(x=>x.id===id);return s?`<svg class="ico" width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${s.ic}</svg>`:'';};
+const secCount=id=>id==='all'?PROJS.length+ZONES.length:PROJS.filter(p=>p.sector===id).length+ZONES.filter(z=>z.sectors.includes(id)).length;
+
+const PLATS = [
+  {id:'p-dakar', name:'Siège APIX – Dakar', city:'Dakar', ll:[14.668,-17.436], regions:['Dakar'], addr:'52–54 rue Mohamed V, Dakar', tel:'+221 33 849 05 55', mail:'infos@apix.sn'},
+  {id:'p-saly', name:'APIX Saly', city:'Saly', ll:[14.447,-16.99], regions:['Thiès'], addr:'Saly station, derrière le collège de Saly', tel:'+221 33 958 95 95', mail:'apixsaly@apix.sn', note:'Rattachement de la région de Thiès à confirmer.'},
+  {id:'p-touba', name:'APIX Touba', city:'Touba', ll:[14.855,-15.883], regions:['Diourbel'], addr:'Agence Banque Agricole, Touba Khaïra, route 28 rue de la Grande Mosquée', tel:'+221 33 978 34 88', mail:'apixtouba@apix.sn'},
+  {id:'p-sl', name:'APIX Saint-Louis (Plateforme Nord)', city:'Saint-Louis', ll:[16.026,-16.504], regions:['Saint-Louis','Louga','Matam'], addr:'Gouvernance, place de Lille, en face du pont Faidherbe', tel:'+221 33 961 58 45', mail:'apixsaintlouis@apix.sn'},
+  {id:'p-kaolack', name:'APIX Kaolack (Plateforme Centre)', city:'Kaolack', ll:[14.146,-16.073], regions:['Kaolack','Fatick','Kaffrine'], addr:'Agence Banque Agricole, 4 place de l’Indépendance', tel:'+221 33 942 24 25', mail:'apixkaolack@apix.sn'},
+  {id:'p-tamba', name:'APIX Tambacounda (Plateforme Sud-Est)', city:'Tambacounda', ll:[13.77,-13.668], regions:['Tambacounda','Kédougou'], addr:'Agence Banque Agricole, avenue Demba Diop', tel:'+221 33 981 16 19', mail:'apixtamba@apix.sn'},
+  {id:'p-zig', name:'APIX Ziguinchor (Plateforme Sud)', city:'Ziguinchor', ll:[12.583,-16.272], regions:['Ziguinchor','Kolda','Sédhiou'], addr:'Rue de la Poste, BP 217', tel:'+221 33 991 66 13', mail:'apixziguinchor@apix.sn'}
+];
+const COVER = {'p-dakar':'#8FB59B','p-saly':'#B9C98E','p-touba':'#D8B98A','p-sl':'#9DB4DA','p-kaolack':'#E0C27C','p-tamba':'#C9A3C4','p-zig':'#8CC4BE'};
+
+const ZONES = [
+  {id:'z-diam', name:'ZES de Diamniadio', type:'Zone économique spéciale', code:'ZES', ll:[14.718,-17.19], sectors:['industrie','pharma','logistique','services'], fr:'Pôle industriel et de services aux portes de Dakar, desservi par le TER et l’autoroute.', en:'Industrial and services hub at the gates of Dakar, served by the TER and the toll highway.'},
+  {id:'z-diass', name:'ZES de Diass', type:'Zone économique spéciale', code:'ZES', ll:[14.655,-17.1], sectors:['logistique','industrie','services'], fr:'Zone adossée à l’aéroport AIBD, orientée logistique et activités aéroportuaires.', en:'Zone next to AIBD airport, focused on logistics and airport-related activities.'},
+  {id:'z-sand', name:'ZES de Sandiara', type:'Zone économique spéciale', code:'ZES', ll:[14.43,-16.79], sectors:['agro','industrie'], fr:'Zone de la Petite Côte orientée transformation agroalimentaire et industrie légère.', en:'Petite Côte zone focused on agri-food processing and light industry.'},
+  {id:'z-zfi', name:'Zone Franche Industrielle de Dakar', type:'Zone franche industrielle', code:'ZFI', ll:[14.737,-17.33], sectors:['industrie','logistique'], fr:'Zone franche historique à proximité du port autonome de Dakar.', en:'Long-standing free zone close to the Port of Dakar.'}
+];
+
+const PROJS = [
+  {id:'pr-hubmin', name:'Hub minier', sector:'mines', ll:[12.56,-12.18], pdf:'Hub-Minier.pdf', fr:'Plateforme de services et de transformation pour la filière minière du Sénégal oriental.', en:'Services and processing platform for the mining sector in eastern Senegal.'},
+  {id:'pr-or', name:'Mines d’or artisanales et à petite échelle', sector:'mines', ll:[12.85,-12.35], pdf:'Developpement-des-mines-dor-artisanales-et-a-petite-echelle.pdf', fr:'Structuration et modernisation de l’orpaillage.', en:'Structuring and modernising artisanal gold mining.'},
+  {id:'pr-mer', name:'Pôles intégrés de transformation des produits de la mer', sector:'agro', ll:[14.42,-16.97], pdf:'Poles-industriels-integres-de-transformation-des-produits-de-la-mer.pdf', fr:'Unités de transformation et de froid pour la pêche artisanale et industrielle.', en:'Processing and cold-chain units for artisanal and industrial fisheries.'},
+  {id:'pr-dessal', name:'Usine de dessalement d’eau de mer', sector:'eau', ll:[14.76,-17.47], pdf:'Usine-de-dessalement-deau-de-mer.pdf', fr:'Production d’eau potable pour l’agglomération dakaroise.', en:'Drinking water production for the Dakar metropolitan area.'},
+  {id:'pr-zti', name:'Zones touristiques intégrées', sector:'tourisme', ll:[14.3,-16.86], pdf:'Zones-Touristiques-Integrees.pdf', fr:'Aménagement de stations balnéaires intégrées sur la Petite Côte.', en:'Integrated seaside resorts on the Petite Côte.'},
+  {id:'pr-tour', name:'Tour de la Chambre de commerce de Dakar', sector:'services', ll:[14.671,-17.43], pdf:'Tour-de-la-chambre-de-commerce-de-Dakar.pdf', fr:'Immeuble de bureaux et de services au cœur du Plateau.', en:'Office and services tower in the Plateau district.'},
+  {id:'pr-pdt', name:'Filière pomme de terre', sector:'agro', ll:[15.1,-16.85], pdf:'Pomme-de-Terre.pdf', fr:'Production, stockage et conditionnement dans la zone des Niayes.', en:'Production, storage and packaging in the Niayes area.'},
+  {id:'pr-oignon', name:'Filière oignon', sector:'agro', ll:[15.72,-16.45], pdf:'Filiere-Oignon.pdf', fr:'Conservation et mise en marché de l’oignon local.', en:'Storage and marketing of local onions.'},
+  {id:'pr-infragri', name:'Infrastructures commerciales agricoles', sector:'agro', ll:[14.17,-16.12], pdf:'Infrastructures-commerciales-agricoles.pdf', fr:'Marchés de gros et plateformes de collecte dans le bassin arachidier.', en:'Wholesale markets and collection hubs in the groundnut basin.'},
+  {id:'pr-pharma', name:'Industrie pharmaceutique', sector:'pharma', ll:[14.705,-17.2], pdf:'Industrie-pharmaceutique.pdf', fr:'Unités de production de médicaments pour le marché régional.', en:'Medicine manufacturing for the regional market.'},
+  {id:'pr-hubair', name:'Hub aérien', sector:'logistique', ll:[14.68,-17.06], pdf:'Hub-aerien.pdf', fr:'Développement de l’AIBD en plateforme de correspondance régionale.', en:'Developing AIBD into a regional connecting hub.'},
+  {id:'pr-hopital', name:'Hôpital international de Dakar', sector:'services', ll:[14.715,-17.47], pdf:'Hopital-International-de-Dakar.pdf', fr:'Établissement de santé de référence à vocation régionale.', en:'Regional reference hospital.'}
+];
+
+/* Données socio-démographiques ANSD par région
+   p13 : RGPH-4 2013 · p23 : RGPH-5 2023 · p24, urb, a014, a1559, a60 : Annuaire Population du Sénégal 2024 (projections 2024)
+   men, tm : RGPH-5, rapport préliminaire (ménages ordinaires, taille moyenne) · pov : EHCVM II 2021/2022, incidence P0 (%) */
+const SOCIO = {
+  'Dakar':      {p13:3137196,p23:4004427,p24:4080505,urb:100.00,a014:1210789,a1559:2595825,a60:273883,men:605424,tm:6,pov:9.3},
+  'Diourbel':   {p13:1497455,p23:2080335,p24:2143280,urb:66.90,a014:885972,a1559:1126492,a60:130813,men:187228,tm:11,pov:37.4},
+  'Fatick':     {p13:714392,p23:906918,p24:932652,urb:22.20,a014:397130,a1559:478957,a60:56565,men:87287,tm:10,pov:46.5},
+  'Kaffrine':   {p13:566992,p23:820405,p24:848581,urb:15.74,a014:380640,a1559:426997,a60:40949,men:71328,tm:12,pov:58.2},
+  'Kaolack':    {p13:960875,p23:1336719,p24:1375350,urb:38.62,a014:586607,a1559:715464,a60:73285,men:120523,tm:11,pov:49.6},
+  'Kédougou':   {p13:151357,p23:245146,p24:252078,urb:31.56,a014:104327,a1559:137242,a60:10510,men:30386,tm:8,pov:65.7},
+  'Kolda':      {p13:662455,p23:914798,p24:941510,urb:36.64,a014:413785,a1559:485325,a60:42409,men:85888,menApprox:true,tm:11,pov:62.5},
+  'Louga':      {p13:874193,p23:1125908,p24:1155704,urb:27.27,a014:460867,a1559:619850,a60:74990,men:118841,tm:9,pov:47.0},
+  'Matam':      {p13:562539,p23:831629,p24:855288,urb:32.29,a014:366636,a1559:442727,a60:45926,men:69019,tm:12,pov:44.7},
+  'Saint-Louis':{p13:908942,p23:1202442,p24:1230597,urb:47.37,a014:469942,a1559:681976,a60:78679,men:134591,tm:9,pov:37.3},
+  'Sédhiou':    {p13:452994,p23:589266,p24:606771,urb:22.70,a014:269355,a1559:307911,a60:29502,men:48377,tm:12,pov:64.4},
+  'Tambacounda':{p13:681310,p23:987151,p24:1017562,urb:26.70,a014:445348,a1559:525037,a60:47179,men:85817,tm:12,pov:62.8},
+  'Thiès':      {p13:1788864,p23:2463678,p24:2524514,urb:58.01,a014:930036,a1559:1429949,a60:164532,men:260519,tm:9,pov:29.9},
+  'Ziguinchor': {p13:549151,p23:617568,p24:628864,urb:55.38,a014:226190,a1559:357724,a60:44946,men:85784,tm:7,pov:48.3}
+};
+const NAT = {p13:13508715,p23:18126390,p24:18593258,urb:54.90,a1559:10331476,pov:37.5};
+const SRC = {
+  rgph:{label:'ANSD, RGPH-5 2023 et RGPH-4 2013',url:'https://citypopulation.de/en/senegal/admin/'},
+  annu:{label:'ANSD, Annuaire Population du Sénégal 2024',url:'https://www.vie-publique.sn/docs/0ba03944-322a-430c-a6ce-382b1c2e474b/annuaire-population-du-senegal-2024-ansd.pdf'},
+  men:{label:'ANSD, RGPH-5, rapport préliminaire',url:'https://ipar.sn/wp-content/uploads/2024/08/RAPPORT_PRELIMINAIRE_RGPH5PDF_231031_112453.pdf'},
+  ehcvm:{label:'ANSD, EHCVM II 2021-2022',url:'https://www.vie-publique.sn/docs/88cb53b9-e3bd-40f1-9bc8-217c19063e7d/enquete-harmonisee-conditions-vie-menages-ehcvm-ii-senegal-2021-2022-ansd.pdf'},
+  odin:{label:'Portail Open Data for Africa – Sénégal (ANSD)',url:'https://senegal.opendataforafrica.org/bzzjuq/matrice-des-principaux-indicateurs'}
+};
+
+/* Réseaux issus de Natural Earth (routes principales, secondaires, voies ferrées) */
+const NE = {"main":[[[16.727,-11.578],[16.702,-11.537],[16.665,-11.504],[16.653,-11.45],[16.632,-11.43],[16.624,-11.401]],[[16.744,-16.086],[16.735,-16.07],[16.702,-16.057],[16.657,-16.012],[16.649,-16.0],[16.636,-15.942],[16.624,-15.929],[16.62,-15.905],[16.579,-15.884]],[[16.579,-15.884],[16.566,-15.818]],[[16.566,-15.818],[16.521,-15.806]],[[16.521,-15.806],[16.471,-15.797],[16.459,-15.802]],[[16.624,-11.401],[16.607,-11.347]],[[16.459,-15.802],[16.442,-15.839],[16.43,-15.847],[16.389,-15.905],[16.343,-16.033],[16.302,-16.07],[16.261,-16.193],[16.228,-16.235],[16.154,-16.288],[16.088,-16.358],[16.063,-16.391],[16.063,-16.416],[16.047,-16.441],[16.014,-16.519],[16.001,-16.515],[15.915,-16.424],[15.919,-16.346],[15.915,-16.313],[15.898,-16.272],[15.882,-16.255],[15.861,-16.247],[15.84,-16.247],[15.762,-16.268],[15.679,-16.301],[15.651,-16.272]],[[15.651,-16.272],[15.638,-16.259]],[[15.638,-16.259],[15.622,-16.264],[15.589,-16.296],[15.556,-16.305],[15.51,-16.338],[15.481,-16.379],[15.374,-16.47]],[[15.374,-16.47],[15.304,-16.523],[15.218,-16.569],[15.114,-16.643]],[[15.114,-16.643],[14.995,-16.758],[14.954,-16.816]],[[14.954,-16.816],[14.904,-16.853],[14.879,-16.882],[14.817,-16.915],[14.797,-16.94]],[[14.797,-16.94],[14.772,-16.977],[14.764,-17.022],[14.764,-17.105]],[[14.764,-17.105],[14.714,-17.175]],[[14.714,-17.175],[14.698,-17.224],[14.71,-17.266]],[[14.797,-16.94],[14.764,-16.89],[14.751,-16.841],[14.751,-16.697],[14.681,-16.449]],[[14.71,-17.266],[14.747,-17.352],[14.756,-17.41],[14.751,-17.439],[14.743,-17.451],[14.718,-17.455],[14.677,-17.455],[14.661,-17.447]],[[14.681,-16.449],[14.64,-16.276],[14.64,-16.259],[14.652,-16.226]],[[14.652,-16.226],[14.611,-16.185],[14.582,-16.173],[14.549,-16.127],[14.492,-16.086]],[[14.459,-11.43],[14.479,-11.504],[14.488,-11.566],[14.5,-11.591],[14.533,-11.611],[14.549,-11.644],[14.586,-11.797],[14.57,-11.904],[14.545,-11.999],[14.525,-12.019],[14.483,-12.04],[14.471,-12.061],[14.463,-12.094],[14.422,-12.176],[14.417,-12.213]],[[14.318,-12.448],[14.323,-12.428],[14.393,-12.341],[14.413,-12.292],[14.417,-12.213]],[[14.191,-12.745],[14.195,-12.712],[14.252,-12.622],[14.294,-12.502],[14.294,-12.477],[14.318,-12.448]],[[14.145,-12.844],[14.17,-12.82],[14.191,-12.745]],[[14.492,-16.086],[14.442,-16.057],[14.335,-16.028],[14.277,-16.041],[14.203,-16.074],[14.145,-16.078]],[[14.145,-16.078],[14.116,-16.074]],[[14.145,-16.078],[14.162,-16.061],[14.158,-16.028],[14.129,-15.958],[14.125,-15.929],[14.141,-15.789],[14.12,-15.748],[14.104,-15.678],[14.083,-15.628],[14.096,-15.542]],[[14.116,-16.074],[14.05,-16.045]],[[14.116,-16.074],[14.096,-16.099],[14.083,-16.173],[14.038,-16.226],[13.997,-16.264]],[[14.096,-15.542],[14.104,-15.509],[14.096,-15.422],[14.059,-15.261],[13.997,-15.15],[13.972,-15.072],[13.972,-15.03],[13.96,-14.952],[13.968,-14.861],[13.98,-14.812],[14.005,-14.758],[14.009,-14.729],[13.993,-14.676],[13.997,-14.614],[13.98,-14.568],[13.98,-14.544],[13.988,-14.531]],[[13.79,-13.669],[13.811,-13.603],[13.939,-13.422],[13.955,-13.385],[13.984,-13.286],[14.03,-13.183],[14.038,-13.125],[14.05,-13.1],[14.059,-13.059],[14.116,-12.906],[14.112,-12.853],[14.145,-12.844]],[[13.988,-14.531],[13.98,-14.42],[13.951,-14.3],[13.894,-14.181],[13.889,-14.102],[13.856,-14.003],[13.848,-13.95],[13.799,-13.842],[13.79,-13.789],[13.79,-13.669]],[[14.459,-11.43],[14.426,-11.401],[14.351,-11.355],[14.339,-11.335]],[[14.05,-16.045],[14.021,-16.028],[13.98,-15.991],[13.79,-15.802],[13.737,-15.777],[13.733,-15.752],[13.708,-15.711],[13.696,-15.674],[13.667,-15.653],[13.65,-15.628],[13.576,-15.595]],[[13.997,-16.264],[13.976,-16.296],[13.951,-16.305],[13.902,-16.371],[13.861,-16.375],[13.852,-16.383],[13.832,-16.441],[13.807,-16.461],[13.778,-16.466],[13.745,-16.428],[13.621,-16.437],[13.584,-16.428],[13.568,-16.441],[13.56,-16.466],[13.518,-16.499]],[[13.576,-15.595],[13.539,-15.571],[13.444,-15.542]],[[13.733,-13.673],[13.658,-13.694],[13.473,-13.694],[13.465,-13.702],[13.465,-13.731],[13.456,-13.752],[13.428,-13.772],[13.37,-13.797],[13.345,-13.818],[13.329,-13.822]],[[13.456,-16.589],[13.461,-16.618],[13.456,-16.659],[13.452,-16.68],[13.44,-16.688],[13.423,-16.688],[13.395,-16.659],[13.296,-16.676],[13.275,-16.668],[13.267,-16.655]],[[13.444,-15.542],[13.366,-15.525],[13.3,-15.521],[13.254,-15.525],[13.098,-15.604],[13.056,-15.641]],[[13.283,-16.602],[13.275,-16.598],[13.217,-16.602],[13.164,-16.585],[13.139,-16.585],[13.036,-16.606],[12.974,-16.527]],[[13.056,-15.641],[13.003,-15.81],[12.966,-15.983],[12.957,-16.0],[12.941,-16.012],[12.92,-16.008],[12.908,-16.016],[12.887,-16.066],[12.858,-16.094],[12.858,-16.123],[12.805,-16.231],[12.788,-16.235]],[[12.974,-16.527],[12.949,-16.47],[12.904,-16.428],[12.883,-16.338],[12.846,-16.305],[12.809,-16.243],[12.788,-16.235]],[[12.788,-16.235],[12.763,-16.243],[12.743,-16.235],[12.669,-16.226],[12.66,-16.259],[12.623,-16.28],[12.59,-16.28]],[[12.59,-16.28],[12.566,-16.284]],[[13.329,-13.822],[13.308,-13.822],[13.258,-13.805],[13.213,-13.768],[13.151,-13.76],[13.077,-13.71],[13.003,-13.686],[12.986,-13.661],[12.916,-13.628],[12.875,-13.562],[12.858,-13.55],[12.821,-13.546],[12.796,-13.554],[12.759,-13.546],[12.689,-13.554],[12.64,-13.546],[12.615,-13.533],[12.603,-13.517],[12.603,-13.401],[12.594,-13.381],[12.561,-13.372],[12.533,-13.331],[12.491,-13.302],[12.479,-13.286]],[[12.45,-13.694],[12.45,-13.661],[12.429,-13.64],[12.409,-13.595],[12.405,-13.537],[12.409,-13.504],[12.425,-13.475],[12.434,-13.422],[12.471,-13.348],[12.479,-13.286]],[[12.566,-16.284],[12.528,-16.288],[12.491,-16.276],[12.434,-16.218],[12.409,-16.202],[12.417,-16.181],[12.388,-15.839],[12.401,-15.802]],[[12.277,-14.234],[12.256,-14.205],[12.256,-14.193],[12.273,-14.152],[12.273,-14.119],[12.289,-14.086],[12.31,-14.016],[12.339,-13.88],[12.355,-13.834],[12.421,-13.723],[12.45,-13.694]],[[12.401,-15.802],[12.396,-15.789],[12.347,-15.764],[12.322,-15.76],[12.302,-15.764],[12.277,-15.789],[12.26,-15.789],[12.252,-15.769]],[[12.26,-14.358],[12.277,-14.234]],[[12.479,-13.286],[12.45,-13.257],[12.252,-13.141]]],"sec":[[[16.603,-14.267],[16.628,-14.234],[16.719,-14.181]],[[16.723,-14.886],[16.719,-14.828],[16.698,-14.799],[16.694,-14.783],[16.702,-14.676],[16.657,-14.531],[16.649,-14.478],[16.669,-14.449],[16.669,-14.428],[16.653,-14.383],[16.653,-14.313],[16.603,-14.267]],[[16.566,-15.818],[16.587,-15.797],[16.603,-15.769],[16.682,-15.707],[16.698,-15.678],[16.735,-15.641]],[[16.521,-15.806],[16.504,-15.764],[16.5,-15.69],[16.537,-15.624],[16.541,-15.604],[16.537,-15.575],[16.55,-15.546],[16.591,-15.492],[16.599,-15.463],[16.595,-15.434],[16.574,-15.401],[16.591,-15.331],[16.591,-15.278],[16.583,-15.245],[16.599,-15.191],[16.616,-15.171],[16.649,-15.154],[16.678,-15.129],[16.694,-15.018],[16.702,-15.006],[16.723,-14.927],[16.723,-14.886]],[[16.459,-15.802],[16.471,-15.748],[16.451,-15.686],[16.451,-15.665],[16.471,-15.575],[16.508,-15.492],[16.521,-15.307],[16.529,-15.27],[16.521,-15.191],[16.508,-15.158],[16.504,-15.113],[16.513,-15.096],[16.492,-15.043],[16.488,-14.985],[16.488,-14.948],[16.517,-14.902],[16.517,-14.878],[16.525,-14.861]],[[16.525,-14.861],[16.521,-14.832],[16.529,-14.77],[16.504,-14.647],[16.492,-14.531],[16.504,-14.482],[16.484,-14.416],[16.467,-14.387],[16.393,-14.321]],[[16.265,-11.516],[16.376,-11.463],[16.451,-11.438],[16.624,-11.401]],[[16.603,-14.267],[16.579,-14.205],[16.438,-14.073],[16.385,-13.983],[16.315,-13.917],[16.298,-13.884],[16.277,-13.863],[16.228,-13.838],[16.166,-13.772],[16.207,-13.71],[16.203,-13.69],[16.17,-13.673],[16.166,-13.649],[16.15,-13.616],[16.158,-13.558],[16.15,-13.537],[16.154,-13.513],[16.166,-13.496]],[[15.981,-12.622],[16.018,-12.585]],[[16.166,-13.496],[16.195,-13.447],[16.224,-13.418],[16.228,-13.401],[16.22,-13.339],[16.228,-13.294],[16.224,-13.261],[16.236,-13.216],[16.232,-13.158],[16.191,-13.096],[16.195,-13.042],[16.146,-12.964],[16.088,-12.832],[16.038,-12.778],[16.034,-12.758],[15.981,-12.696],[15.981,-12.622]],[[15.956,-13.583],[15.997,-13.57],[16.071,-13.529],[16.092,-13.537],[16.108,-13.529],[16.133,-13.496],[16.154,-13.492],[16.166,-13.496]],[[16.393,-14.321],[16.368,-14.3],[16.348,-14.247],[16.335,-14.23],[16.298,-14.205],[16.277,-14.156],[16.228,-14.098],[16.199,-14.036],[16.191,-13.999],[16.137,-13.95],[16.067,-13.855],[16.055,-13.822],[16.051,-13.739],[16.014,-13.715],[15.993,-13.677],[15.956,-13.583]],[[16.018,-12.585],[16.018,-12.543],[16.001,-12.469],[15.981,-12.428],[15.968,-12.382],[15.956,-12.271],[15.935,-12.23],[15.948,-12.147],[15.964,-12.106],[15.948,-12.019],[15.931,-11.974],[15.906,-11.945],[15.906,-11.925],[15.915,-11.904],[15.906,-11.859],[15.943,-11.706],[15.956,-11.677],[15.997,-11.644],[16.026,-11.636],[16.096,-11.595],[16.129,-11.562],[16.265,-11.516]],[[15.956,-13.583],[15.923,-13.529],[15.898,-13.508],[15.886,-13.488],[15.861,-13.471],[15.795,-13.447],[15.741,-13.401],[15.601,-13.327]],[[15.539,-11.615],[15.638,-11.553],[15.684,-11.541],[15.692,-11.529],[15.721,-11.52],[15.758,-11.516],[15.836,-11.537],[15.89,-11.541],[15.915,-11.533],[15.968,-11.496],[15.997,-11.492],[16.1,-11.508],[16.265,-11.516]],[[15.601,-13.327],[15.531,-13.298]],[[16.393,-14.321],[16.261,-14.375],[16.141,-14.412],[16.125,-14.441],[16.1,-14.461],[16.067,-14.511],[15.968,-14.605],[15.923,-14.676],[15.894,-14.709],[15.865,-14.77],[15.832,-14.812],[15.77,-14.828],[15.717,-14.869],[15.659,-14.96],[15.626,-15.059],[15.609,-15.08],[15.514,-15.142],[15.473,-15.195],[15.42,-15.158]],[[15.42,-15.158],[15.407,-15.129],[15.395,-15.117]],[[15.638,-16.259],[15.572,-16.14],[15.523,-16.066],[15.506,-15.909],[15.469,-15.843],[15.42,-15.707],[15.366,-15.546],[15.358,-15.484]],[[15.358,-15.484],[15.354,-15.352],[15.411,-15.199],[15.42,-15.158]],[[15.395,-15.117],[15.35,-14.911],[15.275,-14.75],[15.242,-14.692],[15.238,-14.585],[15.209,-14.445],[15.218,-14.354],[15.213,-14.317],[15.189,-14.234],[15.189,-14.177],[15.201,-14.139],[15.234,-14.098],[15.242,-14.078],[15.259,-13.991],[15.35,-13.917],[15.358,-13.896],[15.345,-13.781],[15.391,-13.673],[15.387,-13.57],[15.391,-13.537],[15.473,-13.442],[15.523,-13.393],[15.572,-13.364],[15.601,-13.327]],[[15.164,-12.176],[15.341,-12.222],[15.428,-12.25],[15.461,-12.255],[15.589,-12.3],[15.622,-12.341],[15.717,-12.407],[15.766,-12.481],[15.898,-12.502],[15.943,-12.523],[16.001,-12.564],[16.018,-12.585]],[[15.531,-13.298],[15.502,-13.261],[15.49,-13.199],[15.477,-13.183],[15.436,-13.187],[15.411,-13.178],[15.37,-13.145],[15.341,-13.067],[15.333,-13.018],[15.321,-12.993],[15.267,-12.96],[15.242,-12.96],[15.209,-12.943],[15.16,-12.943],[15.11,-12.923]],[[15.11,-12.923],[15.077,-12.886],[15.073,-12.873],[15.069,-12.836],[15.073,-12.803]],[[15.374,-16.47],[15.329,-16.292],[15.284,-16.185],[15.267,-16.16],[15.209,-16.107],[15.18,-16.09],[15.04,-16.041]],[[15.073,-12.803],[15.077,-12.778],[15.065,-12.749],[15.032,-12.696],[15.003,-12.663],[14.995,-12.642],[15.003,-12.622],[15.036,-12.593],[15.036,-12.58],[15.015,-12.556],[14.995,-12.506],[14.978,-12.49],[14.892,-12.465]],[[14.892,-12.465],[14.933,-12.407],[14.982,-12.321],[14.999,-12.304],[15.053,-12.283],[15.081,-12.259],[15.119,-12.205],[15.147,-12.18],[15.164,-12.176]],[[15.358,-15.484],[15.337,-15.5],[15.23,-15.546],[15.147,-15.649],[15.11,-15.67],[15.077,-15.703],[15.044,-15.719],[15.02,-15.748],[14.859,-15.88]],[[15.04,-16.041],[14.995,-16.012],[14.937,-15.954],[14.883,-15.913],[14.859,-15.88]],[[14.859,-15.88],[14.826,-15.901],[14.789,-15.909]],[[15.114,-16.643],[15.061,-16.585],[14.999,-16.544],[14.958,-16.507],[14.916,-16.49],[14.826,-16.47],[14.772,-16.461],[14.76,-16.466],[14.681,-16.449]],[[14.789,-15.909],[14.727,-16.123],[14.698,-16.185],[14.652,-16.226]],[[14.582,-17.035],[14.615,-17.051],[14.714,-17.175]],[[15.11,-12.923],[15.073,-12.914],[14.991,-12.923],[14.954,-12.914],[14.916,-12.927],[14.883,-12.927],[14.85,-12.964],[14.694,-12.972],[14.685,-12.968],[14.681,-12.943],[14.636,-12.927],[14.632,-12.894],[14.611,-12.877],[14.595,-12.853],[14.591,-12.828],[14.553,-12.762]],[[14.789,-15.909],[14.685,-15.806],[14.669,-15.781],[14.657,-15.731],[14.644,-15.715],[14.632,-15.711],[14.541,-15.76]],[[14.467,-11.322],[14.467,-11.339],[14.479,-11.368],[14.459,-11.43]],[[14.562,-11.322],[14.483,-11.397],[14.459,-11.43]],[[14.459,-11.43],[14.632,-11.446],[14.677,-11.471],[14.801,-11.492],[14.896,-11.545],[14.925,-11.574],[14.962,-11.595],[14.995,-11.628],[15.114,-11.661],[15.18,-11.661],[15.213,-11.636],[15.3,-11.64],[15.358,-11.611],[15.383,-11.611],[15.428,-11.624],[15.481,-11.615],[15.539,-11.615]],[[14.422,-16.672],[14.446,-16.82],[14.442,-16.878],[14.422,-16.969]],[[14.422,-16.969],[14.566,-17.022],[14.582,-17.035]],[[14.892,-12.465],[14.842,-12.461],[14.764,-12.44],[14.727,-12.424],[14.698,-12.407],[14.628,-12.333],[14.549,-12.263],[14.483,-12.23],[14.417,-12.213]],[[14.384,-13.521],[14.434,-13.529],[14.467,-13.525],[14.492,-13.529],[14.529,-13.546],[14.698,-13.558],[14.784,-13.521],[14.855,-13.513],[14.904,-13.484],[14.933,-13.484],[14.958,-13.541],[15.003,-13.566],[15.048,-13.624],[15.077,-13.636],[15.131,-13.579],[15.193,-13.55],[15.218,-13.513],[15.304,-13.426],[15.374,-13.385],[15.432,-13.327],[15.531,-13.298]],[[14.681,-16.449],[14.591,-16.42],[14.455,-16.4],[14.343,-16.424]],[[14.343,-16.424],[14.347,-16.47],[14.364,-16.494],[14.368,-16.519],[14.389,-16.544],[14.393,-16.56],[14.417,-16.585],[14.422,-16.672]],[[14.553,-12.762],[14.504,-12.787],[14.45,-12.791],[14.409,-12.811],[14.364,-12.824],[14.285,-12.811],[14.273,-12.799],[14.265,-12.774],[14.248,-12.762],[14.207,-12.758],[14.191,-12.745]],[[14.145,-16.078],[14.285,-16.334],[14.327,-16.371],[14.339,-16.404]],[[14.541,-15.76],[14.533,-15.76],[14.508,-15.736],[14.455,-15.719],[14.438,-15.698],[14.43,-15.653],[14.343,-15.566],[14.323,-15.529],[14.182,-15.546],[14.096,-15.542]],[[13.79,-13.669],[13.828,-13.649],[13.873,-13.64],[13.918,-13.64],[14.092,-13.669],[14.12,-13.669],[14.178,-13.611],[14.252,-13.558],[14.29,-13.55],[14.331,-13.521],[14.356,-13.525],[14.384,-13.521]],[[13.56,-15.921],[13.564,-15.769],[13.555,-15.661],[13.576,-15.595]],[[13.576,-15.595],[13.568,-15.558],[13.547,-15.513],[13.555,-15.48],[13.593,-15.443],[13.663,-15.401],[13.658,-15.369],[13.663,-15.36],[13.691,-15.348],[13.708,-15.286],[13.741,-15.228],[13.741,-15.204],[13.782,-15.146],[13.786,-15.125],[13.782,-15.105],[13.79,-15.076],[13.778,-14.952],[13.762,-14.911],[13.704,-14.89],[13.696,-14.878],[13.658,-14.865],[13.65,-14.845],[13.605,-14.795],[13.543,-14.762]],[[13.543,-14.762],[13.498,-14.77]],[[13.535,-16.214],[13.535,-16.173],[13.518,-16.123],[13.485,-16.094],[13.522,-16.049],[13.531,-16.028],[13.531,-16.008],[13.555,-15.95],[13.56,-15.921]],[[13.469,-11.393],[13.481,-11.421],[13.502,-11.446],[13.51,-11.475],[13.514,-11.512],[13.489,-11.57],[13.502,-11.599],[13.506,-11.64],[13.527,-11.669],[13.547,-11.677],[13.568,-11.669],[13.609,-11.677],[13.671,-11.652],[13.729,-11.64],[13.757,-11.648],[13.819,-11.652],[13.881,-11.669],[13.906,-11.694],[13.984,-11.743],[14.05,-11.731],[14.092,-11.665],[14.162,-11.632],[14.186,-11.603],[14.24,-11.562],[14.298,-11.541],[14.343,-11.492],[14.459,-11.43]],[[13.436,-14.218],[13.407,-14.276],[13.399,-14.309],[13.395,-14.412],[13.469,-14.453],[13.518,-14.469],[13.547,-14.494],[13.572,-14.568],[13.625,-14.589],[13.63,-14.634],[13.617,-14.671],[13.593,-14.717],[13.568,-14.737],[13.56,-14.754],[13.543,-14.762]],[[13.498,-14.77],[13.494,-14.816],[13.498,-14.857],[13.506,-14.886],[13.535,-14.923],[13.551,-14.968],[13.543,-15.018],[13.564,-15.03],[13.65,-15.047],[13.658,-15.059],[13.654,-15.084],[13.609,-15.146],[13.621,-15.179],[13.56,-15.241],[13.539,-15.249],[13.522,-15.241],[13.477,-15.237],[13.423,-15.241],[13.386,-15.29],[13.382,-15.303],[13.395,-15.385],[13.444,-15.455],[13.448,-15.492],[13.444,-15.542]],[[13.481,-16.54],[13.481,-16.474],[13.465,-16.457],[13.432,-16.445],[13.419,-16.445],[13.378,-16.466],[13.366,-16.461],[13.337,-16.387],[13.353,-16.338],[13.378,-16.334],[13.395,-16.321],[13.428,-16.329],[13.436,-16.325],[13.461,-16.268],[13.502,-16.251],[13.535,-16.214]],[[13.733,-13.673],[13.683,-13.653],[13.601,-13.591],[13.547,-13.57],[13.489,-13.471],[13.436,-13.434],[13.349,-13.36],[13.329,-13.331],[13.308,-13.286]],[[13.304,-14.218],[13.32,-14.185],[13.337,-14.119],[13.341,-14.032],[13.362,-14.02],[13.374,-14.003],[13.37,-13.979],[13.395,-13.913],[13.399,-13.88],[13.411,-13.867],[13.465,-13.859],[13.481,-13.875],[13.502,-13.941],[13.494,-13.966],[13.494,-14.024],[13.473,-14.073],[13.461,-14.148],[13.436,-14.218]],[[13.436,-14.218],[13.39,-14.222],[13.304,-14.218]],[[13.304,-14.218],[13.324,-14.284],[13.291,-14.325],[13.279,-14.37],[13.308,-14.403],[13.32,-14.436],[13.32,-14.506],[13.362,-14.56],[13.37,-14.593],[13.407,-14.626],[13.415,-14.647],[13.436,-14.659],[13.465,-14.696],[13.494,-14.721],[13.498,-14.77]],[[13.366,-11.327],[13.469,-11.393]],[[13.444,-15.542],[13.423,-15.595],[13.407,-15.612],[13.423,-15.686],[13.423,-15.719],[13.403,-15.781],[13.378,-15.814],[13.349,-15.83],[13.316,-15.843],[13.271,-15.835],[13.242,-15.855],[13.25,-15.892],[13.238,-15.925],[13.242,-15.95],[13.225,-15.979],[13.238,-16.008],[13.23,-16.082],[13.213,-16.115],[13.209,-16.218],[13.213,-16.239],[13.221,-16.235],[13.23,-16.243],[13.213,-16.346],[13.197,-16.358],[13.201,-16.379],[13.184,-16.408],[13.184,-16.433],[13.201,-16.453],[13.205,-16.49],[13.213,-16.503],[13.238,-16.507],[13.267,-16.527],[13.263,-16.54],[13.275,-16.556],[13.283,-16.602]],[[13.135,-14.106],[13.155,-14.065],[13.168,-13.974],[13.221,-13.962],[13.246,-13.933],[13.254,-13.892],[13.263,-13.88],[13.287,-13.875],[13.308,-13.863],[13.329,-13.822]],[[13.304,-14.218],[13.221,-14.177],[13.18,-14.139],[13.143,-14.119],[13.135,-14.106]],[[12.933,-14.082],[12.982,-14.069],[13.044,-14.082],[13.122,-14.115],[13.135,-14.106]],[[13.308,-13.286],[13.287,-13.253],[13.25,-13.216],[13.254,-13.187],[13.25,-13.174],[13.217,-13.141],[13.184,-13.046],[13.159,-13.001],[13.151,-12.972],[13.155,-12.91],[13.147,-12.861],[13.052,-12.704],[13.027,-12.63],[12.994,-12.576],[12.974,-12.51],[12.924,-12.428],[12.883,-12.395],[12.875,-12.37],[12.854,-12.358]],[[12.887,-14.931],[12.862,-14.898],[12.858,-14.828],[12.85,-14.799],[12.821,-14.758],[12.821,-14.737],[12.838,-14.651],[12.842,-14.605],[12.838,-14.577],[12.858,-14.486],[12.871,-14.465],[12.883,-14.346],[12.937,-14.222],[12.912,-14.156],[12.916,-14.111],[12.933,-14.082]],[[12.817,-11.879],[12.825,-11.859],[12.834,-11.768],[12.825,-11.743]],[[14.318,-12.448],[14.29,-12.44],[14.215,-12.465],[14.162,-12.465],[14.12,-12.444],[14.054,-12.428],[14.017,-12.436],[13.927,-12.44],[13.894,-12.453],[13.844,-12.42],[13.716,-12.382],[13.663,-12.391],[13.671,-12.453],[13.667,-12.473],[13.658,-12.49],[13.605,-12.535],[13.584,-12.535],[13.473,-12.486],[13.444,-12.481],[13.407,-12.486],[13.399,-12.461],[13.366,-12.428],[13.362,-12.382],[13.324,-12.329],[13.308,-12.283],[13.279,-12.151],[13.263,-12.118],[13.213,-12.094],[13.135,-11.974],[13.098,-11.962],[13.056,-11.966],[13.027,-11.962],[12.9,-11.92],[12.817,-11.879]],[[12.838,-15.228],[12.809,-15.142],[12.809,-15.117],[12.821,-15.084],[12.85,-15.039],[12.862,-14.993],[12.891,-14.94],[12.887,-14.931]],[[12.838,-15.228],[12.871,-15.282],[12.875,-15.331],[12.842,-15.414],[12.829,-15.513],[12.801,-15.554]],[[12.801,-15.554],[12.821,-15.595],[12.838,-15.604],[12.867,-15.604],[12.916,-15.583],[13.011,-15.628],[13.056,-15.641]],[[12.933,-14.082],[12.862,-14.065],[12.825,-14.065],[12.805,-14.073],[12.772,-14.106],[12.751,-14.152],[12.739,-14.16],[12.718,-14.164],[12.677,-14.16]],[[12.656,-15.439],[12.673,-15.414],[12.677,-15.397],[12.669,-15.389],[12.669,-15.373],[12.702,-15.29],[12.718,-15.208],[12.763,-15.129],[12.772,-15.096],[12.809,-15.051],[12.813,-14.973],[12.821,-14.948]],[[12.615,-11.401],[12.656,-11.38],[12.702,-11.368],[12.726,-11.331],[12.776,-11.31]],[[12.825,-11.743],[12.763,-11.698],[12.722,-11.677],[12.693,-11.673],[12.656,-11.632],[12.623,-11.607],[12.648,-11.549],[12.652,-11.525],[12.644,-11.5],[12.648,-11.434],[12.644,-11.426],[12.623,-11.421],[12.615,-11.401]],[[12.549,-12.184],[12.603,-12.135],[12.623,-12.102],[12.623,-12.09],[12.656,-12.065],[12.693,-11.982],[12.718,-11.97],[12.763,-11.916],[12.817,-11.879]],[[12.854,-12.358],[12.825,-12.354],[12.813,-12.345],[12.784,-12.3],[12.743,-12.288],[12.677,-12.283],[12.656,-12.275],[12.574,-12.222],[12.549,-12.184]],[[12.541,-12.267],[12.549,-12.184]],[[12.623,-12.787],[12.594,-12.729],[12.578,-12.622],[12.578,-12.564],[12.57,-12.543],[12.541,-12.514],[12.52,-12.44],[12.504,-12.411],[12.504,-12.37],[12.516,-12.312],[12.533,-12.296],[12.541,-12.267]],[[12.566,-16.284],[12.57,-16.222],[12.566,-16.177],[12.611,-16.012],[12.607,-15.995],[12.566,-15.942],[12.557,-15.921],[12.566,-15.888],[12.537,-15.83],[12.561,-15.76],[12.561,-15.703],[12.557,-15.69],[12.541,-15.682],[12.495,-15.632],[12.5,-15.562],[12.508,-15.538],[12.524,-15.525],[12.574,-15.509],[12.594,-15.517],[12.615,-15.505],[12.644,-15.476],[12.656,-15.439]],[[12.479,-13.286],[12.483,-13.174],[12.491,-13.154],[12.524,-13.125],[12.524,-13.079],[12.541,-13.042],[12.561,-12.906],[12.578,-12.857],[12.599,-12.836],[12.623,-12.787]],[[12.475,-15.22],[12.512,-15.195],[12.545,-15.158],[12.582,-15.072],[12.619,-15.051],[12.636,-15.03],[12.669,-14.948],[12.681,-14.944],[12.821,-14.948]],[[12.566,-16.284],[12.57,-16.288],[12.553,-16.334],[12.533,-16.354],[12.495,-16.358],[12.475,-16.379],[12.454,-16.441],[12.446,-16.486],[12.45,-16.515],[12.462,-16.532],[12.483,-16.54],[12.487,-16.548]],[[12.487,-16.548],[12.479,-16.56],[12.392,-16.565],[12.372,-16.577],[12.38,-16.639],[12.368,-16.701],[12.372,-16.725],[12.434,-16.767],[12.462,-16.779]],[[12.677,-14.16],[12.632,-14.111],[12.615,-14.111],[12.59,-14.135],[12.553,-14.148],[12.467,-14.156],[12.372,-14.201],[12.306,-14.218],[12.277,-14.234]],[[12.252,-15.191],[12.281,-15.179],[12.372,-15.216],[12.421,-15.228],[12.475,-15.22]],[[12.541,-12.267],[12.524,-12.271],[12.516,-12.259],[12.462,-12.25],[12.417,-12.279],[12.38,-12.283],[12.339,-12.304],[12.314,-12.3],[12.293,-12.308]]],"rails":[[[16.004,-16.508],[15.93,-16.427],[15.938,-16.354],[15.923,-16.314],[15.926,-16.288],[15.861,-16.213],[15.852,-16.211],[15.807,-16.235],[15.784,-16.239],[15.74,-16.213],[15.677,-16.209],[15.652,-16.228],[15.619,-16.236]],[[15.4,-15.156],[15.393,-15.207],[15.362,-15.262],[15.338,-15.35],[15.352,-15.547],[15.494,-15.936],[15.517,-16.063],[15.619,-16.236]],[[15.619,-16.236],[15.602,-16.261],[15.502,-16.326],[15.444,-16.38],[15.414,-16.422],[15.318,-16.491],[15.189,-16.569],[15.162,-16.598],[15.104,-16.636],[15.076,-16.665],[15.044,-16.688],[14.996,-16.738],[14.962,-16.789],[14.954,-16.811]],[[15.141,-16.834],[15.126,-16.849],[15.088,-16.859],[15.07,-16.856],[15.031,-16.832],[14.954,-16.811]],[[14.954,-16.811],[14.938,-16.838],[14.913,-16.855],[14.882,-16.894],[14.797,-16.93]],[[14.853,-15.879],[14.82,-15.898],[14.8,-15.921],[14.794,-15.959],[14.776,-15.999],[14.749,-16.102],[14.719,-16.173],[14.703,-16.199],[14.67,-16.228]],[[14.797,-16.93],[14.8,-16.961],[14.786,-16.991],[14.787,-17.029],[14.776,-17.059],[14.77,-17.126],[14.733,-17.175],[14.727,-17.199],[14.713,-17.213],[14.706,-17.233],[14.727,-17.294],[14.749,-17.314],[14.757,-17.334],[14.764,-17.381],[14.742,-17.429],[14.728,-17.443],[14.696,-17.451],[14.657,-17.44]],[[14.67,-16.228],[14.66,-16.241],[14.656,-16.273],[14.705,-16.472],[14.77,-16.703],[14.771,-16.881],[14.797,-16.93]],[[14.271,-15.951],[14.467,-16.048],[14.67,-16.228]],[[14.271,-15.951],[14.26,-15.976],[14.205,-16.027],[14.191,-16.049],[14.142,-16.076]],[[13.777,-13.729],[13.781,-13.807],[13.793,-13.865],[13.826,-13.943],[13.842,-14.023],[13.866,-14.056],[13.865,-14.083],[13.877,-14.126],[13.872,-14.156],[13.94,-14.309],[13.963,-14.406],[13.971,-14.463],[13.971,-14.558],[13.981,-14.616],[13.982,-14.67],[13.974,-14.707],[13.985,-14.764],[13.981,-14.815],[13.984,-14.826],[14.007,-14.845],[14.015,-14.878],[14.019,-14.929],[14.014,-14.953],[14.029,-14.98],[14.055,-15.188],[14.062,-15.223],[14.083,-15.27],[14.099,-15.351],[14.121,-15.507],[14.12,-15.522],[14.1,-15.551],[14.121,-15.715],[14.135,-15.754],[14.175,-15.826],[14.237,-15.918],[14.271,-15.951]],[[14.25,-11.304],[14.319,-11.363],[14.386,-11.394],[14.397,-11.411],[14.419,-11.416],[14.446,-11.431],[14.448,-11.466],[14.476,-11.563],[14.491,-11.59],[14.527,-11.624],[14.547,-11.667],[14.582,-11.801],[14.573,-11.81],[14.532,-11.983],[14.538,-12.026],[14.46,-12.192],[14.404,-12.35],[14.359,-12.402],[14.339,-12.439],[14.299,-12.455],[14.281,-12.478],[14.283,-12.501],[14.265,-12.526],[14.249,-12.597],[14.231,-12.62],[14.218,-12.664],[14.188,-12.703],[14.172,-12.77],[14.081,-12.952],[14.012,-13.174],[13.969,-13.272],[13.954,-13.329],[13.922,-13.41],[13.812,-13.565],[13.791,-13.584],[13.78,-13.646],[13.777,-13.729]]]};
+const REG_AIR = {fr:'Aéroport régional. État opérationnel à vérifier (programme de réhabilitation des aéroports régionaux).', en:'Regional airport. Operational status to be checked (regional airports rehabilitation programme).'};
+const INFRA_PTS = [
+  {id:'i-aibd', cat:'air', status:'ok', name:'Aéroport international Blaise Diagne (AIBD)', ll:[14.67,-17.073], fr:'Aéroport international du Sénégal, relié à Dakar par l’autoroute à péage.', en:'Senegal’s international airport, linked to Dakar by the toll highway.'},
+  {id:'i-lss', cat:'air', status:'ok', name:'Aéroport Léopold Sédar Senghor (Yoff)', ll:[14.745,-17.49], fr:'Ancien aéroport international de Dakar. Le trafic commercial a été transféré à l’AIBD en 2017.', en:'Former Dakar international airport. Commercial traffic moved to AIBD in 2017.'},
+  {id:'i-a-sl', cat:'air', status:'check', name:'Aéroport de Saint-Louis', ll:[16.051,-16.463], ...REG_AIR},
+  {id:'i-a-zig', cat:'air', status:'check', name:'Aéroport de Ziguinchor', ll:[12.556,-16.282], ...REG_AIR},
+  {id:'i-a-csk', cat:'air', status:'check', name:'Aéroport de Cap Skirring', ll:[12.395,-16.748], ...REG_AIR},
+  {id:'i-a-tamba', cat:'air', status:'check', name:'Aéroport de Tambacounda', ll:[13.737,-13.653], ...REG_AIR},
+  {id:'i-a-ked', cat:'air', status:'check', name:'Aéroport de Kédougou', ll:[12.572,-12.22], ...REG_AIR},
+  {id:'i-a-matam', cat:'air', status:'check', name:'Aéroport de Matam – Ouro Sogui', ll:[15.594,-13.323], ...REG_AIR},
+  {id:'i-a-kolda', cat:'air', status:'check', name:'Aéroport de Kolda', ll:[12.898,-14.968], ...REG_AIR},
+  {id:'i-port', cat:'port', status:'ok', name:'Port autonome de Dakar', ll:[14.682,-17.425], fr:'Principal port du pays, porte d’entrée des marchandises et des intrants industriels.', en:'The country’s main port and gateway for goods and industrial inputs.'},
+  {id:'i-ndayane', cat:'port', status:'build', name:'Port de Ndayane', ll:[14.54,-17.11], fr:'Port en eau profonde en construction sur la Petite Côte.', en:'Deep-water port under construction on the Petite Côte.'},
+  {id:'i-p-zig', cat:'port', status:'ok', name:'Port de Ziguinchor', ll:[12.59,-16.268], fr:'Port sur la Casamance, desservi par la liaison maritime avec Dakar.', en:'Port on the Casamance river, served by the sea link with Dakar.'},
+  {id:'i-p-kao', cat:'port', status:'ok', name:'Port de Kaolack', ll:[14.129,-16.072], fr:'Port fluvial sur le Saloum, débouché du bassin arachidier.', en:'River port on the Saloum, outlet of the groundnut basin.'},
+  {id:'i-p-sl', cat:'port', status:'ok', name:'Port de Saint-Louis', ll:[16.01,-16.51], fr:'Port fluvial à l’embouchure du fleuve Sénégal.', en:'River port at the mouth of the Senegal river.'},
+  {id:'i-e-biches', cat:'energy', status:'ok', name:'Centrale électrique du Cap des Biches', ll:[14.712,-17.302], fr:'Pôle de production thermique de Senelec à l’est de Dakar.', en:'Senelec thermal generation site east of Dakar.'},
+  {id:'i-e-sendou', cat:'energy', status:'ok', name:'Centrale de Sendou (Bargny)', ll:[14.695,-17.215], fr:'Centrale thermique sur la côte de Bargny.', en:'Thermal power plant on the Bargny coast.'},
+  {id:'i-e-taiba', cat:'energy', status:'ok', name:'Parc éolien de Taïba Ndiaye', ll:[15.06,-16.9], fr:'Principal parc éolien du pays, dans la zone des Niayes.', en:'The country’s main wind farm, in the Niayes area.'},
+  {id:'i-e-merina', cat:'energy', status:'ok', name:'Centrale solaire de Ten Merina', ll:[15.03,-16.7], fr:'Centrale photovoltaïque raccordée au réseau Senelec.', en:'Grid-connected solar plant.'},
+  {id:'i-e-bokhol', cat:'energy', status:'ok', name:'Centrale solaire de Bokhol', ll:[16.52,-15.39], fr:'Centrale photovoltaïque dans la vallée du fleuve Sénégal.', en:'Solar plant in the Senegal river valley.'},
+  {id:'i-e-diama', cat:'energy', status:'ok', name:'Barrage de Diama', ll:[16.215,-16.41], fr:'Barrage anti-sel de l’OMVS sur le fleuve Sénégal, clé de l’irrigation du delta.', en:'OMVS anti-salt dam on the Senegal river, key to delta irrigation.'},
+  {id:'i-e-gta', cat:'energy', status:'ok', name:'Gisement gazier Grand Tortue Ahmeyim (offshore)', ll:[16.2,-16.75], fr:'Projet gazier partagé avec la Mauritanie, au large de Saint-Louis. Position schématique.', en:'Gas project shared with Mauritania, off Saint-Louis. Schematic position.'},
+  {id:'i-e-sango', cat:'energy', status:'ok', name:'Champ pétrolier de Sangomar (offshore)', ll:[13.95,-17.62], fr:'Premier champ pétrolier du pays, au large du delta du Saloum. Position schématique.', en:'The country’s first oil field, off the Saloum delta. Schematic position.'},
+  {id:'i-pis', cat:'apix', status:'ok', name:'Restructuration de Pikine Irrégulier Sud', ll:[14.75,-17.39], fr:'Aménagement urbain mené par l’APIX en banlieue de Dakar.', en:'Urban redevelopment led by APIX in the Dakar suburbs.'},
+  {id:'i-cicad', cat:'apix', status:'ok', name:'Centre international de conférences Abdou Diouf (CICAD)', ll:[14.724,-17.175], fr:'Centre de conférences de Diamniadio, réalisé sous maîtrise d’ouvrage APIX.', en:'Diamniadio conference centre, delivered under APIX project management.'},
+  {id:'i-pdtsl', cat:'apix', status:'ok', name:'Programme de développement territorial de Saint-Louis', ll:[16.03,-16.49], fr:'Programme de développement territorial et touristique de Saint-Louis.', en:'Saint-Louis territorial and tourism development programme.'}
+];
+const LINES = [
+  {id:'i-ter', cat:'rail', type:'ter', status:'ok', name:'Train Express Régional (TER)', pts:[[14.667,-17.433],[14.708,-17.42],[14.742,-17.37],[14.74,-17.31],[14.716,-17.27],[14.72,-17.19],[14.68,-17.08]], fr:'Liaison ferroviaire Dakar – Diamniadio en service, prolongement vers l’AIBD.', en:'Dakar – Diamniadio rail link in service, extension to AIBD.'},
+  {id:'i-auto', cat:'auto', type:'auto', status:'ok', name:'Autoroute à péage Dakar – AIBD – Mbour', pts:[[14.69,-17.44],[14.74,-17.35],[14.725,-17.2],[14.68,-17.09],[14.42,-16.97]], fr:'Axe Dakar – Diamniadio – AIBD – Mbour.', en:'Dakar – Diamniadio – AIBD – Mbour corridor.'},
+  {id:'i-ila', cat:'auto', type:'auto', status:'ok', name:'Autoroute Ila Touba', pts:[[14.725,-17.2],[14.79,-16.93],[14.83,-16.45],[14.855,-15.89]], fr:'Axe Diamniadio – Thiès – Touba.', en:'Diamniadio – Thiès – Touba corridor.'}
+];
+
+/* Affinité secteur / ressources pour l'assistant (démonstration) */
+const RES = {mines:['Kédougou','Tambacounda'], agro:['Saint-Louis','Louga','Kaolack','Thiès','Ziguinchor','Kaffrine'], tourisme:['Thiès','Ziguinchor','Fatick'], pharma:['Dakar'], industrie:['Dakar','Thiès'], logistique:['Dakar','Thiès'], eau:['Dakar','Thiès'], services:['Dakar']};
+
+const T = {
+ fr:{title:"Atlas de l'investissement",subtitle:"Sénégal · prototype pour investinsenegal.sn",notice:"Prototype de démonstration proposé par CEGIT. Positions et contenus indicatifs, à valider avec l'APIX et ses partenaires.",search:"Rechercher",layers:"Couches",l_zones:"Zones économiques",l_plats:"Plateformes APIX",l_projs:"Projets prioritaires",l_infra:"Grands projets et infrastructures",l_cover:"Couverture des plateformes",l_lots:"Lots disponibles",phase2:"phase 2",sector:"Secteur",cta_t:"Où m'implanter ?",cta_p:"Indiquez votre secteur et vos besoins : l'Atlas classe les sites les plus adaptés.",cta_b:"Lancer l'assistant",lg_zone:"Zone économique",lg_plat:"Plateforme APIX",lg_proj:"Projet prioritaire",lg_road:"Autoroute à péage",v_map:"Carte interactive",v_portal:"Découvrir les plateformes",pt_title:"Découvrir les plateformes APIX",pt_intro:"Sept plateformes régionales accompagnent les investisseurs au plus près des territoires. Choisissez une plateforme sur la carte ou dans la liste pour découvrir son territoire, sa population, ses opportunités et ses infrastructures.",pt_all:"Toutes les plateformes",pt_eyebrow:"Plateforme régionale APIX",pt_hq:"Siège de l'APIX",pt_onmap:"Voir sur la carte interactive",pt_contact:"Contacter la plateforme",pt_area:"Superficie",pt_area_n:"calculée (SIG)",pt_share:"de la population nationale",pt_ofpop:"de la population",pt_weighted:"moyenne pondérée",pt_projs_n:"projets prioritaires",pt_inf_n:"aéroports, ports, énergie, autoroutes",sec_terr:"Territoire",sec_pop:"Population",sec_opp:"Opportunités",sec_inf:"Infrastructures",sec_contact:"Contact",t_region:"Région",t_total:"Ensemble",pop_by:"Population par région (2023)",pov_by:"Taux de pauvreté par région (2021-2022)",filieres:"Filières porteuses",autoroutes:"Autoroutes et TER",none_here:"Aucun élément référencé sur ce territoire pour l'instant.",fig_pop:"habitants",fig_work:"15-59 ans",fig_items:"zones et projets",pt_s1:"accompagne les investisseurs dans",pt_s_one:"la région de",pt_s_many:"les régions de",pt_s2:"Son territoire compte",pt_s3:"habitants (RGPH-5, 2023), soit",pt_s4:"de la population du pays.",and_w:"et",contact_note:"Coordonnées reprises du site investinsenegal.sn.",pt_discover:"Découvrir ce territoire",m_terr:"Carte du territoire",m_terr_on:"Régions couvertes par la plateforme",m_terr_off:"Régions voisines",m_seat:"Implantation de la plateforme APIX",m_terr_note:"Population par région : RGPH-5 (2023).",m_pop:"Population et pauvreté",m_pop_col:"Couleur : taux de pauvreté 2021-2022 (mêmes classes pour tout le pays)",m_pop_circ:"Cercles : population 2023",m_opp:"Localisation des opportunités",m_num:"Les numéros sur la carte renvoient aux listes ci-dessous.",m_inf:"Réseaux et équipements",m_pos:"Positions indicatives, à valider.",pdf_btn:"Télécharger le rapport PDF",pdf_wait:"Préparation du PDF…",pdf_ok:"Rapport généré : l'enregistrement vous a été proposé.",pdf_declined:"Enregistrement annulé.",pdf_busy:"Une demande d'enregistrement est déjà ouverte.",pdf_na:"Le téléchargement n'est pas disponible dans cette vue.",pdf_err:"Le PDF n'a pas pu être généré. Réessayez dans un instant.",pdf_kind:"Rapport territorial",pdf_foot:"Atlas de l'investissement – prototype CEGIT. Données : ANSD (RGPH-5 2023, Annuaire Population 2024, EHCVM II 2021-2022) ; limites Natural Earth ; positions indicatives.",pdf_page:"Page",pdf_cat:"Catégorie",pdf_name:"Nom",pdf_status:"Statut",socio_l:"Données socio-démographiques (ANSD)",ind_none:"Aucune (couverture des plateformes)",ind_pop:"Population 2023",ind_dens:"Densité (hab./km²)",ind_growth:"Croissance annuelle 2013-2023",ind_urb:"Taux d'urbanisation 2024",ind_work:"Population 15-59 ans (2024)",ind_young:"Part des 0-14 ans (2024)",ind_tm:"Taille moyenne des ménages",ind_pov:"Taux de pauvreté 2021-2022",theme_hint:"Colore les régions selon un indicateur de l'ANSD.",src:"Source",sources_t:"Sources des données",src_bounds:"Limites, routes et voies ferrées : Natural Earth",socio_t:"Profil socio-démographique",reg_sub:"Profil établi à partir des données de l'ANSD",pop23:"Population (RGPH-5, 2023)",share:"Part de la population nationale",nat:"national :",per_km2:"hab./km², calculée",hh:"ménages",age_t:"Structure par âge (2024)",yrs:"ans",work_t:"Main-d'œuvre potentielle (15-59 ans, 2024)",dens_note:"Densité calculée à partir de la superficie SIG (approximative).",men_note:"* Nombre de ménages de Kolda reconstitué (valeur peu lisible dans la source).",basin:"Bassin de population",inhab:"hab.",c_pop:"habitants",a_work:"Bassin de main-d'œuvre important (15-59 ans, ANSD)",why_work:"15-59 ans :",bounds:"Limites, routes et voies ferrées : Natural Earth",l_infra:"Infrastructures",s_auto:"Autoroutes à péage",s_main:"Routes principales",s_main_one:"Route principale",s_sec:"Routes secondaires",s_rail:"Voies ferrées et TER",s_air:"Aéroports",s_port:"Ports",s_energy:"Énergie et hydrocarbures",s_apix:"Grands projets APIX",lg_title:"Légende",lg_cover:"Couverture des plateformes APIX",lg_invest:"Investissement",lg_ter:"TER",lg_rail:"Voie ferrée",lg_proj_note:"pictogramme = secteur",st_ok:"En service",st_build:"En construction",st_check:"État opérationnel à vérifier",indicative:"Position indicative, à valider avec les gestionnaires d'infrastructures.",tab_fiche:"Fiche",tab_assist:"Où m'implanter ?",a_sector:"Votre secteur",a_needs:"Vos besoins",a_port:"Proche d'un port (export, import d'intrants)",a_air:"Proche de l'aéroport AIBD",a_road:"Desservi par l'autoroute ou le TER",a_zes:"Régime fiscal de zone économique",a_res:"Proche des bassins de production ou des ressources",a_go:"Classer les sites",a_fine:"Distances calculées à vol d'oiseau depuis les coordonnées indicatives. En production, le classement utilisera les temps de trajet réels et les données foncières.",
+  c_zones:"zones",c_plats:"plateformes",c_projs:"projets",c_regions:"régions",
+  e_title:"Explorez les opportunités",e_1:"Cliquez sur une zone, un projet ou une région de la carte.",e_2:"Filtrez par secteur dans la colonne de gauche.",e_3:"Lancez l'assistant pour classer les sites selon vos besoins.",
+  region:"Région",plat:"Plateforme APIX de rattachement",dist:"Accessibilité (vol d'oiseau)",port:"Port le plus proche",air:"Aéroport AIBD",axis:"Autoroute ou TER",surf:"Superficie",lots:"Lots disponibles",firms:"Entreprises installées",regime:"Régime",todo:"à intégrer",viab:"Viabilisation",elec:"Électricité",water:"Eau",sanit:"Assainissement",fiber:"Fibre optique",decisions:"Décisions d'agrément de la zone",contact:"Contacter la plateforme",sheet:"Fiche projet (PDF)",sector_l:"Secteur",in_region:"Dans cette région",none:"Aucun élément référencé pour l'instant.",covers:"Régions couvertes",address:"Adresse",phone:"Téléphone",email:"E-mail",copy:"Copier",copied:"Copié",pop:"Population",pop_src:"à relier aux données ANSD",reg_k:"Région administrative",zones_k:"Zones économiques",projs_k:"Projets prioritaires",pdf_page:"Page APIX",more:"En savoir plus",rank_t:"Sites recommandés",why_port:"port à",why_air:"AIBD à",why_axis:"axe à",why_zes:"régime ZES",why_res:"ressources de la région",open:"Voir sur la carte",z_type:"Type",infra_k:"Grand projet / infrastructure"},
+ en:{title:"Investment Atlas",subtitle:"Senegal · prototype for investinsenegal.sn",notice:"Demonstration prototype proposed by CEGIT. Positions and content are indicative and must be validated with APIX and its partners.",search:"Search",layers:"Layers",l_zones:"Economic zones",l_plats:"APIX regional offices",l_projs:"Priority projects",l_infra:"Major projects & infrastructure",l_cover:"Regional office coverage",l_lots:"Available plots",phase2:"phase 2",sector:"Sector",cta_t:"Where should I invest?",cta_p:"Choose your sector and needs: the Atlas ranks the best-suited sites.",cta_b:"Start the assistant",lg_zone:"Economic zone",lg_plat:"APIX office",lg_proj:"Priority project",lg_road:"Toll highway",v_map:"Interactive map",v_portal:"Discover the offices",pt_title:"Discover APIX regional offices",pt_intro:"Seven regional offices support investors close to the ground. Pick an office on the map or in the list to discover its territory, population, opportunities and infrastructure.",pt_all:"All offices",pt_eyebrow:"APIX regional office",pt_hq:"APIX headquarters",pt_onmap:"Show on the interactive map",pt_contact:"Contact the office",pt_area:"Area",pt_area_n:"computed (GIS)",pt_share:"of national population",pt_ofpop:"of the population",pt_weighted:"weighted average",pt_projs_n:"priority projects",pt_inf_n:"airports, ports, energy, highways",sec_terr:"Territory",sec_pop:"Population",sec_opp:"Opportunities",sec_inf:"Infrastructure",sec_contact:"Contact",t_region:"Region",t_total:"Total",pop_by:"Population by region (2023)",pov_by:"Poverty rate by region (2021-2022)",filieres:"Key sectors",autoroutes:"Highways and TER",none_here:"Nothing listed in this territory yet.",fig_pop:"inhabitants",fig_work:"aged 15-59",fig_items:"zones & projects",pt_s1:"supports investors in",pt_s_one:"the region of",pt_s_many:"the regions of",pt_s2:"Its territory has",pt_s3:"inhabitants (RGPH-5, 2023), i.e.",pt_s4:"of the country's population.",and_w:"and",contact_note:"Contact details taken from investinsenegal.sn.",pt_discover:"Discover this territory",m_terr:"Territory map",m_terr_on:"Regions covered by the office",m_terr_off:"Neighbouring regions",m_seat:"APIX office location",m_terr_note:"Population by region: RGPH-5 (2023).",m_pop:"Population and poverty",m_pop_col:"Colour: poverty rate 2021-2022 (same classes nationwide)",m_pop_circ:"Circles: population 2023",m_opp:"Where the opportunities are",m_num:"Numbers on the map match the lists below.",m_inf:"Networks and facilities",m_pos:"Indicative positions, to be validated.",pdf_btn:"Download PDF report",pdf_wait:"Preparing PDF…",pdf_ok:"Report generated: you were offered to save it.",pdf_declined:"Save cancelled.",pdf_busy:"A save request is already open.",pdf_na:"Download is not available in this view.",pdf_err:"The PDF could not be generated. Please try again shortly.",pdf_kind:"Territorial report",pdf_foot:"Investment Atlas – CEGIT prototype. Data: ANSD (RGPH-5 2023, Population Yearbook 2024, EHCVM II 2021-2022); Natural Earth boundaries; indicative positions.",pdf_page:"Page",pdf_cat:"Category",pdf_name:"Name",pdf_status:"Status",socio_l:"Socio-demographic data (ANSD)",ind_none:"None (office coverage)",ind_pop:"Population 2023",ind_dens:"Density (inhab./km²)",ind_growth:"Annual growth 2013-2023",ind_urb:"Urbanisation rate 2024",ind_work:"Population aged 15-59 (2024)",ind_young:"Share aged 0-14 (2024)",ind_tm:"Average household size",ind_pov:"Poverty rate 2021-2022",theme_hint:"Colours regions by an ANSD indicator.",src:"Source",sources_t:"Data sources",src_bounds:"Boundaries, roads and railways: Natural Earth",socio_t:"Socio-demographic profile",reg_sub:"Profile based on ANSD data",pop23:"Population (RGPH-5, 2023)",share:"Share of national population",nat:"national:",per_km2:"inhab./km², computed",hh:"households",age_t:"Age structure (2024)",yrs:"yrs",work_t:"Potential workforce (aged 15-59, 2024)",dens_note:"Density computed from GIS area (approximate).",men_note:"* Kolda household count reconstructed (value hard to read in the source).",basin:"Population catchment",inhab:"inhab.",c_pop:"inhabitants",a_work:"Large workforce catchment (aged 15-59, ANSD)",why_work:"aged 15-59:",bounds:"Boundaries, roads and railways: Natural Earth",l_infra:"Infrastructure",s_auto:"Toll highways",s_main:"Main roads",s_main_one:"Main road",s_sec:"Secondary roads",s_rail:"Railways and TER",s_air:"Airports",s_port:"Ports",s_energy:"Energy and hydrocarbons",s_apix:"APIX major projects",lg_title:"Legend",lg_cover:"APIX office coverage",lg_invest:"Investment",lg_ter:"TER",lg_rail:"Railway",lg_proj_note:"icon = sector",st_ok:"In service",st_build:"Under construction",st_check:"Operational status to be checked",indicative:"Indicative position, to be validated with infrastructure operators.",tab_fiche:"Details",tab_assist:"Where to invest?",a_sector:"Your sector",a_needs:"Your needs",a_port:"Close to a port (export, inputs)",a_air:"Close to AIBD airport",a_road:"Served by the highway or the TER",a_zes:"Economic-zone tax regime",a_res:"Close to production areas or resources",a_go:"Rank sites",a_fine:"Straight-line distances from indicative coordinates. In production, ranking will use real travel times and land data.",
+  c_zones:"zones",c_plats:"offices",c_projs:"projects",c_regions:"regions",
+  e_title:"Explore opportunities",e_1:"Click a zone, a project or a region on the map.",e_2:"Filter by sector in the left column.",e_3:"Start the assistant to rank sites against your needs.",
+  region:"Region",plat:"APIX office in charge",dist:"Access (straight line)",port:"Nearest port",air:"AIBD airport",axis:"Highway or TER",surf:"Area",lots:"Available plots",firms:"Companies on site",regime:"Regime",todo:"to be added",viab:"Utilities",elec:"Electricity",water:"Water",sanit:"Sanitation",fiber:"Fibre",decisions:"Zone approval decisions",contact:"Contact the office",sheet:"Project sheet (PDF)",sector_l:"Sector",in_region:"In this region",none:"Nothing listed yet.",covers:"Regions covered",address:"Address",phone:"Phone",email:"Email",copy:"Copy",copied:"Copied",pop:"Population",pop_src:"to be linked to ANSD data",reg_k:"Administrative region",zones_k:"Economic zones",projs_k:"Priority projects",pdf_page:"APIX page",more:"Learn more",rank_t:"Recommended sites",why_port:"port",why_air:"AIBD",why_axis:"corridor",why_zes:"zone regime",why_res:"regional resources",open:"Show on map",z_type:"Type",infra_k:"Major project / infrastructure"}
+};
+let lang='fr';
+const t=k=>(T[lang][k]??T.fr[k]??k);
+const L10=o=>o[lang]??o.fr;
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+/* ---------- géométrie ---------- */
+function km(a,b){const R=6371,r=Math.PI/180,dl=(b[0]-a[0])*r,dg=(b[1]-a[1])*r,x=Math.sin(dl/2)**2+Math.cos(a[0]*r)*Math.cos(b[0]*r)*Math.sin(dg/2)**2;return 2*R*Math.asin(Math.sqrt(x));}
+function distToSeg(p,a,b){ // approx: échantillonnage du segment
+  let best=Infinity;for(let i=0;i<=20;i++){const f=i/20;best=Math.min(best,km(p,[a[0]+(b[0]-a[0])*f,a[1]+(b[1]-a[1])*f]));}return best;}
+function distToLines(p){let best=Infinity;LINES.forEach(l=>{for(let i=0;i<l.pts.length-1;i++)best=Math.min(best,distToSeg(p,l.pts[i],l.pts[i+1]));});return best;}
+const PORTS=INFRA_PTS.filter(i=>i.cat==='port'&&i.status!=='build'), AIBD=INFRA_PTS.find(i=>i.id==='i-aibd');
+function nearestPort(p){let b=null;PORTS.forEach(x=>{const d=km(p,x.ll);if(!b||d<b.d)b={d,name:x.name};});return b;}
+function inRing(pt,ring){let x=pt[1],y=pt[0],inside=false;for(let i=0,j=ring.length-1;i<ring.length;j=i++){const xi=ring[i][0],yi=ring[i][1],xj=ring[j][0],yj=ring[j][1];if(((yi>y)!==(yj>y))&&(x<(xj-xi)*(y-yi)/(yj-yi)+xi))inside=!inside;}return inside;}
+function regionOf(ll){
+  for(const f of REGIONS.features){if(f.properties.c!=='SEN')continue;for(const poly of f.geometry.coordinates){if(inRing(ll,poly[0])&&!poly.slice(1).some(h=>inRing(ll,h)))return f.properties.n;}}
+  let best=null;REGIONS.features.forEach(f=>{if(f.properties.c!=='SEN')return;const c=L.geoJSON(f).getBounds().getCenter();const d=km(ll,[c.lat,c.lng]);if(!best||d<best.d)best={d,n:f.properties.n};});return best&&best.n;
+}
+const platOfRegion=r=>PLATS.find(p=>p.regions.includes(r));
+
+/* Superficie calculée sur les limites Natural Earth (sphère) */
+function ringArea(r){const R=6371.0088,rad=Math.PI/180;let s=0;for(let i=0;i<r.length-1;i++){s+=(r[i+1][0]-r[i][0])*rad*(2+Math.sin(r[i][1]*rad)+Math.sin(r[i+1][1]*rad));}return Math.abs(s*R*R/2);}
+const AREA={};REGIONS.features.forEach(f=>{if(f.properties.c!=='SEN')return;AREA[f.properties.n]=f.geometry.coordinates.reduce((a,p)=>a+ringArea(p[0])-p.slice(1).reduce((b,h)=>b+ringArea(h),0),0);});
+const nf=(d=0)=>new Intl.NumberFormat(lang==='fr'?'fr-FR':'en-US',{maximumFractionDigits:d,minimumFractionDigits:d});
+const fmtN=v=>nf(0).format(v), fmtP=v=>nf(1).format(v)+' %', fmtM=v=>nf(2).format(v/1e6)+(lang==='fr'?' M':'M');
+const growth=s=>(Math.pow(s.p23/s.p13,0.1)-1)*100;
+const IND=[
+  {id:'none'},
+  {id:'pop', get:r=>SOCIO[r].p23, fmt:fmtN, ramp:'cool', src:'rgph'},
+  {id:'dens', get:r=>SOCIO[r].p23/AREA[r], fmt:fmtN, ramp:'cool', src:'rgph'},
+  {id:'growth', get:r=>growth(SOCIO[r]), fmt:v=>nf(1).format(v)+' %', ramp:'cool', src:'rgph'},
+  {id:'urb', get:r=>SOCIO[r].urb, fmt:fmtP, ramp:'cool', src:'annu'},
+  {id:'work', get:r=>SOCIO[r].a1559, fmt:fmtN, ramp:'cool', src:'annu'},
+  {id:'young', get:r=>100*SOCIO[r].a014/SOCIO[r].p24, fmt:fmtP, ramp:'cool', src:'annu'},
+  {id:'tm', get:r=>SOCIO[r].tm, fmt:v=>nf(0).format(v), ramp:'cool', src:'men'},
+  {id:'pov', get:r=>SOCIO[r].pov, fmt:fmtP, ramp:'warm', src:'ehcvm'}
+];
+const RAMPS={cool:['#E6F0EF','#B9D7D6','#86B8BC','#4F92A0','#24697E'],warm:['#FBEBD6','#F4C892','#E89D57','#CC6D2C','#94461A']};
+let theme='none';
+function classes(ind){const vals=Object.keys(SOCIO).map(ind.get).sort((a,b)=>a-b);const th=[1,2,3,4].map(k=>vals[Math.round(vals.length*k/5)]);return th;}
+function classOf(v,th){let c=0;th.forEach(x=>{if(v>=x)c++;});return c;}
+const fmtKm=d=>d<1?'< 1 km':(Math.round(d)+' km');
+
+[...ZONES,...PROJS,...INFRA_PTS,...PLATS].forEach(o=>{o.region=regionOf(o.ll);});
+
+/* ---------- carte ---------- */
+const SN_BOUNDS=L.latLngBounds([12.2,-17.6],[16.75,-11.3]);
+const map=L.map('map',{zoomControl:false,attributionControl:false,minZoom:6,maxZoom:13,maxBounds:SN_BOUNDS.pad(0.6),zoomSnap:0.25,renderer:L.svg({padding:0.5})}).fitBounds(SN_BOUNDS,{padding:[20,20]});
+const css=v=>getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+
+const regionLabels=[];
+const regionLayer=L.geoJSON(REGIONS,{
+  style:f=>regionStyle(f),
+  onEachFeature:(f,layer)=>{
+    if(f.properties.c!=='SEN')return;
+    layer.on({mouseover:e=>{e.target.setStyle({weight:2,color:css('--accent')});},mouseout:e=>{regionLayer.resetStyle(e.target);if(sel&&sel.kind==='region'&&sel.id===f.properties.n)e.target.setStyle({weight:2.5,color:css('--accent')});},click:()=>select('region',f.properties.n)});
+    layer.bindTooltip(()=>{const n=f.properties.n;if(theme==='none')return `<b>${esc(n)}</b> · ${fmtN(SOCIO[n].p23)} ${t('inhab')}`;const ind=IND.find(i=>i.id===theme);return `<b>${esc(n)}</b> · ${t('ind_'+theme)} : ${ind.fmt(ind.get(n))}`;},{sticky:true});
+    const c=layer.getBounds().getCenter();
+    const lab=L.tooltip({permanent:true,direction:'center',className:'region',interactive:false}).setLatLng(c).setContent(f.properties.n);
+    regionLabels.push(lab);
+  }
+}).addTo(map);
+function regionStyle(f){
+  if(f.properties.c!=='SEN')return{fillColor:css('--gambia'),fillOpacity:1,color:css('--land-line'),weight:0.6,interactive:false};
+  if(theme!=='none'){const ind=IND.find(i=>i.id===theme);const th=classes(ind);return{fillColor:RAMPS[ind.ramp][classOf(ind.get(f.properties.n),th)],fillOpacity:isDark()?0.72:0.9,color:css('--land-line'),weight:0.8};}
+  const p=platOfRegion(f.properties.n);const cover=document.getElementById('l-cover').checked;
+  const tinted=cover&&p;
+  return{fillColor:tinted?COVER[p.id]:css('--land'),fillOpacity:tinted?(isDark()?0.28:0.45):1,color:css('--land-line'),weight:0.8};
+}
+function isDark(){const r=document.documentElement.getAttribute('data-theme');if(r)return r==='dark';return matchMedia('(prefers-color-scheme: dark)').matches;}
+const labelsGroup=L.layerGroup(regionLabels).addTo(map);
+function toggleRegionLabels(){const z=map.getZoom();if(z>=7.25&&!map.hasLayer(labelsGroup))labelsGroup.addTo(map);if(z<7.25&&map.hasLayer(labelsGroup))map.removeLayer(labelsGroup);}
+map.on('zoomend',toggleRegionLabels);toggleRegionLabels();
+
+const SUBS=['auto','main','sec','rail','air','port','energy','apix'];
+const groups={sec:L.layerGroup(),main:L.layerGroup(),rail:L.layerGroup(),auto:L.layerGroup(),zones:L.layerGroup(),plats:L.layerGroup(),projs:L.layerGroup(),air:L.layerGroup(),port:L.layerGroup(),energy:L.layerGroup(),apix:L.layerGroup()};
+const lineLayers=[];
+function lineStyle(type){switch(type){
+  case 'auto':return[{color:css('--panel'),weight:7,lineCap:'round',opacity:.9},{color:css('--auto'),weight:4,lineCap:'round'}];
+  case 'main':return[{color:css('--road'),weight:2,lineCap:'round',opacity:.95}];
+  case 'sec':return[{color:css('--road2'),weight:1.2,lineCap:'round'}];
+  case 'rail':return[{color:css('--rail'),weight:3.5},{color:css('--panel'),weight:1.4,dashArray:'4 4'}];
+  case 'ter':return[{color:css('--rail'),weight:5},{color:css('--accent'),weight:2.2}];
+}}
+function drawLine(pts,type,interactive){const parts=lineStyle(type).map(s=>L.polyline(pts,{...s,interactive}));const fg=L.featureGroup(parts);lineLayers.push({parts,type});return fg;}
+function restyleLines(){lineLayers.forEach(o=>{const st=lineStyle(o.type);o.parts.forEach((p,i)=>p.setStyle(st[i]));});}
+const ICON_BOLT='<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg>';
+const catIcon=c=>({air:ICON_AIR,port:ICON_PORT,energy:ICON_BOLT,apix:ICON_URB})[c]||ICON_URB;
+const markers={};
+const icon=(cls,html='')=>L.divIcon({className:'pin',html:`<div class="${cls}">${html}</div>`,iconSize:null});
+const ICON_AIR='<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round"><path d="M3 13l18-6-6 18-3-8z"/></svg>';
+const ICON_PORT='<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="5" r="2"/><path d="M12 7v14M5 13a7 7 0 0 0 14 0"/></svg>';
+const ICON_URB='<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke-width="2.4"><path d="M4 21V9l5-4 5 4v12M14 21V12h6v9"/></svg>';
+
+ZONES.forEach(z=>{const m=L.marker(z.ll,{icon:icon('pin-zone',z.code),title:z.name,keyboard:true,riseOnHover:true}).on('click',()=>select('zone',z.id));m.bindTooltip(z.name,{direction:'top',offset:[0,-12]});markers[z.id]=m;groups.zones.addLayer(m);});
+PROJS.forEach(p=>{const m=L.marker(p.ll,{icon:icon('pin-proj',ico(p.sector,15)),title:p.name,keyboard:true}).on('click',()=>select('proj',p.id));m.bindTooltip(p.name,{direction:'top',offset:[0,-14]});markers[p.id]=m;groups.projs.addLayer(m);});
+PLATS.forEach(p=>{const m=L.circleMarker(p.ll,{radius:7,color:css('--panel'),weight:2,fillColor:css('--plat'),fillOpacity:1}).on('click',()=>select('plat',p.id));m.bindTooltip(p.city,{permanent:true,direction:'right',offset:[8,0],className:'city'});markers[p.id]=m;groups.plats.addLayer(m);});
+INFRA_PTS.forEach(i=>{const m=L.marker(i.ll,{icon:icon(`pin-infra pin-${i.cat}${i.status==='build'?' build':''}`,catIcon(i.cat)),title:i.name,keyboard:true}).on('click',()=>select('infra',i.id));m.bindTooltip(i.name,{direction:'top',offset:[0,-13]});markers[i.id]=m;groups[i.cat].addLayer(m);});
+NE.sec.forEach(p=>groups.sec.addLayer(drawLine(p,'sec',false)));
+NE.main.forEach(p=>{const fg=drawLine(p,'main',true);fg.bindTooltip(()=>t('s_main_one'),{sticky:true});groups.main.addLayer(fg);});
+NE.rails.forEach(p=>{const fg=drawLine(p,'rail',true);fg.bindTooltip(()=>t('lg_rail'),{sticky:true});groups.rail.addLayer(fg);});
+LINES.forEach(l=>{const fg=drawLine(l.pts,l.type,true).on('click',()=>select('infra',l.id));fg.bindTooltip(l.name,{sticky:true});markers[l.id]=fg;groups[l.cat].addLayer(fg);});
+Object.entries(groups).forEach(([k,g])=>{if(k!=='sec')g.addTo(map);});
+
+/* ---------- état ---------- */
+let sector='all', sel=null;
+const byId=id=>[...ZONES,...PROJS,...PLATS,...INFRA_PTS,...LINES].find(o=>o.id===id);
+
+function applyFilter(){
+  ZONES.forEach(z=>{const on=sector==='all'||z.sectors.includes(sector);const el=markers[z.id].getElement();if(el)el.classList.toggle('is-dim',!on);});
+  PROJS.forEach(p=>{const on=sector==='all'||p.sector===sector;const el=markers[p.id].getElement();if(el)el.classList.toggle('is-dim',!on);});
+}
+function markSel(){
+  Object.entries(markers).forEach(([id,m])=>{const el=m.getElement&&m.getElement();if(el&&el.classList&&m instanceof L.Marker)el.classList.toggle('is-sel',sel&&sel.id===id);});
+  regionLayer.eachLayer(l=>{regionLayer.resetStyle(l);if(sel&&sel.kind==='region'&&l.feature.properties.n===sel.id){l.setStyle({weight:2.5,color:css('--accent')});l.bringToFront();}});
+}
+
+/* ---------- fiches ---------- */
+const P=document.getElementById('p-fiche');
+function row(k,v){return `<div class="row"><span>${esc(k)}</span><span class="v">${v}</span></div>`;}
+function stat(k,v,todo){return `<div class="stat"><span>${esc(k)}</span><b class="${todo?'todo':''}">${v}</b></div>`;}
+function access(ll){const np=nearestPort(ll);return `<div><p class="label">${t('dist')}</p><div class="rows">${row(t('port'),fmtKm(np.d)+' · '+esc(np.name.replace('Port autonome de ','').replace('Port de ','')))}${row(t('air'),fmtKm(km(ll,AIBD.ll)))}${row(t('axis'),fmtKm(distToLines(ll)))}</div></div>`;}
+function platBlock(region){const p=platOfRegion(region);if(!p)return'';return `<div><p class="label">${t('plat')}</p><div class="linklist"><button type="button" data-go="plat:${p.id}"><span class="sw plat"></span>${esc(p.name)}</button></div></div>`;}
+function listOf(items,kind){if(!items.length)return `<p class="empty">${t('none')}</p>`;return `<div class="linklist">${items.map(o=>`<button type="button" data-go="${kind}:${o.id}">${kind==='proj'?`<span style="color:var(--proj);display:grid">${ico(o.sector,17)}</span>`:'<span class="sw zone"></span>'}${esc(o.name)}</button>`).join('')}</div>`;}
+function secName(id){const s=SECTORS.find(x=>x.id===id);return s?L10(s):id;}
+
+function srcLink(k){return `<a href="${SRC[k].url}" target="_blank" rel="noopener">${esc(SRC[k].label)}</a>`;}
+function socioBlock(r){
+  const s=SOCIO[r];if(!s)return'';
+  const g=growth(s),gN=growth(NAT),dens=s.p23/AREA[r],sh=100*s.p23/NAT.p23;
+  const y=100*s.a014/s.p24,w=100*s.a1559/s.p24,o=100*s.a60/s.p24;
+  return `<div class="socio">
+    <p class="label">${t('socio_t')}</p>
+    <div class="grid2">
+      ${stat(t('pop23'),fmtN(s.p23))}
+      ${stat(t('share'),nf(1).format(sh)+' %')}
+      ${stat(t('ind_growth'),`${nf(1).format(g)} %<small class="vs">${t('nat')} ${nf(1).format(gN)} %</small>`)}
+      ${stat(t('ind_dens'),fmtN(dens)+'<small class="vs">'+t('per_km2')+'</small>')}
+      ${stat(t('ind_urb'),fmtP(s.urb)+`<small class="vs">${t('nat')} ${fmtP(NAT.urb)}</small>`)}
+      ${stat(t('ind_tm'),nf(0).format(s.tm)+`<small class="vs">${fmtN(s.men)}${s.menApprox?'*':''} ${t('hh')}</small>`)}
+    </div>
+    <div class="agebar-wrap">
+      <p class="mini">${t('age_t')}</p>
+      <div class="agebar" role="img" aria-label="${t('age_t')} : 0-14 ${nf(0).format(y)} %, 15-59 ${nf(0).format(w)} %, 60+ ${nf(0).format(o)} %"><i class="a1" style="width:${y}%"></i><i class="a2" style="width:${w}%"></i><i class="a3" style="width:${o}%"></i></div>
+      <div class="agelg"><span><i class="a1"></i>0-14 ${t('yrs')} · ${nf(0).format(y)} %</span><span><i class="a2"></i>15-59 · ${nf(0).format(w)} %</span><span><i class="a3"></i>60+ · ${nf(0).format(o)} %</span></div>
+      <p class="mini">${t('work_t')} : <b>${fmtN(s.a1559)}</b></p>
+    </div>
+    <div class="povbar-wrap">
+      <p class="mini">${t('ind_pov')} : <b>${fmtP(s.pov)}</b> (${t('nat')} ${fmtP(NAT.pov)})</p>
+      <div class="povbar" role="img" aria-label="${t('ind_pov')} ${fmtP(s.pov)}"><i style="width:${s.pov}%"></i><b style="left:${NAT.pov}%" title="${t('nat')}"></b></div>
+    </div>
+    <p class="fine">${t('src')} : ${srcLink('rgph')} · ${srcLink('annu')} · ${srcLink('ehcvm')} · ${srcLink('men')}. ${t('dens_note')}${s.menApprox?' '+t('men_note'):''}</p>
+  </div>`;
+}
+function renderEmpty(){
+  P.innerHTML=`<div class="empty"><h2>${t('e_title')}</h2></div><ol class="how"><li><i>1</i><span>${t('e_1')}</span></li><li><i>2</i><span>${t('e_2')}</span></li><li><i>3</i><span>${t('e_3')}</span></li></ol>
+  <div><p class="label">${t('zones_k')}</p>${listOf(ZONES,'zone')}</div>`;
+}
+function renderFiche(){
+  if(!sel)return renderEmpty();
+  const o=sel.kind==='region'?null:byId(sel.id);
+  let h='';
+  if(sel.kind==='zone'){
+    h=`<span class="kind">${esc(o.type)}</span><div><h2>${esc(o.name)}</h2><p class="sub">${t('region')} : ${esc(o.region)}</p></div><p class="desc">${esc(L10(o))}</p>
+    <div class="grid2">${stat(t('surf'),'['+t('todo')+']',1)}${stat(t('lots'),'['+t('todo')+']',1)}${stat(t('firms'),'['+t('todo')+']',1)}${stat(t('regime'),esc(o.code==='ZFI'?'Zone franche':'Loi ZES'))}</div>
+    ${access(o.ll)}
+    ${SOCIO[o.region]?`<div><p class="label">${t('basin')} · ${esc(o.region)}</p><div class="rows">${row(t('pop23'),fmtN(SOCIO[o.region].p23))}${row(t('work_t'),fmtN(SOCIO[o.region].a1559))}${row(t('ind_urb'),fmtP(SOCIO[o.region].urb))}</div><p class="fine">${t('src')} : ANSD (RGPH-5, Annuaire 2024)</p></div>`:''}
+    <div><p class="label">${t('viab')}</p><div class="rows">${row(t('elec'),'['+t('todo')+']')}${row(t('water'),'['+t('todo')+']')}${row(t('sanit'),'['+t('todo')+']')}${row(t('fiber'),'['+t('todo')+']')}</div></div>
+    <div><p class="label">${t('sector_l')}</p><div class="chips">${o.sectors.map(s=>`<span class="chip withic" style="cursor:default">${ico(s,16)}${esc(secName(s))}</span>`).join('')}</div></div>
+    ${platBlock(o.region)}
+    <a class="btn ghost" href="https://investinsenegal.sn/investir-au-senegal/zones-economiques/" target="_blank" rel="noopener">${t('decisions')}</a>`;
+  } else if(sel.kind==='proj'){
+    h=`<span class="kind proj">${ico(o.sector,16)}${esc(secName(o.sector))}</span><div><h2>${esc(o.name)}</h2><p class="sub">${t('region')} : ${esc(o.region)}</p></div><p class="desc">${esc(L10(o))}</p>
+    ${access(o.ll)}${platBlock(o.region)}
+    <a class="btn primary" href="${PDF+o.pdf}" target="_blank" rel="noopener">${t('sheet')}</a>`;
+  } else if(sel.kind==='plat'){
+    h=`<span class="kind plat">${t('lg_plat')}</span><div><h2>${esc(o.name)}</h2><p class="sub">${esc(o.addr)}</p></div>
+    <button type="button" class="btn primary" data-portalopen="${o.id}">${t('pt_discover')}</button>
+    <div><p class="label">${t('covers')}</p><div class="linklist">${o.regions.map(r=>`<button type="button" data-go="region:${esc(r)}"><span class="sw" style="background:${COVER[o.id]}"></span>${esc(r)}</button>`).join('')}</div>${o.note?`<p class="fine">${esc(o.note)}</p>`:''}</div>
+    <div><p class="label">${t('contact')}</p><div class="rows">
+      <div class="row"><span>${t('phone')}</span><span class="contact">${esc(o.tel)} <button type="button" class="copy" data-copy="${esc(o.tel)}">${t('copy')}</button></span></div>
+      <div class="row"><span>${t('email')}</span><span class="contact">${esc(o.mail)} <button type="button" class="copy" data-copy="${esc(o.mail)}">${t('copy')}</button></span></div></div></div>
+    <div><p class="label">${t('zones_k')}</p>${listOf(ZONES.filter(z=>o.regions.includes(z.region)),'zone')}</div>
+    <div><p class="label">${t('projs_k')}</p>${listOf(PROJS.filter(z=>o.regions.includes(z.region)),'proj')}</div>`;
+  } else if(sel.kind==='infra'){
+    const st=o.status||'ok';
+    h=`<span class="kind infra">${t('s_'+o.cat)}</span><div><h2>${esc(o.name)}</h2>${o.region?`<p class="sub">${t('region')} : ${esc(o.region)}</p>`:''}</div>
+    <span class="status ${st}"><i></i>${t('st_'+st)}</span>
+    <p class="desc">${esc(L10(o))}</p>
+    ${o.ll&&o.cat!=='air'?`<div><p class="label">${t('dist')}</p><div class="rows">${row(t('air'),fmtKm(km(o.ll,AIBD.ll)))}${row(t('axis'),fmtKm(distToLines(o.ll)))}</div></div>`:''}
+    ${o.ll?platBlock(o.region):''}
+    <p class="fine">${t('indicative')}</p>
+    ${o.cat==='apix'||o.id==='i-ter'||o.id==='i-auto'||o.id==='i-ndayane'?`<a class="btn ghost" href="https://investinsenegal.sn/" target="_blank" rel="noopener">${t('pdf_page')}</a>`:''}`;
+  } else if(sel.kind==='region'){
+    const r=sel.id;
+    h=`<span class="kind">${t('reg_k')}</span><div><h2>${esc(r)}</h2><p class="sub">${t('reg_sub')}</p></div>
+    ${socioBlock(r)}
+    <div class="grid2">${stat(t('zones_k'),ZONES.filter(z=>z.region===r).length)}${stat(t('projs_k'),PROJS.filter(z=>z.region===r).length)}</div>
+    ${platBlock(r)}
+    <div><p class="label">${t('zones_k')}</p>${listOf(ZONES.filter(z=>z.region===r),'zone')}</div>
+    <div><p class="label">${t('projs_k')}</p>${listOf(PROJS.filter(z=>z.region===r),'proj')}</div>`;
+  }
+  P.innerHTML=h;
+}
+P.addEventListener('click',e=>{
+  const po=e.target.closest('[data-portalopen]');if(po){openPlat(po.dataset.portalopen);return;}
+  const g=e.target.closest('[data-go]');if(g){const[k,...rest]=g.dataset.go.split(':');select(k,rest.join(':'),true);return;}
+  const c=e.target.closest('[data-copy]');if(c){const v=c.dataset.copy;const done=()=>{c.textContent=t('copied');setTimeout(()=>c.textContent=t('copy'),1400);};
+    try{navigator.clipboard.writeText(v).then(done,()=>selectText(c.parentElement));}catch(_){selectText(c.parentElement);}}
+});
+function selectText(el){const r=document.createRange();r.selectNodeContents(el);const s=getSelection();s.removeAllRanges();s.addRange(r);}
+
+function select(kind,id,fly){
+  sel={kind,id};showTab('fiche');renderFiche();markSel();
+  if(fly){
+    if(kind==='region'){regionLayer.eachLayer(l=>{if(l.feature.properties.n===id)map.flyToBounds(l.getBounds(),{padding:[30,30],duration:.6});});}
+    else{const o=byId(id);if(o&&o.ll)map.flyTo(o.ll,Math.max(map.getZoom(),9),{duration:.6});else if(o&&o.pts)map.flyToBounds(L.latLngBounds(o.pts),{padding:[40,40],duration:.6});}
+  }
+}
+
+/* ---------- couches ---------- */
+function setGroup(g,on){on?groups[g].addTo(map):map.removeLayer(groups[g]);}
+[['l-zones','zones'],['l-plats','plats'],['l-projs','projs']].forEach(([cb,g])=>{
+  document.getElementById(cb).addEventListener('change',e=>{setGroup(g,e.target.checked);setTimeout(()=>{applyFilter();markSel();renderLegend();});});
+});
+const master=document.getElementById('l-infra');
+function syncMaster(){const on=SUBS.filter(s=>document.getElementById('s-'+s).checked).length;master.checked=on>0;master.indeterminate=on>0&&on<SUBS.length;}
+SUBS.forEach(s=>document.getElementById('s-'+s).addEventListener('change',e=>{setGroup(s,e.target.checked);syncMaster();setTimeout(()=>{markSel();renderLegend();});}));
+master.addEventListener('change',()=>{SUBS.forEach(s=>{const cb=document.getElementById('s-'+s);cb.checked=master.checked;setGroup(s,master.checked);});master.indeterminate=false;setTimeout(()=>{markSel();renderLegend();});});
+document.getElementById('l-cover').addEventListener('change',e=>{if(e.target.checked&&theme!=='none'){theme='none';renderThemeSelect();}regionLayer.setStyle(regionStyle);markSel();document.getElementById('cover-legend').hidden=!e.target.checked;renderLegend();});
+
+/* ---------- légendes ---------- */
+const SYM={
+  auto:`<svg width="24" height="12" aria-hidden="true"><line x1="2" y1="6" x2="22" y2="6" stroke="var(--panel)" stroke-width="7" stroke-linecap="round"/><line x1="2" y1="6" x2="22" y2="6" stroke="var(--auto)" stroke-width="4" stroke-linecap="round"/></svg>`,
+  main:`<svg width="24" height="12" aria-hidden="true"><line x1="2" y1="6" x2="22" y2="6" stroke="var(--road)" stroke-width="2.2" stroke-linecap="round"/></svg>`,
+  sec:`<svg width="24" height="12" aria-hidden="true"><line x1="2" y1="6" x2="22" y2="6" stroke="var(--road2)" stroke-width="1.4" stroke-linecap="round"/></svg>`,
+  rail:`<svg width="24" height="12" aria-hidden="true"><line x1="1" y1="6" x2="23" y2="6" stroke="var(--rail)" stroke-width="3.5"/><line x1="1" y1="6" x2="23" y2="6" stroke="var(--panel)" stroke-width="1.4" stroke-dasharray="4 4"/></svg>`,
+  ter:`<svg width="24" height="12" aria-hidden="true"><line x1="1" y1="6" x2="23" y2="6" stroke="var(--rail)" stroke-width="5"/><line x1="1" y1="6" x2="23" y2="6" stroke="var(--accent)" stroke-width="2.2"/></svg>`,
+  air:`<span class="sym-pin">${ICON_AIR.replace(/11/g,'9')}</span>`,
+  port:`<span class="sym-pin">${ICON_PORT.replace(/11/g,'9')}</span>`,
+  energy:`<span class="sym-pin energy">${ICON_BOLT.replace(/11/g,'9')}</span>`,
+  apix:`<span class="sym-pin apix">${ICON_URB.replace(/11/g,'9')}</span>`,
+  build:`<span class="sym-pin build">${ICON_PORT.replace(/11/g,'9')}</span>`
+};
+document.querySelectorAll('[data-sym]').forEach(el=>el.innerHTML=SYM[el.dataset.sym]);
+function lgRow(sym,label,note){return `<div class="lg-row"><span class="sym">${sym}</span><span>${esc(label)}</span>${note?`<small>${esc(note)}</small>`:''}</div>`;}
+function renderLegend(){
+  const on=g=>map.hasLayer(groups[g]);let h='';
+  const base=[];
+  if(on('zones'))base.push(lgRow('<i class="sw zone"></i>',t('lg_zone')));
+  if(on('plats'))base.push(lgRow('<i class="sw plat"></i>',t('lg_plat')));
+  if(on('projs'))base.push(lgRow('<i class="sw proj"></i>',t('lg_proj'),t('lg_proj_note')));
+  if(base.length)h+=`<div class="lg-sec"><h3>${t('lg_invest')}</h3>${base.join('')}</div>`;
+  const inf=[];
+  if(on('auto'))inf.push(lgRow(SYM.auto,t('s_auto')));
+  if(on('main'))inf.push(lgRow(SYM.main,t('s_main')));
+  if(on('sec'))inf.push(lgRow(SYM.sec,t('s_sec')));
+  if(on('rail')){inf.push(lgRow(SYM.ter,t('lg_ter')));inf.push(lgRow(SYM.rail,t('lg_rail')));}
+  if(on('air'))inf.push(lgRow(SYM.air,t('s_air')));
+  if(on('port'))inf.push(lgRow(SYM.port,t('s_port')));
+  if(on('energy'))inf.push(lgRow(SYM.energy,t('s_energy')));
+  if(on('apix'))inf.push(lgRow(SYM.apix,t('s_apix')));
+  if(on('port')||on('apix'))inf.push(lgRow(SYM.build,t('st_build')));
+  if(inf.length)h+=`<div class="lg-sec"><h3>${t('l_infra')}</h3>${inf.join('')}</div>`;
+  if(theme!=='none'){
+    const ind=IND.find(i=>i.id===theme),th=classes(ind),rs=Object.keys(SOCIO);
+    const rows=RAMPS[ind.ramp].map((col,k)=>{const mem=rs.filter(r=>classOf(ind.get(r),th)===k).map(ind.get);if(!mem.length)return'';const lo=Math.min(...mem),hi=Math.max(...mem);return lgRow(`<i class="sw" style="background:${col};border:1px solid var(--land-line);width:16px;height:12px"></i>`,lo===hi?ind.fmt(lo):`${ind.fmt(lo)} – ${ind.fmt(hi)}`,`${mem.length} rég.`);}).join('');
+    h=`<div class="lg-sec"><h3>${t('ind_'+theme)}</h3>${rows}<p class="fine">${t('src')} : ${esc(SRC[ind.src].label)}</p></div>`+h;
+  }
+  if(document.getElementById('l-cover').checked&&theme==='none'){
+    h+=`<div class="lg-sec"><h3>${t('lg_cover')}</h3>${PLATS.map(p=>lgRow(`<i class="sw" style="background:${COVER[p.id]};border:1px solid var(--land-line);width:16px;height:12px"></i>`,p.city,p.regions.join(', '))).join('')}</div>`;
+  }
+  document.getElementById('legend-body').innerHTML=h||`<p class="fine">${t('none')}</p>`;
+}
+function renderCoverLegend(){
+  const el=document.getElementById('cover-legend');
+  el.innerHTML=PLATS.map(p=>`<button type="button" data-go="plat:${p.id}"><i class="cs" style="background:${COVER[p.id]}"></i><span><b>${esc(p.city)}</b><span>${esc(p.regions.join(', '))}</span></span></button>`).join('');
+}
+const themeSel=document.getElementById('theme');
+function renderThemeSelect(){themeSel.innerHTML=IND.map(i=>`<option value="${i.id}">${esc(t('ind_'+i.id))}</option>`).join('');themeSel.value=theme;document.getElementById('theme-src').textContent=theme==='none'?t('theme_hint'):t('src')+' : '+SRC[IND.find(i=>i.id===theme).src].label;}
+themeSel.addEventListener('change',()=>{theme=themeSel.value;const cov=document.getElementById('l-cover');if(theme!=='none'&&cov.checked){cov.checked=false;document.getElementById('cover-legend').hidden=true;}regionLayer.setStyle(regionStyle);markSel();renderThemeSelect();renderLegend();if(theme!=='none')document.getElementById('legend').setAttribute('open','');});
+function renderSources(){document.getElementById('sources').innerHTML=`<b>${t('sources_t')}</b>`+['rgph','annu','ehcvm','men','odin'].map(k=>srcLink(k)).join('')+`<span>${t('src_bounds')}</span>`;}
+document.getElementById('cover-legend').addEventListener('click',e=>{const g=e.target.closest('[data-go]');if(!g)return;const[k,...r]=g.dataset.go.split(':');select(k,r.join(':'),true);});
+if(innerWidth<=720)document.getElementById('legend').removeAttribute('open');
+map.on('layeradd',()=>requestAnimationFrame(()=>{applyFilter();}));
+
+/* ---------- secteurs ---------- */
+const chips=document.getElementById('chips');
+function renderChips(){chips.innerHTML=SECTORS.map(s=>`<button type="button" class="sec${s.id==='all'?' sec-all':''}" data-s="${s.id}" aria-pressed="${s.id===sector}"><span class="sec-ic">${ico(s.id,20)}</span><span class="sec-nm">${esc(L10(s))}</span><span class="sec-n">${secCount(s.id)}</span></button>`).join('');}
+chips.addEventListener('click',e=>{const b=e.target.closest('[data-s]');if(!b)return;sector=b.dataset.s;renderChips();applyFilter();try{localStorage.setItem('atlas-sector',sector);}catch(_){}});
+
+/* ---------- recherche ---------- */
+const q=document.getElementById('q'),res=document.getElementById('results');
+const norm=s=>s.normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase();
+function searchIndex(){
+  return [...ZONES.map(o=>({k:'zone',o,cls:'zone',tag:t('lg_zone')})),...PROJS.map(o=>({k:'proj',o,cls:'proj',tag:secName(o.sector)})),...PLATS.map(o=>({k:'plat',o,cls:'plat',tag:t('lg_plat')})),...INFRA_PTS.concat(LINES).map(o=>({k:'infra',o,cls:'infra',tag:''})),
+   ...REGIONS.features.filter(f=>f.properties.c==='SEN').map(f=>({k:'region',o:{id:f.properties.n,name:f.properties.n},cls:'cover',tag:t('region')}))];
+}
+q.addEventListener('input',()=>{
+  const v=norm(q.value.trim());if(!v){res.hidden=true;return;}
+  const hits=searchIndex().filter(x=>norm(x.o.name+' '+(x.o.region||'')+' '+(x.o.fr||'')+' '+(x.o.city||'')).includes(v)).slice(0,8);
+  res.innerHTML=hits.length?hits.map(x=>`<button type="button" data-go="${x.k}:${esc(x.o.id)}"><span class="sw ${x.cls}"></span>${esc(x.o.name)}<small>${esc(x.tag)}</small></button>`).join(''):`<p class="empty" style="padding:8px 10px;margin:0">${t('none')}</p>`;
+  res.hidden=false;
+});
+res.addEventListener('click',e=>{const g=e.target.closest('[data-go]');if(!g)return;const[k,...r]=g.dataset.go.split(':');select(k,r.join(':'),true);res.hidden=true;q.value='';});
+document.addEventListener('click',e=>{if(!e.target.closest('.search'))res.hidden=true;});
+q.addEventListener('keydown',e=>{if(e.key==='Enter'){const b=res.querySelector('[data-go]');if(b){e.preventDefault();b.click();}}if(e.key==='Escape')res.hidden=true;});
+
+/* ---------- onglets ---------- */
+function showTab(w){const f=w==='fiche';document.getElementById('t-fiche').setAttribute('aria-selected',f);document.getElementById('t-assist').setAttribute('aria-selected',!f);document.getElementById('p-fiche').hidden=!f;document.getElementById('p-assist').hidden=f;}
+document.getElementById('t-fiche').onclick=()=>showTab('fiche');
+document.getElementById('t-assist').onclick=()=>showTab('assist');
+document.getElementById('open-assist').onclick=()=>{showTab('assist');if(innerWidth<=1080)document.querySelector('.side.right').scrollIntoView({behavior:'smooth'});};
+
+/* ---------- assistant ---------- */
+const aSector=document.getElementById('a-sector');
+function renderSectorSelect(){const cur=aSector.value||'industrie';aSector.innerHTML=SECTORS.filter(s=>s.id!=='all').map(s=>`<option value="${s.id}">${esc(L10(s))}</option>`).join('');aSector.value=cur;}
+const CANDIDATES=()=>[
+  ...ZONES.map(z=>({id:z.id,kind:'zone',name:z.name,ll:z.ll,region:z.region,zes:true,sectors:z.sectors})),
+  ...PLATS.filter(p=>p.id!=='p-dakar').map(p=>({id:p.id,kind:'plat',name:(lang==='fr'?'Pôle de ':'')+p.city+(lang==='fr'?'':' area'),ll:p.ll,region:p.region,zes:false,sectors:[]}))
+];
+function rank(){
+  const s=aSector.value,need={port:a('a-port'),air:a('a-air'),road:a('a-road'),zes:a('a-zes'),res:a('a-res'),work:a('a-work')};
+  function a(id){return document.getElementById(id).checked;}
+  const near=(d,full,zero)=>Math.max(0,Math.min(1,(zero-d)/(zero-full)));
+  const out=CANDIDATES().map(c=>{
+    const np=nearestPort(c.ll),dA=km(c.ll,AIBD.ll),dX=distToLines(c.ll);
+    let sc=0,w=0,why=[];
+    if(need.port){w+=3;sc+=3*near(np.d,10,300);why.push(`${t('why_port')} ${fmtKm(np.d)}`);}
+    if(need.air){w+=2;sc+=2*near(dA,5,250);why.push(`${t('why_air')} ${fmtKm(dA)}`);}
+    if(need.road){w+=2;sc+=2*near(dX,2,150);why.push(`${t('why_axis')} ${fmtKm(dX)}`);}
+    if(need.zes){w+=2;if(c.zes){sc+=2;why.push(t('why_zes'));}}
+    if(need.res){w+=3;if((RES[s]||[]).includes(c.region)){sc+=3;why.push(t('why_res'));}}
+    if(need.work&&SOCIO[c.region]){w+=2;const wk=SOCIO[c.region].a1559;sc+=2*near(wk,2000000,100000);why.push(`${t('why_work')} ${fmtM(wk)}`);}
+    w+=2;if(c.sectors.includes(s)||(c.kind==='plat'&&(RES[s]||[]).includes(c.region)))sc+=2;
+    return{...c,score:w?Math.round(100*sc/w):0,why};
+  }).sort((x,y)=>y.score-x.score).slice(0,5);
+  document.getElementById('ranking').innerHTML=`<p class="label">${t('rank_t')}</p><ol class="rank">${out.map((c,i)=>`<li><button type="button" data-go="${c.kind}:${c.id}"><span class="pos">${i+1}</span><span class="nm">${esc(c.name)}</span><span class="sc">${c.score}</span><span class="bar"><i style="width:${c.score}%"></i></span><span class="why">${esc(c.why.join(' · '))}</span></button></li>`).join('')}</ol>`;
+}
+document.getElementById('assist').addEventListener('submit',e=>{e.preventDefault();rank();});
+document.getElementById('ranking').addEventListener('click',e=>{const g=e.target.closest('[data-go]');if(!g)return;const[k,...r]=g.dataset.go.split(':');select(k,r.join(':'),true);});
+
+/* ---------- carte : outils ---------- */
+document.getElementById('zin').onclick=()=>map.zoomIn();
+document.getElementById('zout').onclick=()=>map.zoomOut();
+document.getElementById('zreset').onclick=()=>map.flyToBounds(SN_BOUNDS,{padding:[20,20],duration:.6});
+
+/* ---------- langue ---------- */
+function renderCounts(){document.getElementById('counts').innerHTML=[[fmtM(NAT.p23),t('c_pop')],[ZONES.length,t('c_zones')],[PLATS.length,t('c_plats')],[PROJS.length,t('c_projs')],[14,t('c_regions')]].map(([n,l])=>`<span class="count">${n} ${esc(l)}</span>`).join('');
+  document.getElementById('n-zones').textContent=ZONES.length;document.getElementById('n-plats').textContent=PLATS.length;document.getElementById('n-projs').textContent=PROJS.length;const cnt={auto:LINES.filter(l=>l.cat==='auto').length,main:NE.main.length,sec:NE.sec.length,rail:NE.rails.length+1};['air','port','energy','apix'].forEach(c=>cnt[c]=INFRA_PTS.filter(i=>i.cat===c).length);
+  const segs={main:1,sec:1,rail:1};SUBS.forEach(s=>{document.getElementById('n-'+s).textContent=segs[s]?'':cnt[s];});
+  document.getElementById('n-infra').textContent=INFRA_PTS.length+LINES.length;}
+function setLang(l){lang=l;document.documentElement.lang=l;document.querySelectorAll('[data-i]').forEach(el=>{el.textContent=t(el.dataset.i);});
+  document.getElementById('lang-fr').setAttribute('aria-pressed',l==='fr');document.getElementById('lang-en').setAttribute('aria-pressed',l==='en');
+  document.title=t('title')+' – Sénégal';renderChips();renderSectorSelect();renderCounts();renderFiche();renderThemeSelect();renderLegend();renderCoverLegend();renderPortal();if(document.querySelector('#ranking ol'))rank();try{localStorage.setItem('atlas-lang',l);}catch(_){}}
+document.getElementById('lang-fr').onclick=()=>setLang('fr');
+document.getElementById('lang-en').onclick=()=>setLang('en');
+
+/* thème : recolorer la carte */
+function recolor(){regionLayer.setStyle(regionStyle);restyleLines();PLATS.forEach(p=>markers[p.id].setStyle({color:css('--panel'),fillColor:css('--plat')}));markSel();}
+matchMedia('(prefers-color-scheme: dark)').addEventListener('change',recolor);
+new MutationObserver(recolor).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
+
+/* ---------- portail « Découvrir les plateformes » ---------- */
+const portalEl=document.getElementById('portal'), mainEl=document.querySelector('.main');
+let portalSel=null;
+LINES.forEach(l=>{l.regions=[...new Set(l.pts.map(p=>regionOf(p)))];});
+const SN_BB=[-17.6,12.25,-11.3,16.75];
+function proj(b,W,pad){const c=Math.cos(((b[1]+b[3])/2)*Math.PI/180);const s=(W-2*pad)/((b[2]-b[0])*c);return{H:Math.round((b[3]-b[1])*s+2*pad),x:lon=>pad+(lon-b[0])*c*s,y:lat=>pad+(b[3]-lat)*s};}
+function featPath(f,P){return f.geometry.coordinates.map(poly=>poly.map(r=>'M'+r.map(p=>P.x(p[0]).toFixed(1)+' '+P.y(p[1]).toFixed(1)).join('L')+'Z').join('')).join('');}
+function bboxOf(names){const b=[180,90,-180,-90];REGIONS.features.forEach(f=>{if(!names.includes(f.properties.n))return;f.geometry.coordinates.forEach(poly=>poly[0].forEach(([x,y])=>{b[0]=Math.min(b[0],x);b[1]=Math.min(b[1],y);b[2]=Math.max(b[2],x);b[3]=Math.max(b[3],y);}));});return b;}
+function inPlat(p,o){return o.region&&p.regions.includes(o.region);}
+function aggr(p){
+  const rs=p.regions.filter(r=>SOCIO[r]),sum=k=>rs.reduce((a,r)=>a+SOCIO[r][k],0);
+  const p23=sum('p23'),p13=sum('p13'),p24=sum('p24'),area=rs.reduce((a,r)=>a+AREA[r],0);
+  return{rs,p23,p13,p24,area,dens:p23/area,a014:sum('a014'),a1559:sum('a1559'),a60:sum('a60'),men:sum('men'),
+    urb:rs.reduce((a,r)=>a+SOCIO[r].urb*SOCIO[r].p24,0)/p24,pov:rs.reduce((a,r)=>a+SOCIO[r].pov*SOCIO[r].p23,0)/p23,growth:(Math.pow(p23/p13,.1)-1)*100};
+}
+function platSectors(p){const s=new Set();Object.entries(RES).forEach(([k,rs])=>{if(rs.some(r=>p.regions.includes(r)))s.add(k);});PROJS.forEach(x=>{if(inPlat(p,x))s.add(x.sector);});ZONES.forEach(z=>{if(inPlat(p,z))z.sectors.forEach(k=>s.add(k));});return[...s];}
+function listJoin(a){return a.length<2?a.join(''):a.slice(0,-1).join(', ')+' '+t('and_w')+' '+a.at(-1);}
+
+/* cartes SVG du portail */
+function svgSenegal(W,hiPlat,{labels=false,clickable=false}={}){
+  const P=proj(SN_BB,W,6);
+  const paths=REGIONS.features.map(f=>{const n=f.properties.n;if(f.properties.c!=='SEN')return `<path d="${featPath(f,P)}" fill="var(--gambia)" stroke="var(--land-line)" stroke-width=".6"/>`;
+    const pl=platOfRegion(n);const on=!hiPlat||hiPlat===pl.id;
+    return `<path d="${featPath(f,P)}" fill="${on?COVER[pl.id]:'var(--land)'}" stroke="var(--panel)" stroke-width="${W>300?1.2:.8}"${clickable?` data-portal="${pl.id}" tabindex="-1"`:''}><title>${esc(n)} · ${esc(pl.city)}</title></path>`;}).join('');
+  const dots=labels?PLATS.map(p=>{const x=P.x(p.ll[1]),y=P.y(p.ll[0]);return `<g pointer-events="none"><circle cx="${x}" cy="${y}" r="5" fill="var(--plat)" stroke="var(--panel)" stroke-width="2"/><text x="${x+8}" y="${y+4}" font-size="12.5" font-weight="700" fill="var(--fg)" paint-order="stroke" stroke="var(--panel)" stroke-width="3" font-family="var(--f-body)">${esc(p.city)}</text></g>`;}).join(''):'';
+  return `<svg viewBox="0 0 ${W} ${P.H}" role="img" aria-label="${esc(t('pt_title'))}">${paths}${dots}</svg>`;
+}
+function svgPlat(p,W=560){
+  const b=bboxOf(p.regions),pad=.18;const bb=[b[0]-pad,b[1]-pad,b[2]+pad,b[3]+pad];const P=proj(bb,W,4);
+  const paths=REGIONS.features.map(f=>{const n=f.properties.n,on=p.regions.includes(n);const fill=f.properties.c!=='SEN'?'var(--gambia)':on?COVER[p.id]:'var(--land)';
+    return `<path d="${featPath(f,P)}" fill="${fill}" stroke="${on?'var(--panel)':'var(--land-line)'}" stroke-width="${on?1.6:.7}"/>`;}).join('');
+  const labs=p.regions.map(r=>{const f=REGIONS.features.find(x=>x.properties.n===r);const c=L.geoJSON(f).getBounds().getCenter();return `<text x="${P.x(c.lng)}" y="${P.y(c.lat)}" text-anchor="middle" font-size="12" font-weight="700" letter-spacing="1.2" fill="var(--fg)" opacity=".55" font-family="var(--f-body)">${esc(r.toUpperCase())}</text>`;}).join('');
+  const lines=LINES.filter(l=>l.regions.some(r=>p.regions.includes(r))).map(l=>`<polyline points="${l.pts.map(q=>P.x(q[1]).toFixed(1)+','+P.y(q[0]).toFixed(1)).join(' ')}" fill="none" stroke="${l.type==='ter'?'var(--accent)':'var(--auto)'}" stroke-width="3" stroke-linecap="round"/>`).join('');
+  const pt=(o,shape)=>{const x=P.x(o.ll[1]),y=P.y(o.ll[0]);return shape(x,y)+'';};
+  const items=[
+    ...INFRA_PTS.filter(o=>inPlat(p,o)).map(o=>pt(o,(x,y)=>`<circle cx="${x}" cy="${y}" r="5" fill="var(--panel)" stroke="${o.cat==='energy'?'var(--energy)':o.cat==='apix'?'var(--accent)':'var(--infra)'}" stroke-width="2"${o.status==='build'?' stroke-dasharray="2 2"':''}><title>${esc(o.name)}</title></circle>`)),
+    ...ZONES.filter(o=>inPlat(p,o)).map(o=>pt(o,(x,y)=>`<rect x="${x-7}" y="${y-7}" width="14" height="14" rx="3" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="2"><title>${esc(o.name)}</title></rect>`)),
+    ...PROJS.filter(o=>inPlat(p,o)).map(o=>pt(o,(x,y)=>`<circle cx="${x}" cy="${y}" r="6.5" fill="var(--proj)" stroke="var(--panel)" stroke-width="2"><title>${esc(o.name)}</title></circle>`)),
+    pt(p,(x,y)=>`<circle cx="${x}" cy="${y}" r="8" fill="var(--plat)" stroke="var(--panel)" stroke-width="2.5"><title>${esc(p.name)}</title></circle><text x="${x+12}" y="${y+5}" font-size="14" font-weight="700" fill="var(--fg)" paint-order="stroke" stroke="var(--panel)" stroke-width="3.5" font-family="var(--f-body)">${esc(p.city)}</text>`)
+  ].join('');
+  return `<svg viewBox="0 0 ${W} ${P.H}" role="img" aria-label="${esc(p.name)}">${paths}${labs}${lines}${items}</svg>`;
+}
+
+/* cartes thématiques des rubriques */
+const FEAT=n=>REGIONS.features.find(f=>f.properties.n===n);
+function centroid(f){let best=null,ba=0;f.geometry.coordinates.forEach(poly=>{const r=poly[0];let A=0,cx=0,cy=0;for(let i=0;i<r.length-1;i++){const[x0,y0]=r[i],[x1,y1]=r[i+1],c=x0*y1-x1*y0;A+=c;cx+=(x0+x1)*c;cy+=(y0+y1)*c;}A/=2;if(Math.abs(A)>ba){ba=Math.abs(A);best=[cx/(6*A),cy/(6*A)];}});return best;}
+function mapFrame(p,label,fill,op,content){
+  const W=760,b=bboxOf(p.regions),pad=.2,bb=[b[0]-pad,b[1]-pad,b[2]+pad,b[3]+pad],P=proj(bb,W,4);
+  const regs=REGIONS.features.map(f=>{const n=f.properties.n,on=p.regions.includes(n);const fl=f.properties.c!=='SEN'?'var(--gambia)':on?fill(n):'var(--land)';
+    return `<path d="${featPath(f,P)}" fill="${fl}"${on&&op<1?` fill-opacity="${op}"`:''} stroke="${on?'var(--panel)':'var(--land-line)'}" stroke-width="${on?1.6:.7}"/>`;}).join('');
+  return `<svg viewBox="0 0 ${W} ${P.H}" role="img" aria-label="${esc(label)}"><rect width="${W}" height="${P.H}" fill="var(--sea)"/>${regs}${content(P)}</svg>`;
+}
+const XY=(P,ll)=>[P.x(ll[1]),P.y(ll[0])];
+const lineSvg=(P,pts,attrs)=>`<polyline points="${pts.map(q=>P.x(q[1]).toFixed(1)+','+P.y(q[0]).toFixed(1)).join(' ')}" fill="none" stroke-linecap="round" stroke-linejoin="round" ${attrs}/>`;
+const lbl=(x,y,txt,o={})=>`<text x="${x.toFixed(1)}" y="${y.toFixed(1)}" font-size="${o.fs||12}" font-weight="${o.fw||600}" text-anchor="${o.a||'start'}" fill="${o.fill||'var(--fg)'}" paint-order="stroke" stroke="var(--panel)" stroke-width="3.2" stroke-linejoin="round" font-family="var(--f-body)"${o.ls?` letter-spacing="${o.ls}"`:''}>${esc(txt)}</text>`;
+const platDot=(P,p)=>{const[x,y]=XY(P,p.ll);return `<circle cx="${x}" cy="${y}" r="7.5" fill="var(--plat)" stroke="var(--panel)" stroke-width="2.5"/>`+lbl(x+12,y+4.5,p.city,{fs:13.5,fw:700});};
+const badge=(x,y,n)=>`<circle cx="${x}" cy="${y}" r="8.5" fill="var(--fg)" stroke="var(--panel)" stroke-width="1.5"/><text x="${x}" y="${y+3.6}" text-anchor="middle" font-size="10.5" font-weight="700" fill="var(--panel)" font-family="var(--f-body)">${n}</text>`;
+const netLayers=(P,{sec=false}={})=>(sec?NE.sec.map(l=>lineSvg(P,l,'stroke="var(--road2)" stroke-width="1"')).join(''):'')
+  +NE.main.map(l=>lineSvg(P,l,'stroke="var(--road)" stroke-width="1.8"')).join('')
+  +NE.rails.map(l=>lineSvg(P,l,'stroke="var(--rail)" stroke-width="3"')+lineSvg(P,l,'stroke="var(--panel)" stroke-width="1.2" stroke-dasharray="4 4"')).join('')
+  +LINES.map(l=>l.type==='ter'?lineSvg(P,l.pts,'stroke="var(--rail)" stroke-width="5"')+lineSvg(P,l.pts,'stroke="var(--accent)" stroke-width="2.2"'):lineSvg(P,l.pts,'stroke="var(--panel)" stroke-width="7"')+lineSvg(P,l.pts,'stroke="var(--auto)" stroke-width="4"')).join('');
+function oppNums(p){let i=0;return{zs:ZONES.filter(z=>inPlat(p,z)).map(o=>({o,n:++i})),ps:PROJS.filter(z=>inPlat(p,z)).map(o=>({o,n:++i}))};}
+function infNums(p){let i=0;return['air','port','energy','apix'].flatMap(c=>INFRA_PTS.filter(z=>inPlat(p,z)&&z.cat===c).map(o=>({o,n:++i})));}
+const catCol=c=>c==='energy'?'var(--energy)':c==='apix'?'var(--accent)':'var(--infra)';
+
+function mapTerr(p){
+  return mapFrame(p,t('m_terr'),()=>COVER[p.id],1,P=>{
+    let s=REGIONS.features.filter(f=>f.properties.c==='SEN'&&!p.regions.includes(f.properties.n)).map(f=>{const c=centroid(f);return lbl(P.x(c[0]),P.y(c[1]),f.properties.n,{a:'middle',fs:11,fw:500,fill:'var(--muted)'});}).join('');
+    s+=NE.main.map(l=>lineSvg(P,l,'stroke="var(--road)" stroke-width="1.2" opacity=".55"')).join('');
+    s+=p.regions.map(r=>{const c=centroid(FEAT(r)),x=P.x(c[0]),y=P.y(c[1]);return lbl(x,y-3,r.toUpperCase(),{a:'middle',fs:14,fw:800,ls:1.2})+lbl(x,y+13,fmtN(SOCIO[r].p23)+' '+t('inhab'),{a:'middle',fs:11.5,fw:500,fill:'var(--muted)'});}).join('');
+    return s+platDot(P,p);
+  });
+}
+function mapPop(p){
+  const ind=IND.find(i=>i.id==='pov'),th=classes(ind);
+  return mapFrame(p,t('m_pop'),n=>RAMPS.warm[classOf(SOCIO[n].pov,th)],1,P=>p.regions.map(r=>{
+    const c=centroid(FEAT(r)),x=P.x(c[0]),y=P.y(c[1]),rad=30*Math.sqrt(SOCIO[r].p23/4e6);
+    return `<circle cx="${x}" cy="${y}" r="${rad.toFixed(1)}" fill="var(--plat)" fill-opacity=".55" stroke="var(--panel)" stroke-width="1.5"/>`+lbl(x,y+rad+15,r,{a:'middle',fs:12.5,fw:700})+lbl(x,y+rad+29,`${fmtM(SOCIO[r].p23)} · ${fmtP(SOCIO[r].pov)}`,{a:'middle',fs:11,fw:500,fill:'var(--muted)'});
+  }).join('')+platDot(P,p));
+}
+function mapOpp(p){
+  const N=oppNums(p);
+  return mapFrame(p,t('m_opp'),()=>COVER[p.id],.45,P=>{
+    let s=NE.main.map(l=>lineSvg(P,l,'stroke="var(--road)" stroke-width="1.2" opacity=".5"')).join('')+platDot(P,p);
+    s+=N.zs.map(({o,n})=>{const[x,y]=XY(P,o.ll);return `<rect x="${x-10}" y="${y-10}" width="20" height="20" rx="4" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="2.2"><title>${esc(o.name)}</title></rect><text x="${x}" y="${y+3}" text-anchor="middle" font-size="7.5" font-weight="700" fill="var(--accent)" font-family="var(--f-mono)">${o.code}</text>`+badge(x+12,y-12,n);}).join('');
+    s+=N.ps.map(({o,n})=>{const[x,y]=XY(P,o.ll);const sec=SECTORS.find(q=>q.id===o.sector);return `<circle cx="${x}" cy="${y}" r="11" fill="var(--proj)" stroke="var(--panel)" stroke-width="2"><title>${esc(o.name)}</title></circle><g transform="translate(${(x-7.2).toFixed(1)},${(y-7.2).toFixed(1)}) scale(.6)" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">${sec?sec.ic:''}</g>`+badge(x+12,y-12,n);}).join('');
+    return s;
+  });
+}
+function mapInf(p){
+  const N=infNums(p);
+  return mapFrame(p,t('m_inf'),()=>COVER[p.id],.35,P=>netLayers(P,{sec:true})+platDot(P,p)+N.map(({o,n})=>{const[x,y]=XY(P,o.ll),col=catCol(o.cat);
+    return `<circle cx="${x}" cy="${y}" r="11" fill="var(--panel)" stroke="${col}" stroke-width="2.2"${o.status==='build'?' stroke-dasharray="3 2"':''}><title>${esc(o.name)}</title></circle>`+catIcon(o.cat).replace('<svg ',`<svg x="${(x-6.5).toFixed(1)}" y="${(y-6.5).toFixed(1)}" stroke="${col}" `).replace(/width="11" height="11"/,'width="13" height="13"')+badge(x+12,y-12,n);}).join(''));
+}
+function circLegend(){const vals=[[500000,'0,5 M'],[1000000,'1 M'],[2000000,'2 M'],[4000000,'4 M']];let x=8,h='';vals.forEach(([v,l])=>{const r=30*Math.sqrt(v/4e6)*.62;h+=`<circle cx="${x+r}" cy="${44-r}" r="${r.toFixed(1)}" fill="var(--plat)" fill-opacity=".55" stroke="var(--panel)"/><text x="${x+r}" y="58" text-anchor="middle" font-size="10.5" fill="var(--muted)" font-family="var(--f-body)">${lang==='fr'?l:l.replace(',','.')}</text>`;x+=2*r+14;});return `<svg viewBox="0 0 ${x} 62" width="${x}" height="62" aria-hidden="true">${h}</svg>`;}
+function mapCard(map,title,legend){return `<div class="mapcard"><div class="mc-map">${map}</div><div class="mc-leg"><h4>${esc(title)}</h4>${legend}<p class="fine">${t('m_pos')}</p></div></div>`;}
+
+/* rendu */
+function renderPortal(){if(!portalEl)return;portalEl.innerHTML=`<div class="pin-wrap">${portalSel?portalPage(PLATS.find(p=>p.id===portalSel)):portalHome()}</div>`;}
+function portalHome(){
+  return `<div class="p-intro"><h2>${t('pt_title')}</h2><p>${t('pt_intro')}</p></div>
+  <div class="p-overview">
+    <div class="ov-map">${svgSenegal(560,null,{labels:true,clickable:true})}</div>
+    <div class="pcards">${PLATS.map(p=>{const a=aggr(p),n=ZONES.filter(z=>inPlat(p,z)).length+PROJS.filter(z=>inPlat(p,z)).length;
+      return `<button type="button" class="pcard" data-portal="${p.id}" style="--pc:${COVER[p.id]}">
+        <span class="pc-map">${svgSenegal(220,p.id)}</span>
+        <span class="pc-body"><b>${esc(p.city)}</b><span class="rg">${esc(p.regions.join(' · '))}</span>
+        <span class="pc-figs"><span><b>${fmtM(a.p23)}</b>${t('fig_pop')}</span><span><b>${fmtM(a.a1559)}</b>${t('fig_work')}</span><span><b>${n}</b>${t('fig_items')}</span></span></span>
+      </button>`;}).join('')}</div>
+  </div>`;
+}
+function oItem(attrs,ic,label,small,num){return `<button type="button" ${attrs}>${num?`<span class="num">${num}</span>`:''}${ic}<span>${esc(label)}</span>${small?`<small>${esc(small)}</small>`:''}</button>`;}
+function portalPage(p){
+  const a=aggr(p),i=PLATS.indexOf(p),prev=PLATS.at(i-1),next=PLATS[(i+1)%PLATS.length];
+  const zs=ZONES.filter(z=>inPlat(p,z)),ps=PROJS.filter(z=>inPlat(p,z)),inf=INFRA_PTS.filter(z=>inPlat(p,z)),aut=LINES.filter(l=>l.regions.some(r=>p.regions.includes(r)));
+  const share=100*a.p23/NAT.p23;
+  const regList=listJoin(p.regions);
+  const intro=`${esc(p.name)} ${t('pt_s1')} ${p.regions.length>1?t('pt_s_many'):t('pt_s_one')} ${esc(regList)}. ${t('pt_s2')} ${fmtN(a.p23)} ${t('pt_s3')} ${nf(1).format(share)} % ${t('pt_s4')}`;
+  const maxPop=Math.max(...a.rs.map(r=>SOCIO[r].p23));
+  const y=100*a.a014/a.p24,w=100*a.a1559/a.p24,o=100*a.a60/a.p24;
+  const IN=infNums(p),ON=oppNums(p),numOf=(arr,o)=>(arr.find(x=>x.o===o)||{}).n;
+  const infCats=['air','port','energy','apix'].map(c=>{const it=inf.filter(x=>x.cat===c);if(!it.length)return'';return `<div class="card"><h4>${t('s_'+c)}</h4><div class="olist">${it.map(x=>oItem(`data-go="infra:${x.id}"`,`<span class="ic inf ${c}">${catIcon(c).replace(/11/g,'15')}</span>`,x.name,t('st_'+x.status),numOf(IN,x))).join('')}</div></div>`;}).join('');
+  const lgr=(sym,txt)=>`<div class="lg-row"><span class="sym">${sym}</span><span>${esc(txt)}</span></div>`;
+  const povTh=classes(IND.find(i=>i.id==='pov'));
+  const povLeg=RAMPS.warm.map((c,k)=>{const lo=k===0?null:povTh[k-1],hi=k===4?null:povTh[k];return lgr(`<i class="sw" style="background:${c};border:1px solid var(--land-line);width:16px;height:12px"></i>`,lo===null?`< ${fmtP(hi)}`:hi===null?`≥ ${fmtP(lo)}`:`${fmtP(lo)} – ${fmtP(hi)}`);}).join('');
+  const autCard=aut.length?`<div class="card"><h4>${t('autoroutes')}</h4><div class="olist">${aut.map(l=>oItem(`data-go="infra:${l.id}"`,`<span class="ic inf">${SYM[l.type==='ter'?'ter':'auto']}</span>`,l.name,'')).join('')}</div></div>`:'';
+  return `
+  <div class="crumbs"><nav aria-label="Fil d'Ariane"><button type="button" data-home>${t('pt_all')}</button><span aria-hidden="true">›</span><span>${esc(p.city)}</span></nav>
+    <div class="pn"><button type="button" class="btn ghost small" data-portal="${prev.id}">← ${esc(prev.city)}</button><button type="button" class="btn ghost small" data-portal="${next.id}">${esc(next.city)} →</button></div></div>
+  <section class="p-hero" style="--pc:${COVER[p.id]}">
+    <div class="ph-txt"><span class="eyebrow">${p.id==='p-dakar'?t('pt_hq'):t('pt_eyebrow')}</span><h2>${esc(p.name)}</h2><p>${intro}</p>
+      <div class="chips">${p.regions.map(r=>`<button type="button" class="chip" data-go="region:${esc(r)}">${esc(r)}</button>`).join('')}</div>
+      ${p.note?`<p class="fine">${esc(p.note)}</p>`:''}
+      <div class="ph-actions"><button type="button" class="btn primary" data-mapplat="${p.id}">${t('pt_onmap')}</button><button type="button" class="btn ghost dl-btn" data-pdf="${p.id}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M12 11v6M9.5 14.5 12 17l2.5-2.5"/></svg><span>${t('pdf_btn')}</span></button><button type="button" class="btn ghost" data-jump="contact">${t('pt_contact')}</button></div>
+      <p class="pdf-msg" id="pdf-msg" role="status"></p></div>
+    <div class="ph-map">${svgPlat(p)}</div>
+  </section>
+  <div class="kpis">
+    <div class="kpi"><span>${t('pop23')}</span><b>${fmtN(a.p23)}</b><small>${nf(1).format(share)} % ${t('pt_share')}</small></div>
+    <div class="kpi"><span>${t('pt_area')}</span><b>${fmtN(a.area)} km²</b><small>${t('pt_area_n')} · ${fmtN(a.dens)} ${t('per_km2')}</small></div>
+    <div class="kpi"><span>${t('work_t')}</span><b>${fmtN(a.a1559)}</b><small>${nf(0).format(w)} % ${t('pt_ofpop')}</small></div>
+    <div class="kpi"><span>${t('ind_growth')}</span><b>${nf(1).format(a.growth)} %</b><small>${t('nat')} ${nf(1).format(growth(NAT))} %</small></div>
+    <div class="kpi"><span>${t('ind_urb')}</span><b>${fmtP(a.urb)}</b><small>${t('pt_weighted')} · ${t('nat')} ${fmtP(NAT.urb)}</small></div>
+    <div class="kpi"><span>${t('ind_pov')}</span><b>${fmtP(a.pov)}</b><small>${t('pt_weighted')} · ${t('nat')} ${fmtP(NAT.pov)}</small></div>
+    <div class="kpi"><span>${t('zones_k')}</span><b>${zs.length}</b><small>${ps.length} ${t('pt_projs_n')}</small></div>
+    <div class="kpi"><span>${t('l_infra')}</span><b>${inf.length+aut.length}</b><small>${t('pt_inf_n')}</small></div>
+  </div>
+  <nav class="subnav" aria-label="Rubriques">${['terr','pop','opp','inf','contact'].map(k=>`<button type="button" data-jump="${k}">${t('sec_'+k)}</button>`).join('')}</nav>
+
+  <section class="psec" id="ps-terr"><h3><i>${ico('all',16)}</i>${t('sec_terr')}</h3>
+    ${mapCard(mapTerr(p),t('m_terr'),lgr(`<i class="sw" style="background:${COVER[p.id]};width:16px;height:12px"></i>`,t('m_terr_on'))+lgr(`<i class="sw" style="background:var(--land);border:1px solid var(--land-line);width:16px;height:12px"></i>`,t('m_terr_off'))+lgr('<i class="sw plat"></i>',t('m_seat'))+lgr(SYM.main,t('s_main'))+`<p class="mini">${t('m_terr_note')}</p>`)}
+    <div class="tbl-wrap"><table class="ptbl"><thead><tr><th>${t('t_region')}</th><th>${t('pop23')}</th><th>${t('ind_growth')}</th><th>${t('ind_dens')}</th><th>${t('ind_urb')}</th><th>${t('ind_pov')}</th><th>${t('ind_work')}</th></tr></thead><tbody>
+    ${a.rs.map(r=>{const s=SOCIO[r];return `<tr><td><button type="button" data-go="region:${esc(r)}">${esc(r)}</button></td><td>${fmtN(s.p23)}</td><td>${nf(1).format(growth(s))} %</td><td>${fmtN(s.p23/AREA[r])}</td><td>${fmtP(s.urb)}</td><td>${fmtP(s.pov)}</td><td>${fmtN(s.a1559)}</td></tr>`;}).join('')}
+    ${a.rs.length>1?`<tr><td>${t('t_total')}</td><td>${fmtN(a.p23)}</td><td>${nf(1).format(a.growth)} %</td><td>${fmtN(a.dens)}</td><td>${fmtP(a.urb)}</td><td>${fmtP(a.pov)}</td><td>${fmtN(a.a1559)}</td></tr>`:''}
+    </tbody></table></div>
+  </section>
+
+  <section class="psec" id="ps-pop"><h3><i>${ico('services',16)}</i>${t('sec_pop')}</h3>
+    ${mapCard(mapPop(p),t('m_pop'),`<p class="mini">${t('m_pop_col')}</p>${povLeg}<p class="mini" style="margin-top:6px">${t('m_pop_circ')}</p>${circLegend()}<p class="fine">${t('src')} : ANSD, RGPH-5 2023 · EHCVM II 2021-2022</p>`)}
+    <div class="cols">
+      <div class="card" style="--pc:${COVER[p.id]}"><h4>${t('pop_by')}</h4><div class="hbars">${a.rs.map(r=>`<div class="hbar"><span>${esc(r)}</span><span class="tr"><i style="width:${100*SOCIO[r].p23/maxPop}%;background:${COVER[p.id]}"></i></span><span class="v">${fmtN(SOCIO[r].p23)}</span></div>`).join('')}</div></div>
+      <div class="card"><h4>${t('age_t')}</h4>
+        <div class="agebar" role="img" aria-label="0-14 ${nf(0).format(y)} %, 15-59 ${nf(0).format(w)} %, 60+ ${nf(0).format(o)} %"><i class="a1" style="width:${y}%"></i><i class="a2" style="width:${w}%"></i><i class="a3" style="width:${o}%"></i></div>
+        <div class="agelg"><span><i class="a1"></i>0-14 ${t('yrs')} · ${nf(0).format(y)} %</span><span><i class="a2"></i>15-59 · ${nf(0).format(w)} %</span><span><i class="a3"></i>60+ · ${nf(0).format(o)} %</span></div>
+        <p class="mini">${t('ind_tm')} : <b>${nf(0).format(Math.round(a.p23/a.men))}</b> · ${fmtN(a.men)} ${t('hh')}</p></div>
+      <div class="card"><h4>${t('pov_by')}</h4><div class="hbars">${a.rs.map(r=>`<div class="hbar pov"><span>${esc(r)}</span><span class="tr"><i style="width:${SOCIO[r].pov}%"></i></span><span class="v">${fmtP(SOCIO[r].pov)}</span></div>`).join('')}</div><p class="fine">${t('nat')} ${fmtP(NAT.pov)} · EHCVM II</p></div>
+    </div>
+  </section>
+
+  <section class="psec" id="ps-opp"><h3><i>${ico('industrie',16)}</i>${t('sec_opp')}</h3>
+    ${mapCard(mapOpp(p),t('m_opp'),lgr('<i class="sw zone"></i>',t('lg_zone'))+lgr(`<span style="color:var(--proj);display:grid">${ico('agro',16)}</span>`,t('lg_proj')+' ('+t('lg_proj_note')+')')+lgr('<i class="sw plat"></i>',t('m_seat'))+`<div class="secs">${[...new Set(ps.map(x=>x.sector))].map(s=>`<span>${ico(s,15)}${esc(secName(s))}</span>`).join('')}</div><p class="mini">${t('m_num')}</p>`)}
+    <div class="cols">
+      <div class="card"><h4>${t('zones_k')}</h4>${zs.length?`<div class="olist">${zs.map(z=>oItem(`data-go="zone:${z.id}"`,`<span class="ic z">${z.code}</span>`,z.name,z.type,numOf(ON.zs,z))).join('')}</div>`:`<p class="empty">${t('none_here')}</p>`}</div>
+      <div class="card"><h4>${t('projs_k')}</h4>${ps.length?`<div class="olist">${ps.map(x=>oItem(`data-go="proj:${x.id}"`,`<span class="ic">${ico(x.sector,16)}</span>`,x.name,secName(x.sector),numOf(ON.ps,x))).join('')}</div>`:`<p class="empty">${t('none_here')}</p>`}</div>
+      <div class="card"><h4>${t('filieres')}</h4><div class="secs">${platSectors(p).map(s=>`<span>${ico(s,16)}${esc(secName(s))}</span>`).join('')}</div></div>
+    </div>
+  </section>
+
+  <section class="psec" id="ps-inf"><h3><i>${ICON_PORT.replace(/11/g,'16').replace('<svg','<svg stroke="currentColor"')}</i>${t('sec_inf')}</h3>
+    ${mapCard(mapInf(p),t('m_inf'),lgr(SYM.auto,t('s_auto'))+lgr(SYM.ter,t('lg_ter'))+lgr(SYM.rail,t('lg_rail'))+lgr(SYM.main,t('s_main'))+lgr(SYM.sec,t('s_sec'))+lgr(SYM.air,t('s_air'))+lgr(SYM.port,t('s_port'))+lgr(SYM.energy,t('s_energy'))+lgr(SYM.apix,t('s_apix'))+lgr(SYM.build,t('st_build'))+`<p class="mini">${t('m_num')}</p>`)}
+    ${infCats||autCard?`<div class="cols">${autCard}${infCats}</div>`:`<p class="empty">${t('none_here')}</p>`}
+  </section>
+
+  <section class="psec" id="ps-contact"><h3><i>${ICON_URB.replace(/11/g,'16').replace('<svg','<svg stroke="currentColor"')}</i>${t('sec_contact')}</h3>
+    <div class="card"><div class="contact-card">
+      <div class="ci"><span>${t('address')}</span><div>${esc(p.addr)}</div></div>
+      <div class="ci"><span>${t('phone')}</span><div>${esc(p.tel)} <button type="button" class="copy" data-copy="${esc(p.tel)}">${t('copy')}</button></div></div>
+      <div class="ci"><span>${t('email')}</span><div>${esc(p.mail)} <button type="button" class="copy" data-copy="${esc(p.mail)}">${t('copy')}</button></div></div>
+    </div><p class="fine">${t('contact_note')}</p></div>
+  </section>
+
+  <div class="p-foot"><button type="button" class="btn ghost" data-portal="${prev.id}">← ${esc(prev.name)}</button><button type="button" class="btn ghost" data-portal="${next.id}">${esc(next.name)} →</button></div>`;
+}
+
+/* vues et interactions */
+function setView(v){const isMap=v==='map';mainEl.hidden=!isMap;portalEl.hidden=isMap;document.getElementById('v-map').setAttribute('aria-pressed',isMap);document.getElementById('v-portal').setAttribute('aria-pressed',!isMap);if(isMap)setTimeout(()=>map.invalidateSize(),30);}
+function goMap(cb){setView('map');setTimeout(()=>{map.invalidateSize();cb&&cb();},60);}
+document.getElementById('v-map').onclick=()=>setView('map');
+document.getElementById('v-portal').onclick=()=>{setView('portal');renderPortal();};
+function openPlat(id){portalSel=id;renderPortal();portalEl.scrollTop=0;setView('portal');}
+portalEl.addEventListener('click',e=>{
+  const pp=e.target.closest('[data-portal]');if(pp){openPlat(pp.dataset.portal);return;}
+  if(e.target.closest('[data-home]')){portalSel=null;renderPortal();portalEl.scrollTop=0;return;}
+  const j=e.target.closest('[data-jump]');if(j){const s=document.getElementById('ps-'+j.dataset.jump);if(s)s.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});return;}
+  const g=e.target.closest('[data-go]');if(g){const[k,...r]=g.dataset.go.split(':');goMap(()=>select(k,r.join(':'),true));return;}
+  const mp=e.target.closest('[data-mapplat]');if(mp){const p=PLATS.find(x=>x.id===mp.dataset.mapplat);goMap(()=>{const b=L.latLngBounds([]);regionLayer.eachLayer(l=>{if(p.regions.includes(l.feature.properties.n))b.extend(l.getBounds());});map.flyToBounds(b,{padding:[30,30],duration:.6});select('plat',p.id);});return;}
+  const pd=e.target.closest('[data-pdf]');if(pd){downloadReport(PLATS.find(x=>x.id===pd.dataset.pdf),pd);return;}
+  const c=e.target.closest('[data-copy]');if(c){const v=c.dataset.copy;const done=()=>{c.textContent=t('copied');setTimeout(()=>c.textContent=t('copy'),1400);};try{navigator.clipboard.writeText(v).then(done,()=>selectText(c.parentElement));}catch(_){selectText(c.parentElement);}}
+});
+
+/* ---------- rapport PDF par plateforme ---------- */
+let dl=null;
+(async()=>{try{dl=window.claude&&window.claude.use?await window.claude.use('downloads'):null;}catch(_){dl=null;}document.documentElement.classList.toggle('can-dl',!!dl);})();
+const PDFC={sea:'#CADBE2',land:'#EDEBE2','land-line':'#A7A493',gambia:'#DAD6C8',panel:'#FFFFFF',fg:'#13221B',accent:'#0B6B3A','accent-soft':'#E3EFE7',auto:'#C2410C',infra:'#7A4A12',energy:'#7B4FA0',proj:'#B4690E',plat:'#2453A6',muted:'#56635C','f-body':'Helvetica, Arial, sans-serif'};
+const hexRgb=h=>{const n=parseInt(h.replace('#',''),16);return[(n>>16)&255,(n>>8)&255,n&255];};
+const plain=s=>String(s).replace(/[  ]/g,' ').replace(/→/g,'->');
+function loadScript(src){return new Promise((res,rej)=>{const s=document.createElement('script');s.src=src;s.onload=res;s.onerror=()=>rej(new Error('script'));document.head.appendChild(s);});}
+async function ensurePdfLib(){
+  if(!window.jspdf)await loadScript('https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js');
+  if(!window.jspdf.jsPDF.API.autoTable)await loadScript('https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js');
+}
+async function svgPng(svg){
+  const vb=svg.match(/viewBox="0 0 ([\d.]+) ([\d.]+)"/),W=+vb[1],H=+vb[2];
+  svg=svg.replace(/var\(--([a-z0-9-]+)\)/g,(m,k)=>PDFC[k]||'#000000').replace('<svg ',`<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" `);
+  const url=URL.createObjectURL(new Blob([svg],{type:'image/svg+xml'}));
+  try{const img=new Image();await new Promise((r,j)=>{img.onload=r;img.onerror=j;img.src=url;});
+    const c=document.createElement('canvas');c.width=W*2;c.height=H*2;const g=c.getContext('2d');g.fillStyle=PDFC.sea;g.fillRect(0,0,c.width,c.height);g.drawImage(img,0,0,c.width,c.height);
+    return{data:c.toDataURL('image/png'),ratio:H/W};}
+  finally{URL.revokeObjectURL(url);}
+}
+async function buildPdf(p){
+  await ensurePdfLib();
+  const {jsPDF}=window.jspdf;const doc=new jsPDF({unit:'mm',format:'a4'});
+  const PW=210,M=14,CW=PW-2*M,a=aggr(p),share=100*a.p23/NAT.p23;
+  const ink=hexRgb(PDFC.fg),mut=hexRgb(PDFC.muted),acc=hexRgb(PDFC.accent),pc=hexRgb(COVER[p.id]);
+  const T=s=>plain(s);let y=0;
+  const ensure=h=>{if(y+h>280){doc.addPage();y=18;}};
+  const heading=txt=>{ensure(16);doc.setFont('helvetica','bold');doc.setFontSize(13);doc.setTextColor(...ink);doc.text(T(txt),M,y);doc.setDrawColor(...pc);doc.setLineWidth(.8);doc.line(M,y+2,M+22,y+2);y+=8;};
+  const tbl=(head,body,opts={})=>{doc.autoTable({startY:y,head:[head],body,margin:{left:M,right:M},theme:'grid',styles:{font:'helvetica',fontSize:8.5,cellPadding:1.8,textColor:ink,lineColor:[222,225,217],lineWidth:.2},headStyles:{fillColor:[14,42,30],textColor:255,fontStyle:'bold'},alternateRowStyles:{fillColor:[245,246,242]},...opts});y=doc.lastAutoTable.finalY+8;};
+  const dateStr=new Date().toLocaleDateString(lang==='fr'?'fr-FR':'en-GB',{day:'numeric',month:'long',year:'numeric'});
+
+  /* en-tête */
+  doc.setFillColor(14,42,30);doc.rect(0,0,PW,32,'F');doc.setFillColor(...pc);doc.rect(0,32,PW,2.5,'F');
+  doc.setFont('helvetica','normal');doc.setFontSize(9);doc.setTextColor(183,205,191);
+  doc.text(T(`${t('title')} – Sénégal · ${t('pdf_kind')}`),M,10);doc.text(T(dateStr),PW-M,10,{align:'right'});
+  doc.setFont('helvetica','bold');doc.setFontSize(21);doc.setTextColor(255);doc.text(T(p.name),M,22,{maxWidth:CW});
+  doc.setFont('helvetica','normal');doc.setFontSize(9.5);doc.setTextColor(214,226,218);doc.text(T((p.id==='p-dakar'?t('pt_hq'):t('pt_eyebrow'))+' · '+p.regions.join(', ')),M,28.5);
+  y=43;
+  const intro=`${p.name} ${t('pt_s1')} ${p.regions.length>1?t('pt_s_many'):t('pt_s_one')} ${listJoin(p.regions)}. ${t('pt_s2')} ${fmtN(a.p23)} ${t('pt_s3')} ${nf(1).format(share)} % ${t('pt_s4')}`;
+  doc.setFontSize(10.5);doc.setTextColor(...ink);const il=doc.splitTextToSize(T(intro),CW);doc.text(il,M,y);y+=il.length*4.8+4;
+
+  /* carte + chiffres clés */
+  const img=await svgPng(svgPlat(p,800));let mw=90,mh=mw*img.ratio;if(mh>86){mh=86;mw=mh/img.ratio;}
+  doc.addImage(img.data,'PNG',M,y,mw,mh);doc.setDrawColor(222,225,217);doc.setLineWidth(.3);doc.rect(M,y,mw,mh);
+  const kx=M+mw+6,kw=(PW-M-kx-3)/2,kh=19.5;
+  const kpis=[[t('pop23'),fmtN(a.p23),`${nf(1).format(share)} % ${t('pt_share')}`],[t('pt_area'),fmtN(a.area)+' km²',`${fmtN(a.dens)} ${t('per_km2')}`],[t('work_t'),fmtN(a.a1559),`${nf(0).format(100*a.a1559/a.p24)} % ${t('pt_ofpop')}`],[t('ind_growth'),nf(1).format(a.growth)+' %',`${t('nat')} ${nf(1).format(growth(NAT))} %`],[t('ind_urb'),fmtP(a.urb),`${t('pt_weighted')} · ${t('nat')} ${fmtP(NAT.urb)}`],[t('ind_pov'),fmtP(a.pov),`${t('pt_weighted')} · ${t('nat')} ${fmtP(NAT.pov)}`],[t('zones_k'),String(ZONES.filter(z=>inPlat(p,z)).length),`${PROJS.filter(z=>inPlat(p,z)).length} ${t('pt_projs_n')}`],[t('l_infra'),String(INFRA_PTS.filter(z=>inPlat(p,z)).length+LINES.filter(l=>l.regions.some(r=>p.regions.includes(r))).length),t('pt_inf_n')]];
+  kpis.forEach((k,i)=>{const x=kx+(i%2)*(kw+3),yy=y+Math.floor(i/2)*(kh+2.2);doc.setFillColor(245,246,242);doc.roundedRect(x,yy,kw,kh,1.5,1.5,'F');
+    doc.setFont('helvetica','normal');doc.setFontSize(7);doc.setTextColor(...mut);doc.text(doc.splitTextToSize(T(k[0]),kw-5)[0],x+2.5,yy+5);
+    doc.setFont('helvetica','bold');doc.setFontSize(12.5);doc.setTextColor(...ink);doc.text(T(k[1]),x+2.5,yy+11.5);
+    doc.setFont('helvetica','normal');doc.setFontSize(6.4);doc.setTextColor(...mut);doc.text(doc.splitTextToSize(T(k[2]),kw-5)[0],x+2.5,yy+16.3);});
+  y+=Math.max(mh,4*(kh+2.2))+9;
+
+  /* territoire */
+  heading(t('sec_terr'));
+  const rows=a.rs.map(r=>{const s=SOCIO[r];return[r,fmtN(s.p23),nf(1).format(growth(s))+' %',fmtN(s.p23/AREA[r]),fmtP(s.urb),fmtP(s.pov),fmtN(s.a1559)].map(T);});
+  if(a.rs.length>1)rows.push([t('t_total'),fmtN(a.p23),nf(1).format(a.growth)+' %',fmtN(a.dens),fmtP(a.urb),fmtP(a.pov),fmtN(a.a1559)].map(T));
+  tbl([t('t_region'),t('pop23'),t('ind_growth'),t('ind_dens'),t('ind_urb'),t('ind_pov'),t('ind_work')].map(T),rows,{columnStyles:{1:{halign:'right'},2:{halign:'right'},3:{halign:'right'},4:{halign:'right'},5:{halign:'right'},6:{halign:'right'}},didParseCell:d=>{if(a.rs.length>1&&d.section==='body'&&d.row.index===rows.length-1)d.cell.styles.fontStyle='bold';}});
+
+  /* population */
+  heading(t('sec_pop'));
+  const yv=100*a.a014/a.p24,wv=100*a.a1559/a.p24,ov=100*a.a60/a.p24;
+  ensure(22);doc.setFont('helvetica','bold');doc.setFontSize(9);doc.setTextColor(...ink);doc.text(T(t('age_t')),M,y);y+=3;
+  let bx=M;[[yv,'#86B8BC'],[wv,'#24697E'],[ov,'#C7B98F']].forEach(([v,c])=>{const w=CW*v/100;doc.setFillColor(...hexRgb(c));doc.rect(bx,y,w,5,'F');bx+=w;});y+=9;
+  doc.setFont('helvetica','normal');doc.setFontSize(8);doc.setTextColor(...mut);
+  doc.text(T(`0-14 ${t('yrs')} : ${nf(0).format(yv)} %    15-59 : ${nf(0).format(wv)} %    60+ : ${nf(0).format(ov)} %    ${t('ind_tm')} : ${Math.round(a.p23/a.men)}`),M,y);y+=8;
+  const colW=(CW-8)/2,maxPop=Math.max(...a.rs.map(r=>SOCIO[r].p23));
+  ensure(10+a.rs.length*6.5);
+  doc.setFont('helvetica','bold');doc.setFontSize(9);doc.setTextColor(...ink);doc.text(T(t('pop_by')),M,y);doc.text(T(t('pov_by')),M+colW+8,y);y+=4;
+  a.rs.forEach((r,i)=>{const yy=y+i*6.5;[[M,SOCIO[r].p23/maxPop,fmtN(SOCIO[r].p23),pc],[M+colW+8,SOCIO[r].pov/100,fmtP(SOCIO[r].pov),hexRgb('#CC6D2C')]].forEach(([x,f,v,c])=>{
+    doc.setFont('helvetica','normal');doc.setFontSize(8);doc.setTextColor(...ink);doc.text(T(r),x,yy+3.3);
+    doc.setFillColor(238,239,234);doc.rect(x+24,yy,colW-46,4,'F');doc.setFillColor(...c);doc.rect(x+24,yy,(colW-46)*f,4,'F');
+    doc.setTextColor(...mut);doc.text(T(v),x+colW,yy+3.3,{align:'right'});});});
+  y+=a.rs.length*6.5+2;doc.setFontSize(7.5);doc.setTextColor(...mut);doc.text(T(`${t('ind_pov')} · ${t('nat')} ${fmtP(NAT.pov)} (EHCVM II)`),M+colW+8,y);y+=9;
+
+  /* opportunités */
+  heading(t('sec_opp'));
+  const zs=ZONES.filter(z=>inPlat(p,z)),ps=PROJS.filter(z=>inPlat(p,z));
+  if(zs.length)tbl([t('zones_k'),t('z_type'),t('region')].map(T),zs.map(z=>[z.name,z.type,z.region].map(T)));
+  if(ps.length)tbl([t('projs_k'),t('sector_l'),t('region')].map(T),ps.map(x=>[x.name,secName(x.sector),x.region].map(T)));
+  if(!zs.length&&!ps.length){ensure(8);doc.setFontSize(9);doc.setTextColor(...mut);doc.text(T(t('none_here')),M,y);y+=8;}
+  ensure(12);doc.setFont('helvetica','bold');doc.setFontSize(9);doc.setTextColor(...ink);doc.text(T(t('filieres')),M,y);y+=4.5;
+  doc.setFont('helvetica','normal');const fl=doc.splitTextToSize(T(platSectors(p).map(secName).join(' · ')),CW);doc.text(fl,M,y);y+=fl.length*4.4+6;
+
+  /* infrastructures */
+  heading(t('sec_inf'));
+  const infRows=[...LINES.filter(l=>l.regions.some(r=>p.regions.includes(r))).map(l=>[t('autoroutes'),l.name,t('st_'+l.status),'']),...INFRA_PTS.filter(z=>inPlat(p,z)).map(x=>[t('s_'+x.cat),x.name,t('st_'+x.status),x.region])].map(r=>r.map(T));
+  if(infRows.length)tbl([t('pdf_cat'),t('pdf_name'),t('pdf_status'),t('region')].map(T),infRows,{columnStyles:{0:{cellWidth:38},2:{cellWidth:36}}});
+  else{ensure(8);doc.setFontSize(9);doc.setTextColor(...mut);doc.text(T(t('none_here')),M,y);y+=8;}
+
+  /* contact */
+  heading(t('sec_contact'));
+  ensure(20);doc.setFontSize(9.5);doc.setTextColor(...ink);
+  [[t('address'),p.addr],[t('phone'),p.tel],[t('email'),p.mail]].forEach(([k,v])=>{doc.setFont('helvetica','bold');doc.text(T(k),M,y);doc.setFont('helvetica','normal');doc.text(T(v),M+28,y);y+=5.5;});
+
+  /* pied de page */
+  const n=doc.getNumberOfPages();
+  for(let i=1;i<=n;i++){doc.setPage(i);doc.setDrawColor(222,225,217);doc.setLineWidth(.3);doc.line(M,287,PW-M,287);doc.setFont('helvetica','normal');doc.setFontSize(7);doc.setTextColor(...mut);
+    doc.text(doc.splitTextToSize(T(t('pdf_foot')),CW-24),M,291);doc.text(T(`${t('pdf_page')} ${i}/${n}`),PW-M,291,{align:'right'});}
+  return doc.output('blob');
+}
+async function downloadReport(p,btn){
+  const msg=document.getElementById('pdf-msg');const span=btn.querySelector('span');const lab=span.textContent;
+  if(!dl){if(msg)msg.textContent=t('pdf_na');return;}
+  btn.disabled=true;span.textContent=t('pdf_wait');if(msg)msg.textContent='';
+  try{
+    const blob=await buildPdf(p);
+    const fname=('Atlas-investissement_'+p.city+'_'+(lang==='fr'?'rapport':'report')+'.pdf').normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/\s+/g,'-');
+    await dl.save({filename:fname,data:blob});
+    if(msg)msg.textContent=t('pdf_ok');
+  }catch(e){
+    const code=e&&e.code;
+    if(msg)msg.textContent=code==='declined'?t('pdf_declined'):code==='rate_limited'?t('pdf_busy'):(['unavailable','not_granted','capability_disabled','capability_removed'].includes(code)?t('pdf_na'):t('pdf_err'));
+  }finally{btn.disabled=false;span.textContent=lab;}
+}
+/* depuis la fiche d'une plateforme sur la carte : lien vers son portail */
+
+/* ---------- démarrage : état de démonstration ---------- */
+try{const s=localStorage.getItem('atlas-sector');if(s&&SECTORS.some(x=>x.id===s))sector=s;}catch(_){}
+let l0='fr';try{const s=localStorage.getItem('atlas-lang');if(s==='en')l0='en';}catch(_){}
+setLang(l0);
+applyFilter();
+select('zone','z-diam');
+rank();
+window.addEventListener('resize',()=>map.invalidateSize());
+setTimeout(()=>map.invalidateSize(),200);
+</script>
+
+</body></html>
