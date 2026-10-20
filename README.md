@@ -21,6 +21,8 @@ Prototype d'atlas cartographique interactif proposé par **CEGIT** (Centre d'Exp
 - Fiche de chaque terrain : superficie, prix au m², raccordements aux réseaux, occupant
 - Viabilisation de la zone : électricité, eau, assainissement, fibre
 - Vue 360° : maquette 3D de la zone à faire pivoter (Three.js, chargé à la demande)
+- Emplacement des zones ajustable sur l'orthophoto (déplacement, orientation, taille), mémorisé dans le navigateur et exportable en coordonnées
+- Superficies calées sur les données de l'APIX : Diamniadio 53 ha, Diass 718 ha (mitoyenne de l'AIBD), Sandiara 100 ha
 
 **Portail « Découvrir les plateformes »**
 - Page d'accueil avec les 7 plateformes régionales
