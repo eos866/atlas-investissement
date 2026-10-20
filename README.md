@@ -12,6 +12,7 @@ Prototype d'atlas cartographique interactif proposé par **CEGIT** (Centre d'Exp
 - Infrastructures : autoroutes, TER, voies ferrées, routes principales et secondaires, aéroports, ports, énergie, grands projets APIX
 - Carte thématique des 14 régions à partir des données ANSD : population, densité, croissance, urbanisation, main-d'œuvre, part des jeunes, taille des ménages, pauvreté
 - Fiches détaillées au clic, recherche, filtre par secteur, légende repliable
+- Fonds de carte au choix : fond simple, orthophotoplan (Esri World Imagery) ou plan OpenStreetMap
 - Assistant « Où m'implanter ? » qui classe les sites selon le secteur et les besoins de l'investisseur
 
 **Zones d'activité (données fictives de démonstration)**
@@ -69,6 +70,8 @@ Les données socio-démographiques, les zones, plateformes, projets et infrastru
 | Taux de pauvreté | ANSD, [EHCVM II 2021-2022](https://www.vie-publique.sn/docs/88cb53b9-e3bd-40f1-9bc8-217c19063e7d/enquete-harmonisee-conditions-vie-menages-ehcvm-ii-senegal-2021-2022-ansd.pdf) |
 | Plateformes régionales, projets prioritaires | [APIX – investinsenegal.sn](https://investinsenegal.sn) |
 | Limites régionales, routes, voies ferrées | [Natural Earth](https://www.naturalearthdata.com) (domaine public) |
+| Orthophotoplan | [Esri World Imagery](https://www.arcgis.com/home/item.html?id=10df2279f9684e4a9f6a7f08febac2a9) – Esri, Maxar, Earthstar Geographics |
+| Plan | [OpenStreetMap](https://www.openstreetmap.org/copyright) – © contributeurs OpenStreetMap |
 
 ## Bibliothèques utilisées
 
