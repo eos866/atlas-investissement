@@ -19,6 +19,7 @@ Prototype d'atlas cartographique interactif proposé par **CEGIT** (Centre d'Exp
 - Zonage de chaque zone économique en polygones : commerciale, construction, services, industrie, mixte
 - Terrains en polygones, découpés en îlots et desservis par la voirie, avec six statuts : disponible immédiatement, potentiellement disponible, disponible à terme, réservé, occupé, non disponible
 - Fiche de chaque terrain : superficie, prix au m², raccordements aux réseaux, occupant
+- Formulaire de manifestation d'intérêt pour un lot : demandeur, projet, besoins en réseaux, calendrier ; récapitulatif avec référence, message pré-rempli vers la plateforme APIX et demande en PDF (non transmise automatiquement dans le prototype)
 - Viabilisation de la zone : électricité, eau, assainissement, fibre
 - Vue 360° : maquette 3D posée sur l'orthophoto réelle, en vue aérienne ou en panorama 360° au sol et depuis un drone (Three.js, chargé à la demande)
 - Emplacement des zones ajustable sur l'orthophoto (déplacement, orientation, taille), mémorisé dans le navigateur et exportable en coordonnées
