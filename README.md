@@ -14,6 +14,13 @@ Prototype d'atlas cartographique interactif proposé par **CEGIT** (Centre d'Exp
 - Fiches détaillées au clic, recherche, filtre par secteur, légende repliable
 - Assistant « Où m'implanter ? » qui classe les sites selon le secteur et les besoins de l'investisseur
 
+**Zones d'activité (données fictives de démonstration)**
+- Zonage de chaque zone économique en polygones : commerciale, construction, services, industrie, mixte
+- Terrains en polygones, découpés en îlots et desservis par la voirie, avec six statuts : disponible immédiatement, potentiellement disponible, disponible à terme, réservé, occupé, non disponible
+- Fiche de chaque terrain : superficie, prix au m², raccordements aux réseaux, occupant
+- Viabilisation de la zone : électricité, eau, assainissement, fibre
+- Vue 360° : maquette 3D de la zone à faire pivoter (Three.js, chargé à la demande)
+
 **Portail « Découvrir les plateformes »**
 - Page d'accueil avec les 7 plateformes régionales
 - Une page par plateforme : chiffres clés, et quatre rubriques (Territoire, Population, Opportunités, Infrastructures) avec chacune sa carte
@@ -66,6 +73,7 @@ Les données socio-démographiques, les zones, plateformes, projets et infrastru
 ## Bibliothèques utilisées
 
 - [Leaflet](https://leafletjs.com) 1.9.4 – licence BSD-2-Clause
+- [Three.js](https://threejs.org) 0.128.0 et OrbitControls – licence MIT (vue 360°)
 - [jsPDF](https://github.com/parallax/jsPDF) 2.5.1 et [jsPDF-AutoTable](https://github.com/simonbengtsson/jsPDF-AutoTable) 3.8.2 – licence MIT
 - Police Rubik – Google Fonts, licence SIL Open Font License
 

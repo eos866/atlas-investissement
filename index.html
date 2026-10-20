@@ -163,6 +163,28 @@ header.top{background:var(--head);color:var(--head-fg);display:flex;align-items:
 .lottbl td button{border:0;background:transparent;color:var(--accent);font-weight:600;cursor:pointer;padding:0;font-size:13px}
 .linklist .lotid{margin-left:auto;color:var(--muted);font-size:12px}
 .z-hi .pin-zone{display:none}
+.zt-sw{display:inline-block;width:16px;height:12px;border:2px dashed;border-radius:2px;flex:none;background:transparent}
+.zt-lg{display:flex;flex-wrap:wrap;gap:4px 12px;font-size:12.5px;color:var(--muted)}
+.zt-lg span,.zt-inline{display:inline-flex;align-items:center;gap:6px}
+.v360-btn{gap:8px}
+.v360{position:fixed;inset:0;z-index:5000;background:rgba(5,16,29,.72);display:flex;align-items:center;justify-content:center;padding:16px}
+.v360[hidden]{display:none}
+.v360-box{position:relative;width:min(1200px,100%);height:min(780px,100%);background:var(--panel);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;box-shadow:var(--shadow)}
+.v360-head{display:flex;align-items:center;gap:12px;padding:12px 14px 12px 18px;border-bottom:1px solid var(--line)}
+.v360-head h2{margin:0;font:600 18px var(--f-display)}
+.v360-head p{margin:2px 0 0;font-size:12.5px;color:var(--muted)}
+.v360-head .icon-btn{margin-left:auto}
+.v360-stage{position:relative;flex:1;min-height:0;background:#D9E8F5}
+.v360-stage canvas{display:block;width:100%;height:100%;touch-action:none;cursor:grab}
+.v360-stage canvas:active{cursor:grabbing}
+.v360-msg{position:absolute;inset:0;display:grid;place-items:center;font-weight:600;color:#0B1726}
+.v360-lg{position:absolute;left:12px;bottom:12px;background:rgba(255,255,255,.94);color:#0B1726;border-radius:10px;padding:8px 10px;display:flex;flex-wrap:wrap;gap:4px 12px;font-size:12px;max-width:calc(100% - 24px)}
+.v360-lg span{display:inline-flex;align-items:center;gap:5px}
+.v360-ctl{position:absolute;right:12px;top:12px;display:flex;gap:6px}
+.v360-ctl button{background:rgba(255,255,255,.94);color:#0B1726;border:1px solid #DCE4EE;border-radius:8px;min-height:36px;padding:0 12px;font-weight:600;font-size:13px;cursor:pointer}
+.v360-ctl button[aria-pressed="true"]{background:#004A96;color:#fff;border-color:#004A96}
+.v360-help{position:absolute;right:12px;bottom:12px;background:rgba(255,255,255,.94);color:#4E5D70;border-radius:8px;padding:6px 10px;font-size:12px;max-width:260px}
+@media (max-width:720px){.v360{padding:0}.v360-box{border-radius:0;height:100%}.v360-help{display:none}}
 .viab{display:flex;flex-direction:column;gap:10px}
 .viab-h{display:flex;align-items:center;justify-content:space-between}
 .viab-h .label{margin:0}
@@ -507,10 +529,20 @@ table.ptbl{width:100%;border-collapse:collapse;font-size:13.5px;min-width:620px}
         <label class="layer"><input type="checkbox" id="l-projs" checked><span class="sw proj"></span><span data-i="l_projs">Projets prioritaires</span><span class="n" id="n-projs"></span></label>
         <label class="layer"><input type="checkbox" id="l-cover" checked><span class="sw cover"></span><span data-i="l_cover">Couverture des plateformes</span></label>
         <div class="cover-legend" id="cover-legend"></div>
-        <label class="layer"><input type="checkbox" id="l-lots" checked><span class="sw" style="background:linear-gradient(90deg,#2E9D5B 0 50%,#9AA39E 50%)"></span><span data-i="l_lots">Parcelles des zones</span><span class="soon" data-i="demo">démo</span></label>
+        
         </div>
       </details>
 
+      <details class="acc" open id="acc-za">
+        <summary><span data-i="za_t">Zones d'activité</span></summary>
+        <div class="acc-body layers">
+          <label class="layer"><input type="checkbox" id="l-za-zones" checked><span data-i="za_zoning">Zonage</span></label>
+          <div class="sublayers" id="za-types"></div>
+          <label class="layer"><input type="checkbox" id="l-lots" checked><span data-i="za_terrains">Terrains</span></label>
+          <div class="sublayers" id="za-status"></div>
+          <p class="fine" data-i="za_hint">Le zonage apparaît en zoomant sur une zone, les terrains en zoomant davantage. Données fictives.</p>
+        </div>
+      </details>
       <details class="acc">
         <summary><span data-i="l_infra">Infrastructures</span><span class="n" id="n-infra"></span></summary>
         <div class="acc-body layers">
@@ -723,11 +755,11 @@ const LINES = [
 const RES = {mines:['Kédougou','Tambacounda'], agro:['Saint-Louis','Louga','Kaolack','Thiès','Ziguinchor','Kaffrine'], tourisme:['Thiès','Ziguinchor','Fatick'], pharma:['Dakar'], industrie:['Dakar','Thiès'], logistique:['Dakar','Thiès'], eau:['Dakar','Thiès'], services:['Dakar']};
 
 const T = {
- fr:{title:"Atlas de l'investissement",subtitle:"Sénégal",explore_t:"Explorer la carte",acc_invest:"Investissement",infra_all:"Tout afficher",acc_socio:"Données de population (ANSD)",w_t:"Où investir au Sénégal ?",w_p:"Repérez les zones économiques, les projets prioritaires et les infrastructures, puis comparez les territoires grâce aux données de l'ANSD.",w_portal:"Découvrir les 7 plateformes",w_pov:"Afficher la carte de la pauvreté",proto:"Prototype CEGIT",notice:"Prototype de démonstration proposé par CEGIT. Positions et contenus indicatifs, à valider avec l'APIX et ses partenaires.",search:"Rechercher",layers:"Couches",l_zones:"Zones économiques",l_plats:"Plateformes APIX",l_projs:"Projets prioritaires",l_infra:"Grands projets et infrastructures",l_cover:"Couverture des plateformes",l_lots:"Parcelles des zones",phase2:"phase 2",sector:"Secteur",cta_t:"Où m'implanter ?",cta_p:"Indiquez votre secteur et vos besoins : l'Atlas classe les sites les plus adaptés.",cta_b:"Trouver un site d'implantation",lg_zone:"Zone économique",lg_plat:"Plateforme APIX",lg_proj:"Projet prioritaire",lg_road:"Autoroute à péage",v_map:"Carte interactive",v_portal:"Découvrir les plateformes",pt_title:"Découvrir les plateformes APIX",pt_intro:"Sept plateformes régionales accompagnent les investisseurs au plus près des territoires. Choisissez une plateforme sur la carte ou dans la liste pour découvrir son territoire, sa population, ses opportunités et ses infrastructures.",pt_all:"Toutes les plateformes",pt_eyebrow:"Plateforme régionale APIX",pt_hq:"Siège de l'APIX",pt_onmap:"Voir sur la carte interactive",pt_contact:"Contacter la plateforme",pt_area:"Superficie",pt_area_n:"calculée (SIG)",pt_share:"de la population nationale",pt_ofpop:"de la population",pt_weighted:"moyenne pondérée",pt_projs_n:"projets prioritaires",pt_inf_n:"aéroports, ports, énergie, autoroutes",sec_terr:"Territoire",sec_pop:"Population",sec_opp:"Opportunités",sec_inf:"Infrastructures",sec_contact:"Contact",t_region:"Région",t_total:"Ensemble",pop_by:"Population par région (2023)",pov_by:"Taux de pauvreté par région (2021-2022)",filieres:"Filières porteuses",autoroutes:"Autoroutes et TER",none_here:"Aucun élément référencé sur ce territoire pour l'instant.",fig_pop:"habitants",fig_work:"15-59 ans",fig_items:"zones et projets",pt_s1:"accompagne les investisseurs dans",pt_s_one:"la région de",pt_s_many:"les régions de",pt_s2:"Son territoire compte",pt_s3:"habitants (RGPH-5, 2023), soit",pt_s4:"de la population du pays.",and_w:"et",contact_note:"Coordonnées reprises du site investinsenegal.sn.",pt_discover:"Découvrir ce territoire",m_terr:"Carte du territoire",m_terr_on:"Régions couvertes par la plateforme",m_terr_off:"Régions voisines",m_seat:"Implantation de la plateforme APIX",m_terr_note:"Population par région : RGPH-5 (2023).",m_pop:"Population et pauvreté",m_pop_col:"Couleur : taux de pauvreté 2021-2022 (mêmes classes pour tout le pays)",m_pop_circ:"Cercles : population 2023",m_opp:"Localisation des opportunités",m_num:"Les numéros sur la carte renvoient aux listes ci-dessous.",m_inf:"Réseaux et équipements",m_pos:"Positions indicatives, à valider.",viab_rate:"de desserte moyenne",viab_blocks:"des îlots desservis",viab_fict:"Données fictives de démonstration : statuts et taux de desserte à confirmer auprès de Senelec, SEN'EAU, ONAS, des opérateurs télécoms et du gestionnaire de la zone.",vs_ok:"En service",vs_partial:"Partiel",vs_planned:"Programmé",lot_conn:"Raccordements en limite de lot",conn_yes:"Disponible",conn_no:"Non disponible",net_elec:"Réseau électrique",net_water:"Eau potable",net_sanit:"Assainissement",net_fiber:"Fibre optique",lot_free:"Disponible",lot_res:"Réservé",lot_taken:"Attribué",lot_equip:"Équipement de la zone",lot_t:"Lot",islot:"îlot",lot_surf:"Superficie",lot_dim:"Dimensions",lot_pm2:"Prix indicatif au m²",lot_total:"Prix total indicatif",firm_name:"Occupant",firm_ex:"entreprise exemple",lot_res_d:"Lot réservé : une demande d'attribution est en cours d'instruction.",lot_equip_d:"Emprise réservée aux équipements communs de la zone : poste électrique, services, administration.",lot_interest:"Manifester mon intérêt pour ce lot",lot_back:"Retour à",lot_fict:"Données fictives de démonstration : parcellaire, prix et occupants à remplacer par les données du gestionnaire de la zone (APROSI, APIX).",lot_demo:"Parcellaire fictif de démonstration.",zplan_t:"Plan des parcelles",zplan_btn:"Voir les parcelles sur la carte",free_lots:"Lots disponibles",free_ha:"ha disponibles",price_rng:"Prix indicatif",per_m2:"FCFA/m²",firms_list:"Entreprises installées",and_more:"Et {n} autres.",lots_hint:"Zoomez sur une zone économique pour afficher ses parcelles.",demo:"démo",interest_t:"Contact pour ce lot",interest_subj:"Objet du message",interest_subj_v:"Demande d'information sur le lot",lot_sort:"Lots disponibles, du plus grand au plus petit",pdf_btn:"Télécharger le rapport PDF",pdf_wait:"Préparation du PDF…",pdf_ok:"Rapport généré : l'enregistrement vous a été proposé.",pdf_declined:"Enregistrement annulé.",pdf_busy:"Une demande d'enregistrement est déjà ouverte.",pdf_na:"Le téléchargement n'est pas disponible dans cette vue.",pdf_err:"Le PDF n'a pas pu être généré. Réessayez dans un instant.",pdf_kind:"Rapport territorial",pdf_foot:"Atlas de l'investissement – prototype CEGIT. Données : ANSD (RGPH-5 2023, Annuaire Population 2024, EHCVM II 2021-2022) ; limites Natural Earth ; positions indicatives.",pdf_page:"Page",pdf_cat:"Catégorie",pdf_name:"Nom",pdf_status:"Statut",socio_l:"Colorer les régions selon",ind_none:"Aucune (couverture des plateformes)",ind_pop:"Population 2023",ind_dens:"Densité (hab./km²)",ind_growth:"Croissance annuelle 2013-2023",ind_urb:"Taux d'urbanisation 2024",ind_work:"Population 15-59 ans (2024)",ind_young:"Part des 0-14 ans (2024)",ind_tm:"Taille moyenne des ménages",ind_pov:"Taux de pauvreté 2021-2022",theme_hint:"Colore les régions selon un indicateur de l'ANSD.",src:"Source",sources_t:"Sources des données",src_bounds:"Limites, routes et voies ferrées : Natural Earth",socio_t:"Profil socio-démographique",reg_sub:"Profil établi à partir des données de l'ANSD",pop23:"Population (RGPH-5, 2023)",share:"Part de la population nationale",nat:"national :",per_km2:"hab./km², calculée",hh:"ménages",age_t:"Structure par âge (2024)",yrs:"ans",work_t:"Main-d'œuvre potentielle (15-59 ans, 2024)",dens_note:"Densité calculée à partir de la superficie SIG (approximative).",men_note:"* Nombre de ménages de Kolda reconstitué (valeur peu lisible dans la source).",basin:"Bassin de population",inhab:"hab.",c_pop:"habitants",a_work:"Bassin de main-d'œuvre important (15-59 ans, ANSD)",why_work:"15-59 ans :",bounds:"Limites, routes et voies ferrées : Natural Earth",l_infra:"Infrastructures",s_auto:"Autoroutes à péage",s_main:"Routes principales",s_main_one:"Route principale",s_sec:"Routes secondaires",s_rail:"Voies ferrées et TER",s_air:"Aéroports",s_port:"Ports",s_energy:"Énergie et hydrocarbures",s_apix:"Grands projets APIX",lg_title:"Légende",lg_cover:"Couverture des plateformes APIX",lg_invest:"Investissement",lg_ter:"TER",lg_rail:"Voie ferrée",lg_proj_note:"pictogramme = secteur",st_ok:"En service",st_build:"En construction",st_check:"État opérationnel à vérifier",indicative:"Position indicative, à valider avec les gestionnaires d'infrastructures.",tab_fiche:"Fiche",tab_assist:"Où m'implanter ?",a_sector:"Votre secteur",a_needs:"Vos besoins",a_port:"Proche d'un port (export, import d'intrants)",a_air:"Proche de l'aéroport AIBD",a_road:"Desservi par l'autoroute ou le TER",a_zes:"Régime fiscal de zone économique",a_res:"Proche des bassins de production ou des ressources",a_go:"Classer les sites",a_fine:"Distances calculées à vol d'oiseau depuis les coordonnées indicatives. En production, le classement utilisera les temps de trajet réels et les données foncières.",
+ fr:{title:"Atlas de l'investissement",subtitle:"Sénégal",explore_t:"Explorer la carte",acc_invest:"Investissement",infra_all:"Tout afficher",acc_socio:"Données de population (ANSD)",w_t:"Où investir au Sénégal ?",w_p:"Repérez les zones économiques, les projets prioritaires et les infrastructures, puis comparez les territoires grâce aux données de l'ANSD.",w_portal:"Découvrir les 7 plateformes",w_pov:"Afficher la carte de la pauvreté",proto:"Prototype CEGIT",notice:"Prototype de démonstration proposé par CEGIT. Positions et contenus indicatifs, à valider avec l'APIX et ses partenaires.",search:"Rechercher",layers:"Couches",l_zones:"Zones économiques",l_plats:"Plateformes APIX",l_projs:"Projets prioritaires",l_infra:"Grands projets et infrastructures",l_cover:"Couverture des plateformes",l_lots:"Parcelles des zones",phase2:"phase 2",sector:"Secteur",cta_t:"Où m'implanter ?",cta_p:"Indiquez votre secteur et vos besoins : l'Atlas classe les sites les plus adaptés.",cta_b:"Trouver un site d'implantation",lg_zone:"Zone économique",lg_plat:"Plateforme APIX",lg_proj:"Projet prioritaire",lg_road:"Autoroute à péage",v_map:"Carte interactive",v_portal:"Découvrir les plateformes",pt_title:"Découvrir les plateformes APIX",pt_intro:"Sept plateformes régionales accompagnent les investisseurs au plus près des territoires. Choisissez une plateforme sur la carte ou dans la liste pour découvrir son territoire, sa population, ses opportunités et ses infrastructures.",pt_all:"Toutes les plateformes",pt_eyebrow:"Plateforme régionale APIX",pt_hq:"Siège de l'APIX",pt_onmap:"Voir sur la carte interactive",pt_contact:"Contacter la plateforme",pt_area:"Superficie",pt_area_n:"calculée (SIG)",pt_share:"de la population nationale",pt_ofpop:"de la population",pt_weighted:"moyenne pondérée",pt_projs_n:"projets prioritaires",pt_inf_n:"aéroports, ports, énergie, autoroutes",sec_terr:"Territoire",sec_pop:"Population",sec_opp:"Opportunités",sec_inf:"Infrastructures",sec_contact:"Contact",t_region:"Région",t_total:"Ensemble",pop_by:"Population par région (2023)",pov_by:"Taux de pauvreté par région (2021-2022)",filieres:"Filières porteuses",autoroutes:"Autoroutes et TER",none_here:"Aucun élément référencé sur ce territoire pour l'instant.",fig_pop:"habitants",fig_work:"15-59 ans",fig_items:"zones et projets",pt_s1:"accompagne les investisseurs dans",pt_s_one:"la région de",pt_s_many:"les régions de",pt_s2:"Son territoire compte",pt_s3:"habitants (RGPH-5, 2023), soit",pt_s4:"de la population du pays.",and_w:"et",contact_note:"Coordonnées reprises du site investinsenegal.sn.",pt_discover:"Découvrir ce territoire",m_terr:"Carte du territoire",m_terr_on:"Régions couvertes par la plateforme",m_terr_off:"Régions voisines",m_seat:"Implantation de la plateforme APIX",m_terr_note:"Population par région : RGPH-5 (2023).",m_pop:"Population et pauvreté",m_pop_col:"Couleur : taux de pauvreté 2021-2022 (mêmes classes pour tout le pays)",m_pop_circ:"Cercles : population 2023",m_opp:"Localisation des opportunités",m_num:"Les numéros sur la carte renvoient aux listes ci-dessous.",m_inf:"Réseaux et équipements",m_pos:"Positions indicatives, à valider.",viab_rate:"de desserte moyenne",viab_blocks:"des îlots desservis",viab_fict:"Données fictives de démonstration : statuts et taux de desserte à confirmer auprès de Senelec, SEN'EAU, ONAS, des opérateurs télécoms et du gestionnaire de la zone.",vs_ok:"En service",vs_partial:"Partiel",vs_planned:"Programmé",lot_conn:"Raccordements en limite de lot",conn_yes:"Disponible",conn_no:"Non disponible",net_elec:"Réseau électrique",net_water:"Eau potable",net_sanit:"Assainissement",net_fiber:"Fibre optique",za_t:"Zones d'activité",za_zoning:"Zonage",za_terrains:"Terrains",za_hint:"Le zonage apparaît en zoomant sur une zone, les terrains en zoomant davantage. Données fictives.",zt_com:"Commerciale",zt_cons:"Construction",zt_serv:"Services",zt_ind:"Industrie",zt_mixte:"Mixte",lot_imm:"Disponible immédiatement",lot_pot:"Potentiellement disponible",lot_terme:"Disponible à terme",lot_occ:"Occupé",lot_nd:"Non disponible",lot_pot_d:"Terrain libre dont l'attribution dépend d'un aménagement complémentaire ou d'un accord du gestionnaire.",lot_terme_d:"Terrain mis sur le marché lors d'une prochaine phase d'aménagement.",lot_nd_d:"Emprise non commercialisable : équipement commun, délaissé ou servitude.",lot_sector:"Secteur",soon_n:"à terme ou potentiels",v360_btn:"Vue 360° de la zone",v360_t:"Vue 360°",v360_note:"Maquette 3D de démonstration, générée à partir du parcellaire fictif. Ce n'est pas une prise de vue réelle.",v360_help:"Faites glisser pour tourner autour de la zone, molette ou pincement pour zoomer.",v360_auto:"Rotation automatique",v360_top:"Vue de dessus",v360_close:"Fermer la vue 360°",v360_err:"La vue 3D n'a pas pu se charger dans ce navigateur.",v360_load:"Chargement de la vue 3D…",lot_free:"Disponible",lot_res:"Réservé",lot_taken:"Attribué",lot_equip:"Équipement de la zone",lot_t:"Lot",islot:"îlot",lot_surf:"Superficie",lot_dim:"Dimensions",lot_pm2:"Prix indicatif au m²",lot_total:"Prix total indicatif",firm_name:"Occupant",firm_ex:"entreprise exemple",lot_res_d:"Lot réservé : une demande d'attribution est en cours d'instruction.",lot_equip_d:"Emprise réservée aux équipements communs de la zone : poste électrique, services, administration.",lot_interest:"Manifester mon intérêt pour ce lot",lot_back:"Retour à",lot_fict:"Données fictives de démonstration : parcellaire, prix et occupants à remplacer par les données du gestionnaire de la zone (APROSI, APIX).",lot_demo:"Parcellaire fictif de démonstration.",zplan_t:"Plan des parcelles",zplan_btn:"Voir les parcelles sur la carte",free_lots:"Lots disponibles",free_ha:"ha disponibles",price_rng:"Prix indicatif",per_m2:"FCFA/m²",firms_list:"Entreprises installées",and_more:"Et {n} autres.",lots_hint:"Zoomez sur une zone économique pour afficher son zonage puis ses terrains.",demo:"démo",interest_t:"Contact pour ce lot",interest_subj:"Objet du message",interest_subj_v:"Demande d'information sur le lot",lot_sort:"Lots disponibles, du plus grand au plus petit",pdf_btn:"Télécharger le rapport PDF",pdf_wait:"Préparation du PDF…",pdf_ok:"Rapport généré : l'enregistrement vous a été proposé.",pdf_declined:"Enregistrement annulé.",pdf_busy:"Une demande d'enregistrement est déjà ouverte.",pdf_na:"Le téléchargement n'est pas disponible dans cette vue.",pdf_err:"Le PDF n'a pas pu être généré. Réessayez dans un instant.",pdf_kind:"Rapport territorial",pdf_foot:"Atlas de l'investissement – prototype CEGIT. Données : ANSD (RGPH-5 2023, Annuaire Population 2024, EHCVM II 2021-2022) ; limites Natural Earth ; positions indicatives.",pdf_page:"Page",pdf_cat:"Catégorie",pdf_name:"Nom",pdf_status:"Statut",socio_l:"Colorer les régions selon",ind_none:"Aucune (couverture des plateformes)",ind_pop:"Population 2023",ind_dens:"Densité (hab./km²)",ind_growth:"Croissance annuelle 2013-2023",ind_urb:"Taux d'urbanisation 2024",ind_work:"Population 15-59 ans (2024)",ind_young:"Part des 0-14 ans (2024)",ind_tm:"Taille moyenne des ménages",ind_pov:"Taux de pauvreté 2021-2022",theme_hint:"Colore les régions selon un indicateur de l'ANSD.",src:"Source",sources_t:"Sources des données",src_bounds:"Limites, routes et voies ferrées : Natural Earth",socio_t:"Profil socio-démographique",reg_sub:"Profil établi à partir des données de l'ANSD",pop23:"Population (RGPH-5, 2023)",share:"Part de la population nationale",nat:"national :",per_km2:"hab./km², calculée",hh:"ménages",age_t:"Structure par âge (2024)",yrs:"ans",work_t:"Main-d'œuvre potentielle (15-59 ans, 2024)",dens_note:"Densité calculée à partir de la superficie SIG (approximative).",men_note:"* Nombre de ménages de Kolda reconstitué (valeur peu lisible dans la source).",basin:"Bassin de population",inhab:"hab.",c_pop:"habitants",a_work:"Bassin de main-d'œuvre important (15-59 ans, ANSD)",why_work:"15-59 ans :",bounds:"Limites, routes et voies ferrées : Natural Earth",l_infra:"Infrastructures",s_auto:"Autoroutes à péage",s_main:"Routes principales",s_main_one:"Route principale",s_sec:"Routes secondaires",s_rail:"Voies ferrées et TER",s_air:"Aéroports",s_port:"Ports",s_energy:"Énergie et hydrocarbures",s_apix:"Grands projets APIX",lg_title:"Légende",lg_cover:"Couverture des plateformes APIX",lg_invest:"Investissement",lg_ter:"TER",lg_rail:"Voie ferrée",lg_proj_note:"pictogramme = secteur",st_ok:"En service",st_build:"En construction",st_check:"État opérationnel à vérifier",indicative:"Position indicative, à valider avec les gestionnaires d'infrastructures.",tab_fiche:"Fiche",tab_assist:"Où m'implanter ?",a_sector:"Votre secteur",a_needs:"Vos besoins",a_port:"Proche d'un port (export, import d'intrants)",a_air:"Proche de l'aéroport AIBD",a_road:"Desservi par l'autoroute ou le TER",a_zes:"Régime fiscal de zone économique",a_res:"Proche des bassins de production ou des ressources",a_go:"Classer les sites",a_fine:"Distances calculées à vol d'oiseau depuis les coordonnées indicatives. En production, le classement utilisera les temps de trajet réels et les données foncières.",
   c_zones:"zones",c_plats:"plateformes",c_projs:"projets",c_regions:"régions",
   e_title:"Explorez les opportunités",e_1:"Cliquez sur une zone, un projet ou une région de la carte.",e_2:"Filtrez par secteur dans la colonne de gauche.",e_3:"Lancez l'assistant pour classer les sites selon vos besoins.",
   region:"Région",plat:"Plateforme APIX de rattachement",dist:"Accessibilité (vol d'oiseau)",port:"Port le plus proche",air:"Aéroport AIBD",axis:"Autoroute ou TER",surf:"Superficie",lots:"Lots disponibles",firms:"Entreprises installées",regime:"Régime",todo:"à intégrer",viab:"Viabilisation",elec:"Électricité",water:"Eau",sanit:"Assainissement",fiber:"Fibre optique",decisions:"Décisions d'agrément de la zone",contact:"Contacter la plateforme",sheet:"Fiche projet (PDF)",sector_l:"Secteur",in_region:"Dans cette région",none:"Aucun élément référencé pour l'instant.",covers:"Régions couvertes",address:"Adresse",phone:"Téléphone",email:"E-mail",copy:"Copier",copied:"Copié",pop:"Population",pop_src:"à relier aux données ANSD",reg_k:"Région administrative",zones_k:"Zones économiques",projs_k:"Projets prioritaires",pdf_page:"Page APIX",more:"En savoir plus",rank_t:"Sites recommandés",why_port:"port à",why_air:"AIBD à",why_axis:"axe à",why_zes:"régime ZES",why_res:"ressources de la région",open:"Voir sur la carte",z_type:"Type",infra_k:"Grand projet / infrastructure"},
- en:{title:"Investment Atlas",subtitle:"Senegal",explore_t:"Explore the map",acc_invest:"Investment",infra_all:"Show all",acc_socio:"Population data (ANSD)",w_t:"Where to invest in Senegal?",w_p:"Find economic zones, priority projects and infrastructure, then compare territories using ANSD data.",w_portal:"Discover the 7 offices",w_pov:"Show the poverty map",proto:"Prototype CEGIT",notice:"Demonstration prototype proposed by CEGIT. Positions and content are indicative and must be validated with APIX and its partners.",search:"Search",layers:"Layers",l_zones:"Economic zones",l_plats:"APIX regional offices",l_projs:"Priority projects",l_infra:"Major projects & infrastructure",l_cover:"Regional office coverage",l_lots:"Zone plots",phase2:"phase 2",sector:"Sector",cta_t:"Where should I invest?",cta_p:"Choose your sector and needs: the Atlas ranks the best-suited sites.",cta_b:"Find a location",lg_zone:"Economic zone",lg_plat:"APIX office",lg_proj:"Priority project",lg_road:"Toll highway",v_map:"Interactive map",v_portal:"Discover the offices",pt_title:"Discover APIX regional offices",pt_intro:"Seven regional offices support investors close to the ground. Pick an office on the map or in the list to discover its territory, population, opportunities and infrastructure.",pt_all:"All offices",pt_eyebrow:"APIX regional office",pt_hq:"APIX headquarters",pt_onmap:"Show on the interactive map",pt_contact:"Contact the office",pt_area:"Area",pt_area_n:"computed (GIS)",pt_share:"of national population",pt_ofpop:"of the population",pt_weighted:"weighted average",pt_projs_n:"priority projects",pt_inf_n:"airports, ports, energy, highways",sec_terr:"Territory",sec_pop:"Population",sec_opp:"Opportunities",sec_inf:"Infrastructure",sec_contact:"Contact",t_region:"Region",t_total:"Total",pop_by:"Population by region (2023)",pov_by:"Poverty rate by region (2021-2022)",filieres:"Key sectors",autoroutes:"Highways and TER",none_here:"Nothing listed in this territory yet.",fig_pop:"inhabitants",fig_work:"aged 15-59",fig_items:"zones & projects",pt_s1:"supports investors in",pt_s_one:"the region of",pt_s_many:"the regions of",pt_s2:"Its territory has",pt_s3:"inhabitants (RGPH-5, 2023), i.e.",pt_s4:"of the country's population.",and_w:"and",contact_note:"Contact details taken from investinsenegal.sn.",pt_discover:"Discover this territory",m_terr:"Territory map",m_terr_on:"Regions covered by the office",m_terr_off:"Neighbouring regions",m_seat:"APIX office location",m_terr_note:"Population by region: RGPH-5 (2023).",m_pop:"Population and poverty",m_pop_col:"Colour: poverty rate 2021-2022 (same classes nationwide)",m_pop_circ:"Circles: population 2023",m_opp:"Where the opportunities are",m_num:"Numbers on the map match the lists below.",m_inf:"Networks and facilities",m_pos:"Indicative positions, to be validated.",viab_rate:"average coverage",viab_blocks:"of blocks served",viab_fict:"Demonstration data: statuses and coverage to be confirmed with Senelec, SEN'EAU, ONAS, telecom operators and the zone operator.",vs_ok:"In service",vs_partial:"Partial",vs_planned:"Planned",lot_conn:"Connections at plot boundary",conn_yes:"Available",conn_no:"Not available",net_elec:"Power network",net_water:"Drinking water",net_sanit:"Sanitation",net_fiber:"Fibre",lot_free:"Available",lot_res:"Reserved",lot_taken:"Allocated",lot_equip:"Zone facility",lot_t:"Plot",islot:"block",lot_surf:"Area",lot_dim:"Dimensions",lot_pm2:"Indicative price per m²",lot_total:"Indicative total price",firm_name:"Occupant",firm_ex:"sample company",lot_res_d:"Reserved plot: an allocation request is being reviewed.",lot_equip_d:"Area kept for shared zone facilities: power substation, services, administration.",lot_interest:"Express interest in this plot",lot_back:"Back to",lot_fict:"Demonstration data: plots, prices and occupants to be replaced with the zone operator's data (APROSI, APIX).",lot_demo:"Fictitious demonstration plots.",zplan_t:"Plot plan",zplan_btn:"Show plots on the map",free_lots:"Available plots",free_ha:"ha available",price_rng:"Indicative price",per_m2:"FCFA/m²",firms_list:"Companies on site",and_more:"And {n} more.",lots_hint:"Zoom into an economic zone to display its plots.",demo:"demo",interest_t:"Contact for this plot",interest_subj:"Message subject",interest_subj_v:"Information request on plot",lot_sort:"Available plots, largest first",pdf_btn:"Download PDF report",pdf_wait:"Preparing PDF…",pdf_ok:"Report generated: you were offered to save it.",pdf_declined:"Save cancelled.",pdf_busy:"A save request is already open.",pdf_na:"Download is not available in this view.",pdf_err:"The PDF could not be generated. Please try again shortly.",pdf_kind:"Territorial report",pdf_foot:"Investment Atlas – CEGIT prototype. Data: ANSD (RGPH-5 2023, Population Yearbook 2024, EHCVM II 2021-2022); Natural Earth boundaries; indicative positions.",pdf_page:"Page",pdf_cat:"Category",pdf_name:"Name",pdf_status:"Status",socio_l:"Colour regions by",ind_none:"None (office coverage)",ind_pop:"Population 2023",ind_dens:"Density (inhab./km²)",ind_growth:"Annual growth 2013-2023",ind_urb:"Urbanisation rate 2024",ind_work:"Population aged 15-59 (2024)",ind_young:"Share aged 0-14 (2024)",ind_tm:"Average household size",ind_pov:"Poverty rate 2021-2022",theme_hint:"Colours regions by an ANSD indicator.",src:"Source",sources_t:"Data sources",src_bounds:"Boundaries, roads and railways: Natural Earth",socio_t:"Socio-demographic profile",reg_sub:"Profile based on ANSD data",pop23:"Population (RGPH-5, 2023)",share:"Share of national population",nat:"national:",per_km2:"inhab./km², computed",hh:"households",age_t:"Age structure (2024)",yrs:"yrs",work_t:"Potential workforce (aged 15-59, 2024)",dens_note:"Density computed from GIS area (approximate).",men_note:"* Kolda household count reconstructed (value hard to read in the source).",basin:"Population catchment",inhab:"inhab.",c_pop:"inhabitants",a_work:"Large workforce catchment (aged 15-59, ANSD)",why_work:"aged 15-59:",bounds:"Boundaries, roads and railways: Natural Earth",l_infra:"Infrastructure",s_auto:"Toll highways",s_main:"Main roads",s_main_one:"Main road",s_sec:"Secondary roads",s_rail:"Railways and TER",s_air:"Airports",s_port:"Ports",s_energy:"Energy and hydrocarbons",s_apix:"APIX major projects",lg_title:"Legend",lg_cover:"APIX office coverage",lg_invest:"Investment",lg_ter:"TER",lg_rail:"Railway",lg_proj_note:"icon = sector",st_ok:"In service",st_build:"Under construction",st_check:"Operational status to be checked",indicative:"Indicative position, to be validated with infrastructure operators.",tab_fiche:"Details",tab_assist:"Where to invest?",a_sector:"Your sector",a_needs:"Your needs",a_port:"Close to a port (export, inputs)",a_air:"Close to AIBD airport",a_road:"Served by the highway or the TER",a_zes:"Economic-zone tax regime",a_res:"Close to production areas or resources",a_go:"Rank sites",a_fine:"Straight-line distances from indicative coordinates. In production, ranking will use real travel times and land data.",
+ en:{title:"Investment Atlas",subtitle:"Senegal",explore_t:"Explore the map",acc_invest:"Investment",infra_all:"Show all",acc_socio:"Population data (ANSD)",w_t:"Where to invest in Senegal?",w_p:"Find economic zones, priority projects and infrastructure, then compare territories using ANSD data.",w_portal:"Discover the 7 offices",w_pov:"Show the poverty map",proto:"Prototype CEGIT",notice:"Demonstration prototype proposed by CEGIT. Positions and content are indicative and must be validated with APIX and its partners.",search:"Search",layers:"Layers",l_zones:"Economic zones",l_plats:"APIX regional offices",l_projs:"Priority projects",l_infra:"Major projects & infrastructure",l_cover:"Regional office coverage",l_lots:"Zone plots",phase2:"phase 2",sector:"Sector",cta_t:"Where should I invest?",cta_p:"Choose your sector and needs: the Atlas ranks the best-suited sites.",cta_b:"Find a location",lg_zone:"Economic zone",lg_plat:"APIX office",lg_proj:"Priority project",lg_road:"Toll highway",v_map:"Interactive map",v_portal:"Discover the offices",pt_title:"Discover APIX regional offices",pt_intro:"Seven regional offices support investors close to the ground. Pick an office on the map or in the list to discover its territory, population, opportunities and infrastructure.",pt_all:"All offices",pt_eyebrow:"APIX regional office",pt_hq:"APIX headquarters",pt_onmap:"Show on the interactive map",pt_contact:"Contact the office",pt_area:"Area",pt_area_n:"computed (GIS)",pt_share:"of national population",pt_ofpop:"of the population",pt_weighted:"weighted average",pt_projs_n:"priority projects",pt_inf_n:"airports, ports, energy, highways",sec_terr:"Territory",sec_pop:"Population",sec_opp:"Opportunities",sec_inf:"Infrastructure",sec_contact:"Contact",t_region:"Region",t_total:"Total",pop_by:"Population by region (2023)",pov_by:"Poverty rate by region (2021-2022)",filieres:"Key sectors",autoroutes:"Highways and TER",none_here:"Nothing listed in this territory yet.",fig_pop:"inhabitants",fig_work:"aged 15-59",fig_items:"zones & projects",pt_s1:"supports investors in",pt_s_one:"the region of",pt_s_many:"the regions of",pt_s2:"Its territory has",pt_s3:"inhabitants (RGPH-5, 2023), i.e.",pt_s4:"of the country's population.",and_w:"and",contact_note:"Contact details taken from investinsenegal.sn.",pt_discover:"Discover this territory",m_terr:"Territory map",m_terr_on:"Regions covered by the office",m_terr_off:"Neighbouring regions",m_seat:"APIX office location",m_terr_note:"Population by region: RGPH-5 (2023).",m_pop:"Population and poverty",m_pop_col:"Colour: poverty rate 2021-2022 (same classes nationwide)",m_pop_circ:"Circles: population 2023",m_opp:"Where the opportunities are",m_num:"Numbers on the map match the lists below.",m_inf:"Networks and facilities",m_pos:"Indicative positions, to be validated.",viab_rate:"average coverage",viab_blocks:"of blocks served",viab_fict:"Demonstration data: statuses and coverage to be confirmed with Senelec, SEN'EAU, ONAS, telecom operators and the zone operator.",vs_ok:"In service",vs_partial:"Partial",vs_planned:"Planned",lot_conn:"Connections at plot boundary",conn_yes:"Available",conn_no:"Not available",net_elec:"Power network",net_water:"Drinking water",net_sanit:"Sanitation",net_fiber:"Fibre",za_t:"Business zones",za_zoning:"Zoning",za_terrains:"Plots",za_hint:"Zoning appears when you zoom into a zone, plots when you zoom further. Fictitious data.",zt_com:"Commercial",zt_cons:"Under development",zt_serv:"Services",zt_ind:"Industry",zt_mixte:"Mixed",lot_imm:"Available now",lot_pot:"Potentially available",lot_terme:"Available later",lot_occ:"Occupied",lot_nd:"Not available",lot_pot_d:"Vacant plot whose allocation depends on further works or the operator's approval.",lot_terme_d:"Plot released in a later development phase.",lot_nd_d:"Non-marketable area: shared facility, leftover or easement.",lot_sector:"Sector",soon_n:"later or potential",v360_btn:"360° view of the zone",v360_t:"360° view",v360_note:"Demonstration 3D model generated from the fictitious plot layout. Not real imagery.",v360_help:"Drag to orbit around the zone, scroll or pinch to zoom.",v360_auto:"Auto-rotate",v360_top:"Top view",v360_close:"Close the 360° view",v360_err:"The 3D view could not load in this browser.",v360_load:"Loading the 3D view…",lot_free:"Available",lot_res:"Reserved",lot_taken:"Allocated",lot_equip:"Zone facility",lot_t:"Plot",islot:"block",lot_surf:"Area",lot_dim:"Dimensions",lot_pm2:"Indicative price per m²",lot_total:"Indicative total price",firm_name:"Occupant",firm_ex:"sample company",lot_res_d:"Reserved plot: an allocation request is being reviewed.",lot_equip_d:"Area kept for shared zone facilities: power substation, services, administration.",lot_interest:"Express interest in this plot",lot_back:"Back to",lot_fict:"Demonstration data: plots, prices and occupants to be replaced with the zone operator's data (APROSI, APIX).",lot_demo:"Fictitious demonstration plots.",zplan_t:"Plot plan",zplan_btn:"Show plots on the map",free_lots:"Available plots",free_ha:"ha available",price_rng:"Indicative price",per_m2:"FCFA/m²",firms_list:"Companies on site",and_more:"And {n} more.",lots_hint:"Zoom into an economic zone to display its zoning, then its plots.",demo:"demo",interest_t:"Contact for this plot",interest_subj:"Message subject",interest_subj_v:"Information request on plot",lot_sort:"Available plots, largest first",pdf_btn:"Download PDF report",pdf_wait:"Preparing PDF…",pdf_ok:"Report generated: you were offered to save it.",pdf_declined:"Save cancelled.",pdf_busy:"A save request is already open.",pdf_na:"Download is not available in this view.",pdf_err:"The PDF could not be generated. Please try again shortly.",pdf_kind:"Territorial report",pdf_foot:"Investment Atlas – CEGIT prototype. Data: ANSD (RGPH-5 2023, Population Yearbook 2024, EHCVM II 2021-2022); Natural Earth boundaries; indicative positions.",pdf_page:"Page",pdf_cat:"Category",pdf_name:"Name",pdf_status:"Status",socio_l:"Colour regions by",ind_none:"None (office coverage)",ind_pop:"Population 2023",ind_dens:"Density (inhab./km²)",ind_growth:"Annual growth 2013-2023",ind_urb:"Urbanisation rate 2024",ind_work:"Population aged 15-59 (2024)",ind_young:"Share aged 0-14 (2024)",ind_tm:"Average household size",ind_pov:"Poverty rate 2021-2022",theme_hint:"Colours regions by an ANSD indicator.",src:"Source",sources_t:"Data sources",src_bounds:"Boundaries, roads and railways: Natural Earth",socio_t:"Socio-demographic profile",reg_sub:"Profile based on ANSD data",pop23:"Population (RGPH-5, 2023)",share:"Share of national population",nat:"national:",per_km2:"inhab./km², computed",hh:"households",age_t:"Age structure (2024)",yrs:"yrs",work_t:"Potential workforce (aged 15-59, 2024)",dens_note:"Density computed from GIS area (approximate).",men_note:"* Kolda household count reconstructed (value hard to read in the source).",basin:"Population catchment",inhab:"inhab.",c_pop:"inhabitants",a_work:"Large workforce catchment (aged 15-59, ANSD)",why_work:"aged 15-59:",bounds:"Boundaries, roads and railways: Natural Earth",l_infra:"Infrastructure",s_auto:"Toll highways",s_main:"Main roads",s_main_one:"Main road",s_sec:"Secondary roads",s_rail:"Railways and TER",s_air:"Airports",s_port:"Ports",s_energy:"Energy and hydrocarbons",s_apix:"APIX major projects",lg_title:"Legend",lg_cover:"APIX office coverage",lg_invest:"Investment",lg_ter:"TER",lg_rail:"Railway",lg_proj_note:"icon = sector",st_ok:"In service",st_build:"Under construction",st_check:"Operational status to be checked",indicative:"Indicative position, to be validated with infrastructure operators.",tab_fiche:"Details",tab_assist:"Where to invest?",a_sector:"Your sector",a_needs:"Your needs",a_port:"Close to a port (export, inputs)",a_air:"Close to AIBD airport",a_road:"Served by the highway or the TER",a_zes:"Economic-zone tax regime",a_res:"Close to production areas or resources",a_go:"Rank sites",a_fine:"Straight-line distances from indicative coordinates. In production, ranking will use real travel times and land data.",
   c_zones:"zones",c_plats:"offices",c_projs:"projects",c_regions:"regions",
   e_title:"Explore opportunities",e_1:"Click a zone, a project or a region on the map.",e_2:"Filter by sector in the left column.",e_3:"Start the assistant to rank sites against your needs.",
   region:"Region",plat:"APIX office in charge",dist:"Access (straight line)",port:"Nearest port",air:"AIBD airport",axis:"Highway or TER",surf:"Area",lots:"Available plots",firms:"Companies on site",regime:"Regime",todo:"to be added",viab:"Utilities",elec:"Electricity",water:"Water",sanit:"Sanitation",fiber:"Fibre",decisions:"Zone approval decisions",contact:"Contact the office",sheet:"Project sheet (PDF)",sector_l:"Sector",in_region:"In this region",none:"Nothing listed yet.",covers:"Regions covered",address:"Address",phone:"Phone",email:"Email",copy:"Copy",copied:"Copied",pop:"Population",pop_src:"to be linked to ANSD data",reg_k:"Administrative region",zones_k:"Economic zones",projs_k:"Priority projects",pdf_page:"APIX page",more:"Learn more",rank_t:"Recommended sites",why_port:"port",why_air:"AIBD",why_axis:"corridor",why_zes:"zone regime",why_res:"regional resources",open:"Show on map",z_type:"Type",infra_k:"Major project / infrastructure"}
@@ -837,36 +869,72 @@ NE.rails.forEach(p=>{const fg=drawLine(p,'rail',true);fg.bindTooltip(()=>t('lg_r
 LINES.forEach(l=>{const fg=drawLine(l.pts,l.type,true).on('click',()=>select('infra',l.id));fg.bindTooltip(l.name,{sticky:true});markers[l.id]=fg;groups[l.cat].addLayer(fg);});
 Object.entries(groups).forEach(([k,g])=>{if(k!=='sec')g.addTo(map);});
 
-/* ---------- parcellaire des zones économiques (données de démonstration) ---------- */
-const ZPLAN={'z-diam':{w:1400,h:900,cols:4,rows:3,base:20000,c3:'DMN'},'z-diass':{w:1200,h:800,cols:4,rows:3,base:15000,c3:'DSS'},'z-sand':{w:1000,h:760,cols:3,rows:3,base:9000,c3:'SDR'},'z-zfi':{w:900,h:600,cols:3,rows:2,base:25000,c3:'ZFI'}};
+/* ---------- zonage et parcellaire des zones économiques (données de démonstration) ----------
+   Repère local en mètres (u vers l'est, v vers le nord avant rotation), centré sur la zone. */
+const ZPLAN={
+  'z-diam':{w:1500,h:1000,base:20000,c3:'DMN',theta:16,types:['ind','serv','com']},
+  'z-diass':{w:1300,h:900,base:15000,c3:'DSS',theta:-12,types:['serv','mixte']},
+  'z-sand':{w:1150,h:850,base:9000,c3:'SDR',theta:28,types:['ind','cons']},
+  'z-zfi':{w:950,h:700,base:25000,c3:'ZFI',theta:-22,types:['ind','com']}
+};
+const ZTYPES=['com','cons','serv','ind','mixte'];
+const ZT_COL={com:'#3B5BDB',cons:'#E03131',serv:'#0C8599',ind:'#D6336C',mixte:'#B08850'};
+const ZT_GEOM={ind:{d:72,wmin:45,wmax:95},serv:{d:55,wmin:35,wmax:70},com:{d:42,wmin:24,wmax:46},mixte:{d:52,wmin:30,wmax:65},cons:{d:62,wmin:40,wmax:85}};
+const LOT_ST=['imm','pot','terme','res','occ','nd'];
+const LOT_STYLE={imm:{fill:'#EF7900'},pot:{fill:'#F6C48F'},terme:{fill:'#FCE6CC',hatch:'#EF7900'},res:{fill:'#CBD7E8',hatch:'#2F4E7A'},occ:{fill:'#2F4E7A'},nd:{fill:'#BFC4CB'}};
+const LOT_COL=Object.fromEntries(LOT_ST.map(s=>[s,LOT_STYLE[s].hatch||LOT_STYLE[s].fill]));
+const cssFill=s=>{const st=LOT_STYLE[s];return st.hatch?`repeating-linear-gradient(45deg,${st.hatch} 0 2.5px,${st.fill} 2.5px 6px)`:st.fill;};
+const svgFill=(s,suf)=>LOT_STYLE[s].hatch?`url(#h-${s}-${suf})`:LOT_STYLE[s].fill;
+const patternDefs=(suf,w)=>`<defs>${['terme','res'].map(s=>`<pattern id="h-${s}-${suf}" patternUnits="userSpaceOnUse" width="${w}" height="${w}" patternTransform="rotate(45)"><rect width="${w}" height="${w}" fill="${LOT_STYLE[s].fill}"/><rect width="${w*0.42}" height="${w}" fill="${LOT_STYLE[s].hatch}"/></pattern>`).join('')}</defs>`;
 const LOTS={},LOTS_BY_ZONE={};
 function rng(seed){let s=seed>>>0;return()=>{s=(Math.imul(s,1664525)+1013904223)>>>0;return s/4294967296;};}
 function hashStr(s){let h=2166136261;for(const c of s){h^=c.charCodeAt(0);h=Math.imul(h,16777619);}return h>>>0;}
-function buildLots(z){
-  const pl=ZPLAN[z.id];if(!pl)return;const R=rng(hashStr(z.id)),road=24,mid=12;
-  const bw=(pl.w-road*(pl.cols+1))/pl.cols,bh=(pl.h-road*(pl.rows+1))/pl.rows,d=(bh-mid)/2;
-  const mLat=111320,mLon=111320*Math.cos(z.ll[0]*Math.PI/180);
-  const toLL=(x,y)=>[z.ll[0]-(y-pl.h/2)/mLat,z.ll[1]+(x-pl.w/2)/mLon];
-  z.plan={...pl,toLL,area:pl.w*pl.h,road,bh,bw};
-  const out=[];let firm=0;
-  for(let r=0;r<pl.rows;r++)for(let c=0;c<pl.cols;c++){
-    const x0=road+c*(bw+road),y0=road+r*(bh+road),blk=String.fromCharCode(65+r)+(c+1),equip=r===Math.floor(pl.rows/2)&&c===Math.floor(pl.cols/2);let n=0;
-    for(let half=0;half<2;half++){
-      const y=y0+half*(d+mid);let x=x0;
-      while(x<x0+bw-1){
-        let w=Math.round(30+R()*45);if(x0+bw-(x+w)<28)w=x0+bw-x;
-        n++;const u=R(),st=equip?'equip':u<.42?'taken':u<.58?'res':'free';
-        const lot={id:`${pl.c3}-${blk}-${String(n).padStart(2,'0')}`,zone:z.id,blk,row:r,x,y,w,h:d,surf:Math.round(w*d),price:Math.round(pl.base*(.85+R()*.35)/500)*500,status:st};
-        if(st==='taken'){firm++;lot.firmSector=z.sectors[Math.floor(R()*z.sectors.length)];lot.firmN=firm;}
-        lot.poly=[toLL(x,y),toLL(x+w,y),toLL(x+w,y+d),toLL(x,y+d)];lot.ll=toLL(x+w/2,y+d/2);lot.region=z.region;
-        out.push(lot);LOTS[lot.id]=lot;x+=w;
-      }
-    }
-  }
-  LOTS_BY_ZONE[z.id]=out;
+/* géométrie plane */
+const cross=(o,a,b)=>(a[0]-o[0])*(b[1]-o[1])-(a[1]-o[1])*(b[0]-o[0]);
+function hull(pts){const p=[...pts].sort((a,b)=>a[0]-b[0]||a[1]-b[1]),lo=[],up=[];for(const q of p){while(lo.length>1&&cross(lo.at(-2),lo.at(-1),q)<=0)lo.pop();lo.push(q);}for(const q of p.reverse()){while(up.length>1&&cross(up.at(-2),up.at(-1),q)<=0)up.pop();up.push(q);}return lo.slice(0,-1).concat(up.slice(0,-1));}
+function clipHalf(poly,a,b,c){/* garde a*u+b*v+c>=0 */const out=[];for(let i=0;i<poly.length;i++){const P=poly[i],Q=poly[(i+1)%poly.length],fp=a*P[0]+b*P[1]+c,fq=a*Q[0]+b*Q[1]+c;if(fp>=0)out.push(P);if((fp>=0)!==(fq>=0)){const t_=fp/(fp-fq);out.push([P[0]+t_*(Q[0]-P[0]),P[1]+t_*(Q[1]-P[1])]);}}return out;}
+function clipConvex(subj,clip){let out=subj;for(let i=0;i<clip.length&&out.length;i++){const A=clip[i],B=clip[(i+1)%clip.length];out=clipHalf(out,-(B[1]-A[1]),(B[0]-A[0]),(B[1]-A[1])*A[0]-(B[0]-A[0])*A[1]);}return out;}
+const polyArea=p=>Math.abs(p.reduce((s,q,i)=>{const r=p[(i+1)%p.length];return s+q[0]*r[1]-r[0]*q[1];},0))/2;
+const polyCentroid=p=>{let a=0,x=0,y=0;p.forEach((q,i)=>{const r=p[(i+1)%p.length],c=q[0]*r[1]-r[0]*q[1];a+=c;x+=(q[0]+r[0])*c;y+=(q[1]+r[1])*c;});return a?[x/(3*a),y/(3*a)]:p[0];};
+const bbox=p=>p.reduce((b,q)=>[Math.min(b[0],q[0]),Math.min(b[1],q[1]),Math.max(b[2],q[0]),Math.max(b[3],q[1])],[1e9,1e9,-1e9,-1e9]);
+function lineSpan(poly,v){/* intersection de la droite v=cste avec un polygone convexe */const us=[];for(let i=0;i<poly.length;i++){const P=poly[i],Q=poly[(i+1)%poly.length];if((P[1]-v)*(Q[1]-v)<=0&&P[1]!==Q[1])us.push(P[0]+(v-P[1])/(Q[1]-P[1])*(Q[0]-P[0]));}return us.length>1?[Math.min(...us),Math.max(...us)]:null;}
+function pickStatus(R,type,f){/* f : avancement de l'aménagement, 0 au nord (1re phase) à 1 au sud */
+  if(type==='cons')f=Math.min(1,f+.45);const n=(R()-.5)*.25;f=Math.max(0,Math.min(1,f+n));
+  const w={occ:Math.max(.04,.86-.95*f),res:.06+.05*f,imm:.04+.16*f,pot:.02+.14*f,terme:Math.max(0,.55*f-.18),nd:.02};
+  let u=R()*Object.values(w).reduce((a,x)=>a+x,0);for(const k of ['occ','res','imm','pot','terme','nd']){u-=w[k];if(u<=0)return k;}return 'nd';}
+function buildZone(z){
+  const pl=ZPLAN[z.id];if(!pl)return;const R=rng(hashStr(z.id)),road=16;
+  const th=pl.theta*Math.PI/180,ct=Math.cos(th),st=Math.sin(th),mLat=111320,mLon=111320*Math.cos(z.ll[0]*Math.PI/180);
+  const toLL=(u,v)=>{const x=u*ct-v*st,y=u*st+v*ct;return[z.ll[0]+y/mLat,z.ll[1]+x/mLon];};
+  /* emprise : polygone convexe irrégulier */
+  const N=11,raw=[];for(let i=0;i<N;i++){const a=(i+R()*.6-.3)*2*Math.PI/N,k=.8+R()*.24;raw.push([Math.cos(a)*pl.w/2*k,Math.sin(a)*pl.h/2*k]);}
+  const P=hull(raw),bb=bbox(P);
+  /* zonage : secteurs séparés par des voies obliques */
+  const k=pl.types.length,cuts=[];for(let i=1;i<k;i++)cuts.push({c:bb[0]+(bb[2]-bb[0])*(i/k+(R()-.5)*.08),s:(R()-.5)*.6});
+  const sectors=pl.types.map((type,i)=>{let poly=P;if(i>0){const c=cuts[i-1];poly=clipHalf(poly,1,-c.s,-(c.c+road));}if(i<k-1){const c=cuts[i];poly=clipHalf(poly,-1,c.s,c.c-road);}
+    return{id:`${z.id}-s${i}`,letter:String.fromCharCode(65+i),type,poly,area:polyArea(poly)};});
+  const lots=[],roads=[];let firm=0;
+  sectors.forEach(sc=>{const g=ZT_GEOM[sc.type],sb=bbox(sc.poly);let blk=0;
+    for(let v0=sb[1];v0<sb[3];v0+=2*g.d+road){
+      const rv=v0+2*g.d+road/2,span=lineSpan(sc.poly,rv);if(span&&span[1]-span[0]>40)roads.push({v:rv,u0:span[0]+6,u1:span[1]-6,sector:sc.id});
+      for(let u0=sb[0];u0<sb[2];){const BW=150+R()*120;blk++;let n=0;
+        for(let half=0;half<2;half++){const va=v0+half*g.d;let x=u0;
+          while(x<u0+BW-1){let w=g.wmin+R()*(g.wmax-g.wmin);if(u0+BW-(x+w)<g.wmin*.7)w=u0+BW-x;
+            const rect=[[x,va],[x+w,va],[x+w,va+g.d],[x,va+g.d]],poly=clipConvex(rect,sc.poly);x+=w;
+            if(poly.length<3)continue;const ar=polyArea(poly);if(ar<220)continue;
+            n++;const ratio=ar/(w*g.d),c=polyCentroid(poly),status=ratio<.35?'nd':pickStatus(R,sc.type,(bb[3]-c[1])/(bb[3]-bb[1]));
+            const lot={id:`${pl.c3}-${sc.letter}${blk}-${String(n).padStart(2,'0')}`,zone:z.id,sector:sc.id,type:sc.type,blk:sc.letter+blk,local:poly,vc:c[1],
+              fw:w,fd:g.d,clipped:ratio<.98,surf:Math.round(ar),price:Math.round(pl.base*(sc.type==='com'?1.15:sc.type==='cons'?.8:1)*(.88+R()*.3)/500)*500,status};
+            if(status==='occ'){firm++;lot.firmSector=z.sectors[Math.floor(R()*z.sectors.length)];lot.firmN=firm;lot.hgt=6+R()*(sc.type==='com'?22:14);}
+            lot.poly=poly.map(q=>toLL(q[0],q[1]));lot.ll=toLL(c[0],c[1]);lot.region=z.region;lots.push(lot);LOTS[lot.id]=lot;}
+        }
+        u0+=BW+road;}
+    }});
+  z.plan={toLL,P,bb,sectors,roads,area:polyArea(P),c3:pl.c3,theta:pl.theta};
+  LOTS_BY_ZONE[z.id]=lots;
 }
-ZONES.forEach(buildLots);
-/* viabilisation des zones (démonstration) : statut, opérateur, desserte (% des îlots) */
+ZONES.forEach(buildZone);
+/* viabilisation des zones (démonstration) : statut, opérateur, desserte (% de la zone, du nord vers le sud) */
 const NETS=['elec','water','sanit','fiber'];
 const NET_COL={elec:'#E4572E',water:'#2B7BB9',sanit:'#8C6A3F',fiber:'#8E5CC4'};
 const NET_OP={elec:'Senelec',water:"SEN'EAU",sanit:'ONAS',fiber:'Opérateurs télécoms'};
@@ -876,32 +944,53 @@ const VIAB={
  'z-sand':{elec:{s:'partial',cov:67,fr:'Ligne moyenne tension sur les îlots A et B, renforcement programmé.',en:'Medium-voltage line for blocks A and B, reinforcement planned.'},water:{s:'partial',cov:67,fr:'Forage et château d’eau desservant les îlots A et B.',en:'Borehole and water tower serving blocks A and B.'},sanit:{s:'planned',cov:0,fr:'Station d’épuration et réseau programmés.',en:'Treatment plant and network planned.'},fiber:{s:'planned',cov:0,fr:'Raccordement au réseau national programmé.',en:'Connection to the national backbone planned.'}},
  'z-zfi':{elec:{s:'ok',cov:100,fr:'Réseau en service, alimentation secourue.',en:'Network in service, with backup supply.'},water:{s:'ok',cov:100,fr:'Réseau de distribution sur toutes les voies.',en:'Distribution network on every road.'},sanit:{s:'ok',cov:100,fr:'Réseau raccordé au collecteur de la zone industrielle.',en:'Network connected to the industrial-area trunk sewer.'},fiber:{s:'ok',cov:100,fr:'Fibre optique jusqu’en limite de lot.',en:'Fibre up to plot boundaries.'}}
 };
-const servedRows=(z,n)=>{const v=VIAB[z.id]&&VIAB[z.id][n];return v?Math.round(v.cov/100*z.plan.rows):0;};
-const lotServed=(l,n)=>{const z=ZONES.find(x=>x.id===l.zone);return l.row<servedRows(z,n);};
-function netLines(z){const pl=z.plan,out=[];NETS.forEach((n,k)=>{const off=(k-1.5)*4.5;for(let r=0;r<servedRows(z,n);r++){const y=pl.road/2+r*(pl.bh+pl.road)+off;out.push({n,pts:[[pl.road/2,y],[pl.w-pl.road/2,y]]});}});return out;}
-const LOT_COL={free:'#2E9D5B',res:'#D9A23F',taken:'#9AA39E',equip:'#7FA6C4'};
+
+const netCov=(z,n)=>{const v=VIAB[z.id]&&VIAB[z.id][n];return v?v.cov/100:0;};
+const vFrac=(z,v)=>(z.plan.bb[3]-v)/(z.plan.bb[3]-z.plan.bb[1]);
+const lotServed=(l,n)=>{const z=ZONES.find(x=>x.id===l.zone);return vFrac(z,l.vc)<=netCov(z,n)+1e-9;};
+function netLines(z){const out=[];NETS.forEach((n,k)=>{const off=(k-1.5)*3.2;z.plan.roads.forEach(r=>{if(vFrac(z,r.v)<=netCov(z,n)+1e-9)out.push({n,pts:[[r.u0,r.v+off],[r.u1,r.v+off]]});});});return out;}
 const firmLabel=l=>`${secName(l.firmSector)} – ${t('firm_ex')} ${l.firmN}`;
-const lotsGroup=L.layerGroup(),lotLayers={};
+const zRenderer=L.svg({padding:.5});
+const zaPerim=L.layerGroup(),zaNet=L.layerGroup(),zaTypes={},zaStatus={},lotLayers={};
+ZTYPES.forEach(k=>zaTypes[k]=L.layerGroup());LOT_ST.forEach(s=>zaStatus[s]=L.layerGroup());
 ZONES.forEach(z=>{if(!z.plan)return;const pl=z.plan;
-  lotsGroup.addLayer(L.polygon([pl.toLL(0,0),pl.toLL(pl.w,0),pl.toLL(pl.w,pl.h),pl.toLL(0,pl.h)],{color:css('--accent'),weight:2.5,dashArray:'7 5',fillColor:'#E4E2D9',fillOpacity:.95,interactive:false}));
-  LOTS_BY_ZONE[z.id].forEach(l=>{const p=L.polygon(l.poly,{color:'#FFFFFF',weight:1,fillColor:LOT_COL[l.status],fillOpacity:.9}).on('click',()=>select('lot',l.id));
-    p.bindTooltip(()=>`<b>${l.id}</b> · ${fmtN(l.surf)} m² · ${t('lot_'+l.status)}${l.status==='equip'?'':' · '+fmtN(l.price)+' '+t('per_m2')}`,{sticky:true});lotLayers[l.id]=p;lotsGroup.addLayer(p);});
+  zaPerim.addLayer(L.polygon(pl.P.map(q=>pl.toLL(q[0],q[1])),{renderer:zRenderer,color:'#8D97A5',weight:1,fillColor:'#F4F3EF',fillOpacity:.95,interactive:false}));
+  pl.sectors.forEach(sc=>{zaTypes[sc.type].addLayer(L.polygon(sc.poly.map(q=>pl.toLL(q[0],q[1])),{renderer:zRenderer,color:ZT_COL[sc.type],weight:2.6,dashArray:'7 6',fill:false,interactive:true}).on('click',()=>select('zone',z.id)).bindTooltip(()=>`${esc(z.name)} · ${t('zt_'+sc.type)} · ${nf(1).format(sc.area/1e4)} ha`,{sticky:true}));});
+  LOTS_BY_ZONE[z.id].forEach(l=>{const p=L.polygon(l.poly,{renderer:zRenderer,color:'#FFFFFF',weight:.8,fillColor:svgFill(l.status,'map'),fillOpacity:1}).on('click',()=>select('lot',l.id));
+    p.bindTooltip(()=>`<b>${l.id}</b> · ${fmtN(l.surf)} m² · ${t('lot_'+l.status)}${l.status==='nd'?'':' · '+fmtN(l.price)+' '+t('per_m2')}`,{sticky:true});lotLayers[l.id]=p;zaStatus[l.status].addLayer(p);});
+  netLines(z).forEach(l=>zaNet.addLayer(L.polyline(l.pts.map(q=>pl.toLL(q[0],q[1])),{renderer:zRenderer,color:NET_COL[l.n],weight:2.2,opacity:.95,interactive:false})));
 });
-ZONES.forEach(z=>{if(!z.plan)return;netLines(z).forEach(l=>lotsGroup.addLayer(L.polyline(l.pts.map(q=>z.plan.toLL(q[0],q[1])),{color:NET_COL[l.n],weight:2.5,opacity:.95,interactive:false})));});
-const LOT_MIN_Z=13.5;
-function syncLots(){const z=map.getZoom(),on=document.getElementById('l-lots').checked&&z>=LOT_MIN_Z;if(on&&!map.hasLayer(lotsGroup))lotsGroup.addTo(map);if(!on&&map.hasLayer(lotsGroup))map.removeLayer(lotsGroup);map.getContainer().classList.toggle('z-hi',z>=LOT_MIN_Z);}
+const ZONING_MIN_Z=11.5,LOT_MIN_Z=13.5;
+const cbOn=id=>{const e=document.getElementById(id);return !!(e&&e.checked);};
+function ensurePatterns(){const s=zRenderer._container;if(s&&!s.querySelector('#h-res-map'))s.insertAdjacentHTML('afterbegin',patternDefs('map',8));}
+function setOn(g,on){if(on&&!map.hasLayer(g))g.addTo(map);if(!on&&map.hasLayer(g))map.removeLayer(g);}
+function syncLots(){const z=map.getZoom(),zon=cbOn('l-za-zones')&&z>=ZONING_MIN_Z,lt=cbOn('l-lots')&&z>=LOT_MIN_Z;
+  setOn(zaPerim,z>=ZONING_MIN_Z&&(zon||lt));LOT_ST.forEach(s=>setOn(zaStatus[s],lt&&cbOn('za-s-'+s)));setOn(zaNet,lt);ZTYPES.forEach(k=>setOn(zaTypes[k],zon&&cbOn('za-t-'+k)));
+  ensurePatterns();zaPerim.eachLayer(l=>l.bringToBack&&l.bringToBack());ZTYPES.forEach(k=>zaTypes[k].eachLayer(l=>l.bringToFront&&l.bringToFront()));
+  map.getContainer().classList.toggle('z-hi',z>=LOT_MIN_Z);}
 map.on('zoomend',()=>{syncLots();if(typeof renderLegend==='function'&&typeof SYM!=='undefined')renderLegend();});
-function showZonePlan(zid){const z=ZONES.find(x=>x.id===zid);if(!z||!z.plan)return;const cb=document.getElementById('l-lots');cb.checked=true;const pl=z.plan;map.flyToBounds(L.latLngBounds([pl.toLL(0,0),pl.toLL(pl.w,pl.h)]),{...fitPad(),duration:.8});}
+function showZonePlan(zid){const z=ZONES.find(x=>x.id===zid);if(!z||!z.plan)return;document.getElementById('l-lots').checked=true;document.getElementById('l-za-zones').checked=true;map.flyToBounds(L.latLngBounds(z.plan.P.map(q=>z.plan.toLL(q[0],q[1]))),{...fitPad(),duration:.8});}
 function zoneSvg(z){
-  const pl=z.plan,L_=LOTS_BY_ZONE[z.id];
-  return `<svg class="zsvg" viewBox="-12 -12 ${pl.w+24} ${pl.h+24}" role="img" aria-label="${esc(t('zplan_t'))} – ${esc(z.name)}">
-    <rect x="0" y="0" width="${pl.w}" height="${pl.h}" fill="var(--land)" stroke="var(--accent)" stroke-width="5" stroke-dasharray="18 12"/>
-    ${L_.map(l=>`<rect class="zlot" data-go="lot:${l.id}" x="${l.x}" y="${l.y}" width="${l.w}" height="${l.h}" fill="${LOT_COL[l.status]}" stroke="var(--panel)" stroke-width="3"${sel&&sel.id===l.id?' style="stroke:var(--fg);stroke-width:8"':''}><title>${l.id} · ${fmtN(l.surf)} m² · ${esc(t('lot_'+l.status))}</title></rect>`).join('')}
-    ${netLines(z).map(l=>`<line x1="${l.pts[0][0]}" y1="${l.pts[0][1]}" x2="${l.pts[1][0]}" y2="${l.pts[1][1]}" stroke="${NET_COL[l.n]}" stroke-width="4" stroke-linecap="round"/>`).join('')}
+  const pl=z.plan,L_=LOTS_BY_ZONE[z.id],b=pl.bb,pad=14,W=b[2]-b[0]+2*pad,H=b[3]-b[1]+2*pad,suf=z.id.replace(/\W/g,'');
+  const pt=q=>`${(q[0]-b[0]+pad).toFixed(1)},${(b[3]-q[1]+pad).toFixed(1)}`,pts=p=>p.map(pt).join(' ');
+  return `<svg class="zsvg" viewBox="0 0 ${W.toFixed(0)} ${H.toFixed(0)}" role="img" aria-label="${esc(t('zplan_t'))} – ${esc(z.name)}">${patternDefs(suf,22)}
+    <polygon points="${pts(pl.P)}" fill="var(--panel-2)" stroke="var(--muted)" stroke-width="2"/>
+    ${L_.map(l=>`<polygon class="zlot" data-go="lot:${l.id}" points="${pts(l.local)}" fill="${svgFill(l.status,suf)}" stroke="var(--panel)" stroke-width="2.5"${sel&&sel.id===l.id?' style="stroke:var(--fg);stroke-width:7"':''}><title>${l.id} · ${fmtN(l.surf)} m² · ${esc(t('lot_'+l.status))}</title></polygon>`).join('')}
+    ${netLines(z).map(l=>`<polyline points="${pts(l.pts)}" stroke="${NET_COL[l.n]}" stroke-width="3.5" stroke-linecap="round" fill="none"/>`).join('')}
+    ${pl.sectors.map(sc=>`<polygon points="${pts(sc.poly)}" fill="none" stroke="${ZT_COL[sc.type]}" stroke-width="6" stroke-dasharray="20 14" pointer-events="none"/>`).join('')}
   </svg>`;
 }
-function lotStatusBar(L_){const tot=L_.length;return `<div class="lotbar" role="img" aria-label="${['free','res','taken','equip'].map(s=>t('lot_'+s)+' '+L_.filter(l=>l.status===s).length).join(', ')}">${['free','res','taken','equip'].map(s=>{const n=L_.filter(l=>l.status===s).length;return n?`<i style="width:${100*n/tot}%;background:${LOT_COL[s]}"></i>`:'';}).join('')}</div>
-  <div class="lotlg">${['free','res','taken','equip'].map(s=>`<span><i style="background:${LOT_COL[s]}"></i>${t('lot_'+s)} · ${L_.filter(l=>l.status===s).length}</span>`).join('')}</div>`;}
+function lotStatusBar(L_){const tot=L_.length,cnt=s=>L_.filter(l=>l.status===s).length;return `<div class="lotbar" role="img" aria-label="${LOT_ST.map(s=>t('lot_'+s)+' '+cnt(s)).join(', ')}">${LOT_ST.map(s=>cnt(s)?`<i style="width:${100*cnt(s)/tot}%;background:${cssFill(s)}"></i>`:'').join('')}</div>
+  <div class="lotlg">${LOT_ST.map(s=>`<span><i style="background:${cssFill(s)}"></i>${t('lot_'+s)} · ${cnt(s)}</span>`).join('')}</div>`;}
+function zaSwatchType(k){return `<i class="zt-sw" style="border-color:${ZT_COL[k]}"></i>`;}
+function zaSwatchLot(s){return `<i class="sw" style="background:${cssFill(s)};width:16px;height:12px;border-radius:2px"></i>`;}
+function renderZaLayers(){
+  const tp=document.getElementById('za-types'),stl=document.getElementById('za-status');if(!tp)return;
+  const used=ZTYPES.filter(k=>Object.values(ZPLAN).some(p=>p.types.includes(k)));
+  const keep=id=>{const e=document.getElementById(id);return e?e.checked:true;};
+  tp.innerHTML=used.map(k=>`<label class="layer sub"><input type="checkbox" id="za-t-${k}"${keep('za-t-'+k)?' checked':''}>${zaSwatchType(k)}<span>${t('zt_'+k)}</span></label>`).join('');
+  stl.innerHTML=LOT_ST.map(s=>`<label class="layer sub"><input type="checkbox" id="za-s-${s}"${keep('za-s-'+s)?' checked':''}>${zaSwatchLot(s)}<span>${t('lot_'+s)}</span><span class="n">${Object.values(LOTS).filter(l=>l.status===s).length}</span></label>`).join('');
+}
 
 /* ---------- état ---------- */
 let sector='all', sel=null;
@@ -956,23 +1045,25 @@ function socioBlock(r){
 }
 function zoneBlock(o){
   const L_=LOTS_BY_ZONE[o.id];if(!L_)return `<div class="grid2">${stat(t('regime'),esc(o.code==='ZFI'?'Zone franche':'Loi ZES'))}</div>`;
-  const comm=L_.filter(l=>l.status!=='equip'),free=L_.filter(l=>l.status==='free'),sold=L_.filter(l=>l.status==='taken');
+  const comm=L_.filter(l=>l.status!=='nd'),free=L_.filter(l=>l.status==='imm'),soon=L_.filter(l=>l.status==='pot'||l.status==='terme'),sold=L_.filter(l=>l.status==='occ');
   const freeSurf=free.reduce((a,l)=>a+l.surf,0),pr=comm.map(l=>l.price),pmin=Math.min(...pr),pmax=Math.max(...pr);
   const top=[...free].sort((a,b)=>b.surf-a.surf).slice(0,8);
   return `<div class="grid2">
       ${stat(t('surf'),nf(1).format(o.plan.area/10000)+' ha')}
-      ${stat(t('free_lots'),`${free.length} / ${comm.length}<small class="vs">${nf(1).format(freeSurf/10000)} ${t('free_ha')}</small>`)}
+      ${stat(t('free_lots'),`${free.length} / ${comm.length}<small class="vs">${nf(1).format(freeSurf/10000)} ${t('free_ha')} · +${soon.length} ${t('soon_n')}</small>`)}
       ${stat(t('firms'),String(sold.length))}
       ${stat(t('price_rng'),`${fmtN(pmin)} – ${fmtN(pmax)}<small class="vs">${t('per_m2')}</small>`)}
     </div>
+    <button type="button" class="btn cta v360-btn" data-z360="${o.id}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 3 8l9 5 9-5z"/><path d="M3 8v8l9 5 9-5V8"/><path d="M12 13v8"/></svg><span>${t('v360_btn')}</span></button>
     <div class="zplan">
       <p class="label">${t('zplan_t')}</p>${zoneSvg(o)}${lotStatusBar(L_)}
+      <div class="zt-lg">${o.plan.sectors.map(sc=>`<span>${zaSwatchType(sc.type)}${t('zt_'+sc.type)} · ${nf(1).format(sc.area/1e4)} ha</span>`).join('')}</div>
       <div class="netlg">${NETS.map(n=>`<span><i style="background:${NET_COL[n]}"></i>${t('net_'+n)}</span>`).join('')}</div>
       <button type="button" class="btn primary" data-zplan="${o.id}">${t('zplan_btn')}</button>
     </div>
     <div><p class="label">${t('lot_sort')}</p>
-      <div class="lottbl-wrap"><table class="lottbl"><thead><tr><th>${t('lot_t')}</th><th>${t('lot_surf')}</th><th>${t('per_m2')}</th></tr></thead><tbody>
-      ${top.map(l=>`<tr><td><button type="button" data-go="lot:${l.id}">${l.id}</button></td><td>${fmtN(l.surf)} m²</td><td>${fmtN(l.price)}</td></tr>`).join('')}
+      <div class="lottbl-wrap"><table class="lottbl"><thead><tr><th>${t('lot_t')}</th><th>${t('lot_sector')}</th><th>${t('lot_surf')}</th><th>${t('per_m2')}</th></tr></thead><tbody>
+      ${top.map(l=>`<tr><td><button type="button" data-go="lot:${l.id}">${l.id}</button></td><td>${t('zt_'+l.type)}</td><td>${fmtN(l.surf)} m²</td><td>${fmtN(l.price)}</td></tr>`).join('')}
       </tbody></table></div>
       ${free.length>top.length?`<p class="fine">${t('and_more').replace('{n}',free.length-top.length)}</p>`:''}
     </div>
@@ -1038,15 +1129,16 @@ function renderFiche(){
     <p class="fine">${t('indicative')}</p>
     ${o.cat==='apix'||o.id==='i-ter'||o.id==='i-auto'||o.id==='i-ndayane'?`<a class="btn ghost" href="https://investinsenegal.sn/" target="_blank" rel="noopener">${t('pdf_page')}</a>`:''}`;
   } else if(sel.kind==='lot'){
-    const z=byId(o.zone),st=o.status;
+    const z=byId(o.zone),st=o.status,sale=st!=='nd';
     h=`<span class="kind lotk" style="--lc:${LOT_COL[st]}">${t('lot_'+st)}</span><div><h2>${t('lot_t')} ${esc(o.id)}</h2><p class="sub">${esc(z.name)} · ${t('islot')} ${esc(o.blk)}</p></div>
-    <div class="grid2">${stat(t('lot_surf'),fmtN(o.surf)+' m²')}${stat(t('lot_dim'),`${Math.round(o.w)} × ${Math.round(o.h)} m`)}${st==='equip'?'':stat(t('lot_pm2'),fmtN(o.price)+' FCFA')+stat(t('lot_total'),fmtN(o.surf*o.price)+' FCFA')}</div>
-    ${st==='equip'?'':lotNetBlock(o)}
-    ${st==='taken'?`<div><p class="label">${t('firms')}</p><div class="rows">${row(t('firm_name'),esc(firmLabel(o)))}${row(t('sector_l'),esc(secName(o.firmSector)))}</div></div>`:''}
-    ${st==='res'?`<p class="desc">${t('lot_res_d')}</p>`:''}${st==='equip'?`<p class="desc">${t('lot_equip_d')}</p>`:''}
-    ${st==='free'?`<button type="button" class="btn primary" data-interest="${esc(o.id)}">${t('lot_interest')}</button><div id="interest" hidden></div>`:''}
+    <div class="grid2">${stat(t('lot_surf'),fmtN(o.surf)+' m²')}${stat(t('lot_sector'),`<span class="zt-inline">${zaSwatchType(o.type)}${t('zt_'+o.type)}</span>`)}${sale?stat(t('lot_pm2'),fmtN(o.price)+' FCFA')+stat(t('lot_total'),fmtN(o.surf*o.price)+' FCFA'):''}</div>
+    <p class="fine">${t('lot_dim')} : ${o.clipped?'≈ ':''}${Math.round(o.fw)} × ${Math.round(o.fd)} m</p>
+    ${sale?lotNetBlock(o):''}
+    ${st==='occ'?`<div><p class="label">${t('firms')}</p><div class="rows">${row(t('firm_name'),esc(firmLabel(o)))}${row(t('sector_l'),esc(secName(o.firmSector)))}</div></div>`:''}
+    ${['res','pot','terme','nd'].includes(st)?`<p class="desc">${t('lot_'+st+'_d')}</p>`:''}
+    ${['imm','pot','terme'].includes(st)?`<button type="button" class="btn primary" data-interest="${esc(o.id)}">${t('lot_interest')}</button><div id="interest" hidden></div>`:''}
     <div class="zplan"><p class="label">${t('zplan_t')} · ${esc(z.name)}</p>${zoneSvg(z)}</div>
-    <button type="button" class="btn ghost" data-go="zone:${z.id}">${t('lot_back')} ${esc(z.name)}</button>
+    <div class="w-actions"><button type="button" class="btn cta v360-btn" data-z360="${z.id}" data-lot="${esc(o.id)}"><span>${t('v360_btn')}</span></button><button type="button" class="btn ghost" data-go="zone:${z.id}">${t('lot_back')} ${esc(z.name)}</button></div>
     <p class="fine">${t('lot_fict')}</p>`;
   } else if(sel.kind==='region'){
     const r=sel.id;
@@ -1062,6 +1154,7 @@ function renderFiche(){
 P.addEventListener('click',e=>{
   const po=e.target.closest('[data-portalopen]');if(po){openPlat(po.dataset.portalopen);return;}
   const zp=e.target.closest('[data-zplan]');if(zp){showZonePlan(zp.dataset.zplan);return;}
+  const z3=e.target.closest('[data-z360]');if(z3){openV360(z3.dataset.z360,z3.dataset.lot);return;}
   const it=e.target.closest('[data-interest]');if(it){const l=LOTS[it.dataset.interest],z=byId(l.zone),p=platOfRegion(z.region)||PLATS[0],box=document.getElementById('interest');
     const subj=`${t('interest_subj_v')} ${l.id} – ${z.name} (${fmtN(l.surf)} m²)`;
     box.innerHTML=`<div class="card"><h4>${t('interest_t')}</h4><div class="rows">
@@ -1079,7 +1172,7 @@ function select(kind,id,fly){
   sel={kind,id};showTab('fiche');renderFiche();markSel();
   if(fly){
     if(kind==='region'){regionLayer.eachLayer(l=>{if(l.feature.properties.n===id)map.flyToBounds(l.getBounds(),{padding:[30,30],duration:.6});});}
-    else if(kind==='lot'){const o=LOTS[id];document.getElementById('l-lots').checked=true;map.flyTo(o.ll,Math.max(map.getZoom(),16.5),{duration:.6});}
+    else if(kind==='lot'){const o=LOTS[id];document.getElementById('l-lots').checked=true;const sc=document.getElementById('za-s-'+o.status);if(sc)sc.checked=true;map.flyTo(o.ll,Math.max(map.getZoom(),16.5),{duration:.6});}
     else{const o=byId(id);if(o&&o.ll)map.flyTo(o.ll,Math.max(map.getZoom(),9),{duration:.6});else if(o&&o.pts)map.flyToBounds(L.latLngBounds(o.pts),{padding:[40,40],duration:.6});}
   }
 }
@@ -1094,6 +1187,8 @@ function syncMaster(){const on=SUBS.filter(s=>document.getElementById('s-'+s).ch
 SUBS.forEach(s=>document.getElementById('s-'+s).addEventListener('change',e=>{setGroup(s,e.target.checked);syncMaster();setTimeout(()=>{markSel();renderLegend();});}));
 master.addEventListener('change',()=>{SUBS.forEach(s=>{const cb=document.getElementById('s-'+s);cb.checked=master.checked;setGroup(s,master.checked);});master.indeterminate=false;setTimeout(()=>{markSel();renderLegend();});});
 document.getElementById('l-lots').addEventListener('change',()=>{syncLots();renderLegend();});
+document.getElementById('l-za-zones').addEventListener('change',()=>{syncLots();renderLegend();});
+document.getElementById('acc-za').addEventListener('change',e=>{if(e.target.matches('#za-types input,#za-status input')){syncLots();renderLegend();}});
 document.getElementById('l-cover').addEventListener('change',e=>{if(e.target.checked&&theme!=='none'){theme='none';renderThemeSelect();}regionLayer.setStyle(regionStyle);markSel();document.getElementById('cover-legend').hidden=!e.target.checked;renderLegend();});
 
 /* ---------- légendes ---------- */
@@ -1118,7 +1213,10 @@ function renderLegend(){
   if(on('plats'))base.push(lgRow('<i class="sw plat"></i>',t('lg_plat')));
   if(on('projs'))base.push(lgRow('<i class="sw proj"></i>',t('lg_proj'),t('lg_proj_note')));
   if(base.length)h+=`<div class="lg-sec"><h3>${t('lg_invest')}</h3>${base.join('')}</div>`;
-  if(document.getElementById('l-lots').checked){h+=map.hasLayer(lotsGroup)?`<div class="lg-sec"><h3>${t('l_lots')}</h3>${['free','res','taken','equip'].map(s=>lgRow(`<i class="sw" style="background:${LOT_COL[s]};width:16px;height:12px"></i>`,t('lot_'+s))).join('')}${NETS.map(n=>lgRow(`<i style="display:block;width:18px;height:3px;border-radius:2px;background:${NET_COL[n]}"></i>`,t('net_'+n))).join('')}<p class="fine">${t('lot_demo')}</p></div>`:`<div class="lg-sec"><h3>${t('l_lots')}</h3><p class="fine">${t('lots_hint')}</p></div>`;}
+  {const zm=map.getZoom(),zon=cbOn('l-za-zones'),lt=cbOn('l-lots');
+    if(zon&&zm>=ZONING_MIN_Z)h+=`<div class="lg-sec"><h3>${t('za_zoning')}</h3>${ZTYPES.filter(k=>cbOn('za-t-'+k)).map(k=>lgRow(zaSwatchType(k),t('zt_'+k))).join('')}</div>`;
+    if(lt&&zm>=LOT_MIN_Z)h+=`<div class="lg-sec"><h3>${t('za_terrains')}</h3>${LOT_ST.filter(s=>cbOn('za-s-'+s)).map(s=>lgRow(zaSwatchLot(s),t('lot_'+s))).join('')}${NETS.map(n=>lgRow(`<i style="display:block;width:18px;height:3px;border-radius:2px;background:${NET_COL[n]}"></i>`,t('net_'+n))).join('')}<p class="fine">${t('lot_demo')}</p></div>`;
+    else if((zon||lt)&&zm<LOT_MIN_Z)h+=`<div class="lg-sec"><h3>${t('za_t')}</h3><p class="fine">${t('lots_hint')}</p></div>`;}
   const inf=[];
   if(on('auto'))inf.push(lgRow(SYM.auto,t('s_auto')));
   if(on('main'))inf.push(lgRow(SYM.main,t('s_main')));
@@ -1237,7 +1335,7 @@ function renderCounts(){document.getElementById('counts').innerHTML=[[fmtM(NAT.p
   document.getElementById('n-infra').textContent=INFRA_PTS.length+LINES.length;}
 function setLang(l){lang=l;document.documentElement.lang=l;document.querySelectorAll('[data-i]').forEach(el=>{el.textContent=t(el.dataset.i);});
   document.getElementById('lang-fr').setAttribute('aria-pressed',l==='fr');document.getElementById('lang-en').setAttribute('aria-pressed',l==='en');
-  document.title=t('title')+' – Sénégal';{const pr=document.getElementById('proto');if(pr)pr.title=t('notice');}renderChips();renderSectorSelect();renderCounts();renderFiche();renderThemeSelect();renderLegend();renderCoverLegend();renderPortal();if(document.querySelector('#ranking ol'))rank();try{localStorage.setItem('atlas-lang',l);}catch(_){}}
+  document.title=t('title')+' – Sénégal';{const pr=document.getElementById('proto');if(pr)pr.title=t('notice');}renderChips();renderSectorSelect();renderCounts();renderFiche();renderThemeSelect();renderZaLayers();renderLegend();renderCoverLegend();renderPortal();if(document.querySelector('#ranking ol'))rank();try{localStorage.setItem('atlas-lang',l);}catch(_){}}
 document.getElementById('lang-fr').onclick=()=>setLang('fr');
 document.getElementById('lang-en').onclick=()=>setLang('en');
 
@@ -1456,6 +1554,74 @@ portalEl.addEventListener('click',e=>{
   const c=e.target.closest('[data-copy]');if(c){const v=c.dataset.copy;const done=()=>{c.textContent=t('copied');setTimeout(()=>c.textContent=t('copy'),1400);};try{navigator.clipboard.writeText(v).then(done,()=>selectText(c.parentElement));}catch(_){selectText(c.parentElement);}}
 });
 
+/* ---------- vue 360° (maquette 3D de démonstration, Three.js chargé à la demande) ---------- */
+const V3={el:null,raf:0,renderer:null,ctrl:null,ro:null};
+async function ensureThree(){
+  if(!window.THREE)await loadScript('https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js');
+  if(!window.THREE.OrbitControls)await loadScript('https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js');
+}
+function v360Shell(){
+  if(V3.el)return V3.el;
+  const d=document.createElement('div');d.className='v360';d.hidden=true;d.setAttribute('role','dialog');d.setAttribute('aria-modal','true');d.setAttribute('aria-labelledby','v360-title');
+  d.innerHTML=`<div class="v360-box"><div class="v360-head"><div><h2 id="v360-title"></h2><p id="v360-note"></p></div><button type="button" class="icon-btn" id="v360-close"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
+    <div class="v360-stage" id="v360-stage"><div class="v360-msg" id="v360-msg"></div>
+      <div class="v360-ctl"><button type="button" id="v360-auto" aria-pressed="true"></button><button type="button" id="v360-top"></button></div>
+      <div class="v360-lg" id="v360-lg"></div><div class="v360-help" id="v360-help"></div></div></div>`;
+  document.body.appendChild(d);V3.el=d;
+  d.querySelector('#v360-close').onclick=closeV360;
+  d.addEventListener('click',e=>{if(e.target===d)closeV360();});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!d.hidden)closeV360();});
+  return d;
+}
+function closeV360(){if(!V3.el)return;V3.el.hidden=true;cancelAnimationFrame(V3.raf);if(V3.ro)V3.ro.disconnect();if(V3.ctrl)V3.ctrl.dispose();if(V3.renderer){V3.renderer.dispose();V3.renderer.domElement.remove();}V3.renderer=V3.ctrl=V3.ro=null;const b=document.querySelector('[data-z360]');if(b)b.focus();}
+function hatchTexture(fill,hatch){const c=document.createElement('canvas');c.width=c.height=64;const g=c.getContext('2d');g.fillStyle=fill;g.fillRect(0,0,64,64);g.strokeStyle=hatch;g.lineWidth=11;for(let i=-64;i<=128;i+=24){g.beginPath();g.moveTo(i,64);g.lineTo(i+64,0);g.stroke();}const tx=new THREE.CanvasTexture(c);tx.wrapS=tx.wrapT=THREE.RepeatWrapping;tx.repeat.set(1/22,1/22);return tx;}
+async function openV360(zid,lotId){
+  const z=ZONES.find(x=>x.id===zid);if(!z||!z.plan)return;const d=v360Shell();
+  d.querySelector('#v360-title').textContent=`${t('v360_t')} · ${z.name}`;d.querySelector('#v360-note').textContent=t('v360_note');
+  d.querySelector('#v360-close').setAttribute('aria-label',t('v360_close'));d.querySelector('#v360-help').textContent=t('v360_help');
+  d.querySelector('#v360-top').textContent=t('v360_top');const auto=d.querySelector('#v360-auto');auto.textContent=t('v360_auto');
+  d.querySelector('#v360-lg').innerHTML=LOT_ST.map(s=>`<span>${zaSwatchLot(s)}${t('lot_'+s)}</span>`).join('')+z.plan.sectors.map(sc=>`<span>${zaSwatchType(sc.type)}${t('zt_'+sc.type)}</span>`).join('');
+  const msg=d.querySelector('#v360-msg');msg.textContent=t('v360_load');msg.hidden=false;d.hidden=false;d.querySelector('#v360-close').focus();
+  try{await ensureThree();}catch(_){msg.textContent=t('v360_err');return;}
+  if(d.hidden)return;
+  const stage=d.querySelector('#v360-stage');let renderer;
+  try{renderer=new THREE.WebGLRenderer({antialias:true});}catch(_){msg.textContent=t('v360_err');return;}
+  msg.hidden=true;V3.renderer=renderer;renderer.setPixelRatio(Math.min(2,devicePixelRatio||1));renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;
+  stage.prepend(renderer.domElement);renderer.domElement.setAttribute('aria-label',t('v360_t')+' – '+z.name);
+  const pl=z.plan,b=pl.bb,cx=(b[0]+b[2])/2,cy=(b[1]+b[3])/2,ext=Math.max(b[2]-b[0],b[3]-b[1]);
+  const scene=new THREE.Scene();scene.background=new THREE.Color('#D9E8F5');scene.fog=new THREE.Fog('#D9E8F5',ext*1.6,ext*4);
+  const cam=new THREE.PerspectiveCamera(42,1,1,ext*8);
+  scene.add(new THREE.HemisphereLight('#FFFFFF','#B9A98A',.75));
+  const sun=new THREE.DirectionalLight('#FFF4E0',.85);sun.position.set(ext*.5,ext*.9,ext*.35);sun.castShadow=true;sun.shadow.mapSize.set(2048,2048);
+  const sc_=sun.shadow.camera;sc_.left=sc_.bottom=-ext*.7;sc_.right=sc_.top=ext*.7;sc_.near=1;sc_.far=ext*3;scene.add(sun);
+  const shape=pts=>{const s=new THREE.Shape();pts.forEach((q,i)=>i?s.lineTo(q[0]-cx,q[1]-cy):s.moveTo(q[0]-cx,q[1]-cy));return s;};
+  const flat=(pts,mat,y)=>{const g=new THREE.ShapeGeometry(shape(pts));g.rotateX(-Math.PI/2);const m=new THREE.Mesh(g,mat);m.position.y=y;m.receiveShadow=true;scene.add(m);return m;};
+  const ground=new THREE.Mesh(new THREE.PlaneGeometry(ext*8,ext*8),new THREE.MeshLambertMaterial({color:'#E6DEC9'}));ground.rotation.x=-Math.PI/2;ground.receiveShadow=true;scene.add(ground);
+  flat(pl.P,new THREE.MeshLambertMaterial({color:'#B9BCC2'}),.2);
+  const mats={};LOT_ST.forEach(s=>{const st=LOT_STYLE[s];mats[s]=new THREE.MeshLambertMaterial(st.hatch?{map:hatchTexture(st.fill,st.hatch)}:{color:st.fill});});
+  const R=rng(hashStr(zid+'3d'));const wall=new THREE.MeshLambertMaterial({color:'#EEF1F5'}),roof=new THREE.MeshLambertMaterial({color:'#D3DAE3'});
+  LOTS_BY_ZONE[zid].forEach(l=>{
+    const isSel=l.id===lotId;flat(l.local,isSel?new THREE.MeshLambertMaterial({color:'#FFD23F'}):mats[l.status],.5);
+    if(l.status==='occ'){const c=polyCentroid(l.local),k=.62,fp=l.local.map(q=>[c[0]+(q[0]-c[0])*k,c[1]+(q[1]-c[1])*k]);
+      const g=new THREE.ExtrudeGeometry(shape(fp),{depth:l.hgt||10,bevelEnabled:false});g.rotateX(-Math.PI/2);const m=new THREE.Mesh(g,[roof,wall]);m.position.y=.5;m.castShadow=m.receiveShadow=true;scene.add(m);}
+    if(isSel){const c=polyCentroid(l.local),pin=new THREE.Mesh(new THREE.ConeGeometry(9,26,24),new THREE.MeshLambertMaterial({color:'#EF7900'}));pin.rotation.x=Math.PI;pin.position.set(c[0]-cx,48,-(c[1]-cy));scene.add(pin);}
+  });
+  pl.sectors.forEach(sc=>{const pts=[...sc.poly,sc.poly[0]].map(q=>new THREE.Vector3(q[0]-cx,1.2,-(q[1]-cy)));const g=new THREE.BufferGeometry().setFromPoints(pts);const ln=new THREE.Line(g,new THREE.LineDashedMaterial({color:ZT_COL[sc.type],dashSize:14,gapSize:9}));ln.computeLineDistances();scene.add(ln);});
+  netLines(z).forEach(nl=>{const g=new THREE.BufferGeometry().setFromPoints(nl.pts.map(q=>new THREE.Vector3(q[0]-cx,.9,-(q[1]-cy))));scene.add(new THREE.Line(g,new THREE.LineBasicMaterial({color:NET_COL[nl.n]})));});
+  /* végétation autour de l'emprise */
+  const tg=new THREE.ConeGeometry(5,14,7),tm=new THREE.MeshLambertMaterial({color:'#5E8C4A'}),trees=new THREE.InstancedMesh(tg,tm,160),M=new THREE.Matrix4();
+  for(let i=0;i<160;i++){const a=R()*Math.PI*2,r=ext*(.6+R()*.9),s=.7+R()*.8;M.compose(new THREE.Vector3(Math.cos(a)*r,7*s,Math.sin(a)*r),new THREE.Quaternion(),new THREE.Vector3(s,s,s));trees.setMatrixAt(i,M);}
+  trees.castShadow=true;scene.add(trees);
+  const ctrl=new THREE.OrbitControls(cam,renderer.domElement);V3.ctrl=ctrl;ctrl.enableDamping=true;ctrl.maxPolarAngle=1.42;ctrl.minDistance=ext*.15;ctrl.maxDistance=ext*2.6;
+  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;ctrl.autoRotate=!reduce;ctrl.autoRotateSpeed=.8;auto.setAttribute('aria-pressed',String(!reduce));
+  auto.onclick=()=>{ctrl.autoRotate=!ctrl.autoRotate;auto.setAttribute('aria-pressed',String(ctrl.autoRotate));};
+  const home=()=>{let tx=0,tz=0;if(lotId&&LOTS[lotId]){const c=polyCentroid(LOTS[lotId].local);tx=c[0]-cx;tz=-(c[1]-cy);}ctrl.target.set(tx,0,tz);cam.position.set(tx+ext*.55,ext*.5,tz+ext*.75);ctrl.update();};
+  d.querySelector('#v360-top').onclick=()=>{ctrl.autoRotate=false;auto.setAttribute('aria-pressed','false');cam.position.set(ctrl.target.x,ext*1.35,ctrl.target.z+1);ctrl.update();};
+  home();
+  const size=()=>{const w=stage.clientWidth,h=stage.clientHeight;renderer.setSize(w,h,false);cam.aspect=w/Math.max(h,1);cam.updateProjectionMatrix();};
+  V3.ro=new ResizeObserver(size);V3.ro.observe(stage);size();
+  const loop=()=>{V3.raf=requestAnimationFrame(loop);ctrl.update();renderer.render(scene,cam);};loop();
+}
 /* ---------- rapport PDF par plateforme ---------- */
 let dl=null;
 /* Hors de Claude (site web classique, GitHub Pages) : téléchargement direct du fichier */
